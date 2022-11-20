@@ -1,2 +1,6 @@
 /target/
 /.idea/
+
+#git config --global core.excludesFile ~/.gitignore
+#for apply git ignore
+#add new if nessessary
