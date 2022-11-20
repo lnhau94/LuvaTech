@@ -10,7 +10,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="luvatech" target="18" />
+      <module name="luvatech" target="19" />
     </bytecodeTargetLevel>
   </component>
 </project>
