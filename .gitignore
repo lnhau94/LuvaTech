@@ -1,5 +1,6 @@
 /target/
 /.idea/
+/src/main/resources/
 
 #git config --global core.excludesFile ~/.gitignore
 #for apply git ignore
