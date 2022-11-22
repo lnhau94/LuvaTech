@@ -1,0 +1,18 @@
+version: "3.8"
+#docker-compose -f docker-postgres.yml up
+#run command to create postgres
+services:
+  db:
+    image: postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - '5432:5432'
+    restart: always
+    volumes:
+      - ../../resources/db:/var/lib/postgresql/data #change path to save db if need
+
+volumes:
+  db:
+    driver: local
