@@ -15,7 +15,7 @@ conn = psycopg2.connect(
     host='localhost',
     database='postgres',
     user='postgres',
-    password='',
+    password='postgres',
     port='5432',
     options='-c search_path=luvashop'
 )
