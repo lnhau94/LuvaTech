@@ -1,6 +1,8 @@
 /target/
 /.idea/
 /src/main/resources/
+/luvatech.iml
+.DS_Store
 
 #git config --global core.excludesFile ~/.gitignore
 #for apply git ignore
