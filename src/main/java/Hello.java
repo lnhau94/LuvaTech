@@ -19,7 +19,7 @@ public class Hello extends Application {
         try {
             c = DriverManager
                     .getConnection("jdbc:postgresql://localhost:5432/postgres?currentSchema=luvashop",
-                            "postgres", "postgres");
+                            "postgres", "123456");
 
             stmt = c.createStatement();
             String sql = "select * from specification";

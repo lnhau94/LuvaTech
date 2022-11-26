@@ -8,8 +8,11 @@ public class DAO {
     private PreparedStatement preStmt;
     private final String connectString = "jdbc:postgresql://localhost:5432/postgres?currentSchema=luvashop";
     private final String dbuser = "postgres";
-    private final String dbpass = "postgres";
-
+    //private final String dbpass = "postgres";
+    /**
+     * Password của Hữu Đại
+     */
+    private final String dbpass = "123456";
     public DAO(){
         try {
             conn = DriverManager.getConnection(connectString,dbuser,dbpass);
