@@ -37,6 +37,6 @@ public class ProductDAO {
         } catch (SQLException e) {
             System.err.println("ProductDAO err");
             System.err.println(e.getMessage());
-        }
+        };
     }
 }
