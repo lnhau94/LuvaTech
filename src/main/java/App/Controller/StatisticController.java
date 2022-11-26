@@ -1,4 +1,4 @@
-package Statistics.Controller;
+package App.Controller;
 
 public class StatisticController {
 }
