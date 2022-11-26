@@ -27,7 +27,7 @@
                      <graphic>
                         <ImageView fitHeight="38.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../../../../DataLuvaShop/Image/icon/left-arrowheads.png" />
+                              <Image url="@../../Assets/Image/icon/left-arrowheads.png" />
                            </image>
                         </ImageView>
                      </graphic>

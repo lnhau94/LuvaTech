@@ -26,7 +26,7 @@
                      <graphic>
                         <ImageView fitHeight="43.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../../../../DataLuvaShop/Image/icon/left-arrowheads.png" />
+                              <Image url="@../../Assets/Image/icon/left-arrowheads.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -34,7 +34,7 @@
                   <Pane prefHeight="97.0" prefWidth="367.0" />
                   <ImageView fx:id="productImage" fitHeight="388.0" fitWidth="234.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../../DataLuvaShop/Image/Headphone/chup-tai-bluetooth-sony-wh-xb910n-den-1.jpg" />
+                        <Image url="@../../Assets/Image/Headphone/chup-tai-bluetooth-sony-wh-xb910n-den-1.jpg" />
                      </image>
                      <styleClass>
                         <String fx:value="shadow" />

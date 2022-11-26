@@ -82,7 +82,7 @@
                                                     <graphic>
                                                         <ImageView fitHeight="39.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                                                             <image>
-                                                                <Image url="@../../../../../DataLuvaShop/Image/icon/minus.png" />
+                                                                <Image url="@../../Assets/Image/icon/minus.png" />
                                                             </image>
                                                         </ImageView>
                                                     </graphic></Button>
@@ -98,7 +98,7 @@
                                                     <graphic>
                                                         <ImageView fitHeight="34.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true" styleClass="transparent">
                                                             <image>
-                                                                <Image url="@../../../../../DataLuvaShop/Image/icon/plus.png" />
+                                                                <Image url="@../../Assets/Image/icon/plus.png" />
                                                             </image>
                                                         </ImageView>
                                                     </graphic></Button>
