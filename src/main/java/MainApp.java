@@ -1,4 +1,5 @@
 import DAL.AccountDAO;
+import DAL.ProductDAO;
 import Util.Validation;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -35,6 +36,7 @@ public class MainApp extends Application {
         mainStage.setHeight(dim.getHeight());
 
         AccountDAO.retrieve();
+        ProductDAO.retrieve();
         stage.setTitle("LuvaTech");
         Button btn = new Button();
         btn.setText("Say 'Hello World'");
@@ -60,7 +62,7 @@ public class MainApp extends Application {
             }
         });
 
-
+        System.out.println(getClass().getResource("/Users/lnhau/Documents/Code/luvatech/src/main/java/MainApp.java"));
         stage.show();
     }
 }
