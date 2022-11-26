@@ -19,7 +19,7 @@
                 <artifactId>javafx-maven-plugin</artifactId>
                 <version>0.0.8</version>
                 <configuration>
-                    <mainClass>Hello</mainClass>
+                    <mainClass>MainApp</mainClass>
                 </configuration>
             </plugin>
         </plugins>
