@@ -1,3 +1,4 @@
+import DAL.AccountDAO;
 import Util.Validation;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -6,6 +7,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+
+import java.awt.*;
 
 public class MainApp extends Application {
     private static Stage mainStage;
@@ -27,7 +30,12 @@ public class MainApp extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         mainStage = stage;
-        stage.setTitle("Hello World!");
+        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+        mainStage.setWidth(dim.getWidth());
+        mainStage.setHeight(dim.getHeight());
+
+        AccountDAO.retrieve();
+        stage.setTitle("LuvaTech");
         Button btn = new Button();
         btn.setText("Say 'Hello World'");
         StackPane root = new StackPane();
