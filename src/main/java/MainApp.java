@@ -3,12 +3,14 @@ import Util.Validation;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 import java.awt.*;
+import java.io.File;
 
 public class MainApp extends Application {
     private static Stage mainStage;
@@ -48,11 +50,11 @@ public class MainApp extends Application {
                 StackPane pane = new StackPane();
                 Button btn = new Button("hello");
                 btn.setOnAction(new EventHandler<ActionEvent>() {
-                    @Override
-                    public void handle(ActionEvent actionEvent) {
-                        switchScene(root.getScene());
-                    }
-                }
+                                    @Override
+                                    public void handle(ActionEvent actionEvent) {
+                                        switchScene(root.getScene());
+                                    }
+                                }
 
                 );
                 pane.getChildren().add(btn);
