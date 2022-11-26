@@ -7,7 +7,7 @@ public class Validation {
     public boolean checkName(){
         return true;
     }
-    public boolean checkPhone(){
-        return true;
+    public boolean checkPhone(String phoneNumber){
+        return phoneNumber.matches("^[+84|0][^0][0-9]{8}");
     }
 }
