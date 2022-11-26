@@ -26,19 +26,19 @@
                   <Pane prefHeight="44.0" prefWidth="55.0" VBox.vgrow="ALWAYS" />
                   <ImageView fitHeight="29.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../../DataLuvaShop/Image/icon/user.png" />
+                        <Image url="@../../Assets/Image/icon/user.png" />
                      </image>
                   </ImageView>
                   <Pane prefHeight="387.0" prefWidth="55.0" />
                   <ImageView fitHeight="43.0" fitWidth="43.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../../DataLuvaShop/Image/icon/shop.png" />
+                        <Image url="@../../Assets/Image/icon/shop.png" />
                      </image>
                   </ImageView>
                   <Pane prefHeight="322.0" prefWidth="55.0" />
                   <ImageView fitHeight="29.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../../DataLuvaShop/Image/icon/log-out.png" />
+                        <Image url="@../../Assets/Image/icon/log-out.png" />
                      </image>
                   </ImageView>
                   <Pane prefHeight="51.0" prefWidth="55.0" VBox.vgrow="ALWAYS" />
@@ -53,7 +53,7 @@
                         <Pane prefHeight="59.0" prefWidth="31.0" />
                         <ImageView fitHeight="37.0" fitWidth="142.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../../../../DataLuvaShop/Image/icon/filter.png" />
+                              <Image url="@../../Assets/Image/icon/filter.png" />
                            </image>
                            <styleClass>
                               <String fx:value="add-btn" />
@@ -91,7 +91,7 @@
                         <Pane prefHeight="62.0" prefWidth="324.0" HBox.hgrow="ALWAYS" />
                         <ImageView fitHeight="37.0" fitWidth="142.0" onMousePressed="#switchCartPage" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../../../../DataLuvaShop/Image/icon/shopping-cart.png" />
+                              <Image url="@../../Assets/Image/icon/shopping-cart.png" />
                            </image>
                            <styleClass>
                               <String fx:value="add-btn" />
