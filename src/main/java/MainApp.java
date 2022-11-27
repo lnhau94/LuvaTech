@@ -63,7 +63,6 @@ public class MainApp extends Application {
                 switchScene(new Scene(pane));
             }
         });
-
         stage.show();
     }
 }

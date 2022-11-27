@@ -7,6 +7,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.io.IOException;
 
 public class cartPageController {
@@ -16,7 +17,7 @@ public class cartPageController {
         Stage stage = (Stage) ((Node)e.getSource()).getScene().getWindow();
         stage.centerOnScreen();
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/view/view-product.fxml"));
+        loader.setLocation(new File("src/main/java/App/View/view-product.fxml").toURI().toURL());
         Parent AccountViewParent = loader.load();
         Scene scene = new Scene(AccountViewParent);
         stage.setScene(scene);

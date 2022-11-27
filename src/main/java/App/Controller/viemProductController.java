@@ -18,6 +18,7 @@ import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -38,32 +39,32 @@ public class viemProductController implements Initializable {
     private List<ProductModel> products = new ArrayList<>();
     private List<CategoryModel> categories = new ArrayList<>();
     private MyListener myListener;
-    private List<CategoryModel> getDataCategories() {
+    private List<CategoryModel> getDataCategories() throws IOException {
         List<CategoryModel> categories = new ArrayList<>();
         CategoryModel category;
         category = new CategoryModel();
         category.setName("All");
-       category.setImageCategory("D:\\Code\\javaFx\\LuvaTech\\DataLuvaShop\\Image\\icon\\filter.png");
+        category.setImageCategory("src/main/java/Assets/Image/icon/laptop.png");
         categories.add(category);
         category = new CategoryModel();
         category.setName("Laptop");
-        category.setImageCategory("D:\\Code\\javaFx\\LuvaTech\\DataLuvaShop\\Image\\icon\\filter.png");
+        category.setImageCategory("src/main/java/Assets/Image/icon/laptop.png");
         categories.add(category);
         category = new CategoryModel();
         category.setName("Smart Phone");
-        category.setImageCategory("D:\\Code\\javaFx\\LuvaTech\\DataLuvaShop\\Image\\icon\\filter.png");
+        category.setImageCategory("src/main/java/Assets/Image/icon/laptop.png");
         categories.add(category);
         category = new CategoryModel();
         category.setName("HeadPhone");
-        category.setImageCategory("D:\\Code\\javaFx\\LuvaTech\\DataLuvaShop\\Image\\icon\\filter.png");
+        category.setImageCategory("src/main/java/Assets/Image/icon/laptop.png");
         categories.add(category);
         category = new CategoryModel();
         category.setName("Keyboard");
-        category.setImageCategory("D:\\Code\\javaFx\\LuvaTech\\DataLuvaShop\\Image\\icon\\filter.png");
+        category.setImageCategory("src/main/java/Assets/Image/icon/laptop.png");
         categories.add(category);
         category = new CategoryModel();
         category.setName("Smart Watch");
-        category.setImageCategory("D:\\Code\\javaFx\\LuvaTech\\DataLuvaShop\\Image\\icon\\filter.png");
+        category.setImageCategory("src/main/java/Assets/Image/icon/laptop.png");
         categories.add(category);
         return categories;
     }
@@ -85,7 +86,7 @@ public class viemProductController implements Initializable {
        product.setCpu("Chip A11");
        product.setDescription("Iphone 12 ngon lam!");
        product.setColors(colors);
-        product.setImgSrc("D:\\Code\\javaFx\\LuvaTech\\DataLuvaShop\\Image\\icon\\filter.png");
+        product.setImgSrc(("src/main/java/Assets/Image/laptop/Laptop_Dell_XPS13_9320/dell-xps-1.jpg"));
        product.setRam(rams);
        products.add(product);
         product = new ProductModel();
@@ -95,7 +96,7 @@ public class viemProductController implements Initializable {
         product .setCpu("Chip A11");
         product.setDescription("Iphone 12 ngon lam!");
         product.setColors(colors);
-        product.setImgSrc("D:\\Code\\javaFx\\LuvaTech\\DataLuvaShop\\Image\\icon\\filter.png");
+        product.setImgSrc(("src/main/java/Assets/Image/laptop/Laptop_Dell_XPS13_9320/dell-xps-1.jpg"));
         product.setRam(rams);
         products.add(product);
         product = new ProductModel();
@@ -105,7 +106,7 @@ public class viemProductController implements Initializable {
         product.setCpu("Chip A11");
         product.setDescription("Iphone 12 ngon lam!");
         product.setColors(colors);
-        product.setImgSrc("D:\\Code\\javaFx\\LuvaTech\\DataLuvaShop\\Image\\icon\\filter.png");
+        product.setImgSrc(("src/main/java/Assets/Image/laptop/Laptop_Dell_XPS13_9320/dell-xps-1.jpg"));
         product.setRam(rams);
         products.add(product);
        return products;
@@ -150,7 +151,7 @@ public class viemProductController implements Initializable {
             throw new RuntimeException(e);
         }
     }
-    public AnchorPane renderCategory(CategoryModel category) {
+    public AnchorPane renderCategory(CategoryModel category) throws MalformedURLException {
         AnchorPane anchorPane = new AnchorPane();
         anchorPane.setPrefHeight(200);
         HBox vbox = new HBox();
@@ -166,22 +167,22 @@ public class viemProductController implements Initializable {
                 "-fx-pref-width:" +"200px; \n"
         );
 
-//        Image image = new Image(getClass().getResourceAsStream(category.getImageCategory()));
-//        ImageView imageView = new ImageView(image);
-//        imageView.setFitWidth(40);
-//        imageView.setFitHeight(40);
-//        imageView.setStyle( "-fx-pref-height:"+ "10px; \n"+
-//                " -fx-pref-width:" +"10px; \n"+
-//                " -fx-alignment:"+" center;");
+        Image image = new Image(String.valueOf(new File(category.getImageCategory()).toURI().toURL()));
+        ImageView imageView = new ImageView(image);
+        imageView.setFitWidth(40);
+        imageView.setFitHeight(40);
+        imageView.setStyle( "-fx-pref-height:"+ "10px; \n"+
+                " -fx-pref-width:" +"10px; \n"+
+                " -fx-alignment:"+" center;");
         Label label = new Label(category.getName());
         label.setStyle("-fx-font-size:"+"20px; \n"+
                       "-fx-padding:"+"0 0 0 10px; \n");
-        //vbox.getChildren().add(imageView);
+        vbox.getChildren().add(imageView);
         vbox.getChildren().add(label);
         anchorPane.getChildren().add(vbox);
         return anchorPane;
     }
-    public void renderCategories() {
+    public void renderCategories() throws IOException {
         categories.addAll(getDataCategories());
         hboxCartegory.setStyle("-fx-effect:"+"dropShadow(three-pass-box, rgba(0,0,0,0.1),10.0,0.0,0.0,10.0);");
      for (int i = 0; i <categories.size();i++){
@@ -193,7 +194,7 @@ public class viemProductController implements Initializable {
         Stage stage = (Stage) ((Node)e.getSource()).getScene().getWindow();
         stage.centerOnScreen();
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/view/cartPage.fxml"));
+        loader.setLocation(new File("src/main/java/App/View/cartPage.fxml").toURI().toURL());
         Parent AccountViewParent = loader.load();
         Scene scene = new Scene(AccountViewParent);
         stage.setScene(scene);
@@ -201,10 +202,14 @@ public class viemProductController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        try {
             renderCategories();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
 
 
-            renderProducts();
+        renderProducts();
 
     }
 }
