@@ -49,8 +49,8 @@ public class MainApp extends Application {
 
     public static void main(String[] args) throws InterruptedException {
 //        System.out.println("" + new Validation().checkPhone("+84965026920"));
-        faceRecognition();
-//        launch(args);
+//        faceRecognition();
+        launch(args);
     }
 
     @Override
