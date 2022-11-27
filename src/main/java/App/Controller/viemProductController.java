@@ -1,6 +1,9 @@
 package App.Controller;
 import App.Model.CategoryModel;
 import App.Model.ProductModel;
+import DAL.ProductDAO;
+import Entity.Laptop;
+import Entity.Product;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -23,6 +26,7 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -39,6 +43,51 @@ public class viemProductController implements Initializable {
     private List<ProductModel> products = new ArrayList<>();
     private List<CategoryModel> categories = new ArrayList<>();
     private MyListener myListener;
+
+    HashMap<String, ArrayList<? extends Product>> productList = ProductDAO.retrieve();
+
+    ArrayList<Laptop> laptops = (ArrayList<Laptop>) productList.get("laptop");
+
+    ArrayList<Laptop> phones = (ArrayList<Laptop>) productList.get("phone");
+    public void renderProducts1()  {
+        if (products.size() > 0) {
+//            myListener= new MyListener(){
+//
+//                @Override
+//                public void onClick(Product product) throws IOException {
+//
+//                }
+//            };
+        }
+        int column=0;
+        int row=1;
+        try {
+            for (int i=0; i<laptops.size(); i++) {
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setLocation(new File("src/main/java/App/View/item.fxml").toURI().toURL());
+                AnchorPane anchorPane = fxmlLoader.load();
+                itemController itemController = fxmlLoader.getController();
+                itemController.setDataLaptop(laptops.get(i));
+                if(column==4){
+                    column = 0;
+                    row++;
+                }
+                grid.add(anchorPane,column++,row);
+                grid.setMinWidth(Region.USE_COMPUTED_SIZE);
+                grid.setPrefWidth(Region.USE_COMPUTED_SIZE);
+                grid.setMaxWidth(Region.USE_PREF_SIZE);
+
+                grid.setMinHeight(Region.USE_COMPUTED_SIZE);
+                grid.setPrefHeight(Region.USE_COMPUTED_SIZE);
+                grid.setMaxHeight(Region.USE_PREF_SIZE);
+                GridPane.setMargin(anchorPane, new Insets(15));
+                GridPane.setVgrow(anchorPane, Priority.ALWAYS);
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     private List<CategoryModel> getDataCategories() throws IOException {
         List<CategoryModel> categories = new ArrayList<>();
         CategoryModel category;
@@ -112,45 +161,45 @@ public class viemProductController implements Initializable {
        return products;
     }
 
-    public void renderProducts()  {
-        products.addAll(getDataProduct());
-        if (products.size() > 0) {
-//            myListener= new MyListener(){
-//
-//                @Override
-//                public void onClick(Product product) throws IOException {
-//
+//    public void renderProducts()  {
+//        products.addAll(getDataProduct());
+//        if (products.size() > 0) {
+////            myListener= new MyListener(){
+////
+////                @Override
+////                public void onClick(Product product) throws IOException {
+////
+////                }
+////            };
+//        }
+//        int column=0;
+//        int row=1;
+//        try {
+//            for (int i=0; i<products.size(); i++) {
+//                FXMLLoader fxmlLoader = new FXMLLoader();
+//                fxmlLoader.setLocation(new File("src/main/java/App/View/item.fxml").toURI().toURL());
+//                AnchorPane anchorPane = fxmlLoader.load();
+//                itemController itemController = fxmlLoader.getController();
+//                itemController.setData(products.get(i),myListener);
+//                if(column==4){
+//                    column = 0;
+//                    row++;
 //                }
-//            };
-        }
-        int column=0;
-        int row=1;
-        try {
-            for (int i=0; i<products.size(); i++) {
-                FXMLLoader fxmlLoader = new FXMLLoader();
-                fxmlLoader.setLocation(new File("src/main/java/App/View/item.fxml").toURI().toURL());
-                AnchorPane anchorPane = fxmlLoader.load();
-                itemController itemController = fxmlLoader.getController();
-                itemController.setData(products.get(i),myListener);
-                if(column==4){
-                    column = 0;
-                    row++;
-                }
-                grid.add(anchorPane,column++,row);
-                grid.setMinWidth(Region.USE_COMPUTED_SIZE);
-                grid.setPrefWidth(Region.USE_COMPUTED_SIZE);
-                grid.setMaxWidth(Region.USE_PREF_SIZE);
-
-                grid.setMinHeight(Region.USE_COMPUTED_SIZE);
-                grid.setPrefHeight(Region.USE_COMPUTED_SIZE);
-                grid.setMaxHeight(Region.USE_PREF_SIZE);
-                GridPane.setMargin(anchorPane, new Insets(15));
-                GridPane.setVgrow(anchorPane, Priority.ALWAYS);
-            }
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-    }
+//                grid.add(anchorPane,column++,row);
+//                grid.setMinWidth(Region.USE_COMPUTED_SIZE);
+//                grid.setPrefWidth(Region.USE_COMPUTED_SIZE);
+//                grid.setMaxWidth(Region.USE_PREF_SIZE);
+//
+//                grid.setMinHeight(Region.USE_COMPUTED_SIZE);
+//                grid.setPrefHeight(Region.USE_COMPUTED_SIZE);
+//                grid.setMaxHeight(Region.USE_PREF_SIZE);
+//                GridPane.setMargin(anchorPane, new Insets(15));
+//                GridPane.setVgrow(anchorPane, Priority.ALWAYS);
+//            }
+//        } catch (Exception e) {
+//            throw new RuntimeException(e);
+//        }
+//    }
     public AnchorPane renderCategory(CategoryModel category) throws MalformedURLException {
         AnchorPane anchorPane = new AnchorPane();
         anchorPane.setPrefHeight(200);
@@ -209,7 +258,7 @@ public class viemProductController implements Initializable {
         }
 
 
-        renderProducts();
+        renderProducts1();
 
     }
 }
