@@ -97,8 +97,8 @@ public class ProductDetailsController {
     //render product Details data
     public void setData(ProductModel newProduct) throws IOException {
         productTitle.setText(newProduct.getName());
-       // Image newImage = new Image(getClass().getResourceAsStream(newProduct.getImgSrc()));
-        //productImage.setImage(newImage);
+        Image newImage = new Image(String.valueOf(new File(newProduct.getImgSrc()).toURI().toURL()));
+        productImage.setImage(newImage);
         SwitchScreenDetails(newProduct);
     }
     //back to Shop

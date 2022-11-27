@@ -1,6 +1,6 @@
 package App.Controller;
 
-import App.Controller.view.Component.Component;
+import App.View.Component.Component;
 import App.Model.ProductModel;
 
 import javafx.event.ActionEvent;
