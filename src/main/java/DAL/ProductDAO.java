@@ -13,7 +13,7 @@ public class ProductDAO {
 
     private static ArrayList<Brand> brands;
     private static final String laptopQuery = "select p.productid, p.productname, l.screen, l.connected, " +
-            "l.os, l.material, l.laptopsize, l.weight, l.camera, " +
+            "l.os, l.material, l.laptopsize, l.weight, l.camera, l.cpu, " +
             "b.brandid, b.brandname, b.brandcountry " +
             "from product p join laptopinfo l on p.productid  = l.productid " +
             "join brand b on p.brandid = b.brandid " +
@@ -295,9 +295,9 @@ public class ProductDAO {
                 }
 
                 if(!flag){
-                    tmp = new Brand(rs.getString(10),
-                            rs.getString(11),
-                            rs.getString(12));
+                    tmp = new Brand(rs.getString(11),
+                            rs.getString(12),
+                            rs.getString(13));
                 }
                 laptops.add(new Laptop(
                         rs.getString(1),
@@ -309,7 +309,8 @@ public class ProductDAO {
                         rs.getString(6),
                         rs.getString(7),
                         rs.getString(8),
-                        rs.getString(9)));
+                        rs.getString(9),
+                        rs.getString(10)));
 
             }
         } catch (SQLException e) {
