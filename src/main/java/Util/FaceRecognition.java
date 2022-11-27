@@ -14,7 +14,7 @@ public class FaceRecognition {
                 pr = new ProcessBuilder("cmd.exe", "/c", command_windows).start();
             } else {
                 String currentDir = System.getProperty("user.dir") + "/src/main/FaceRecognition";
-                String command_mac = "cd " + currentDir + " && cd ../../../../" + " && cd FaceRecognition" + " && ./bin/activate" + " && cd " + currentDir + " && python3.9 FaceRecognizer.py";
+                String command_mac = "cd " + currentDir + " && cd ../../../../" + " && cd FaceRecognition" + " && source ./bin/activate" + " && cd " + currentDir + " && python3.9 FaceRecognizer.py";
                 pr = new ProcessBuilder("/bin/zsh", "-c", command_mac).start();
             }
             pr.waitFor();
