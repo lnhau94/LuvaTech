@@ -1,4 +1,4 @@
-package App.Logic;
+package Logic;
 
 import DAL.AccountDAO;
 import Entity.Account;

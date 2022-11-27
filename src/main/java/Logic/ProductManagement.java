@@ -1,4 +1,4 @@
-package App.Logic;
+package Logic;
 
 import DAL.ProductDAO;
 import Entity.*;

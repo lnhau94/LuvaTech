@@ -1,4 +1,4 @@
-package App.Logic;
+package Logic;
 
 import DAL.StaffDAO;
 import Entity.Staff;
