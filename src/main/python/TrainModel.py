@@ -6,7 +6,7 @@ import image
 from PIL import Image
 
 recognizer = cv2.face.LBPHFaceRecognizer_create()
-detector = cv2.CascadeClassifier("haarcascade_frontalface_alt2.xml")
+detector = cv2.CascadeClassifier("./haarcascade_frontalface_alt2.xml")
 
 
 def getImagesAndLabels(path):

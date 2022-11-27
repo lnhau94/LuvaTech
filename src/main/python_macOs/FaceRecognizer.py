@@ -55,6 +55,7 @@ df = pd.read_excel('./emp.xlsx',engine='openpyxl',dtype='str')
 
 def speak(audio):
   text_to_speech = gTTS(text=audio, lang='vi')
+  os.remove('audio.mp3')
   text_to_speech.save('audio.mp3')
   playsound.playsound('audio.mp3')
 

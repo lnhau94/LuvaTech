@@ -5,12 +5,12 @@ import numpy as np
 import pandas as pd
 import openpyxl
 import xlsxwriter
-import pyodbc
 from gtts import gTTS
 import playsound
 from googletrans import Translator
 from sqlalchemy.engine import URL
 from sqlalchemy import create_engine
+from googletrans import Translator
 import platform
 
 cam = cv2.VideoCapture(0)
@@ -18,10 +18,6 @@ detector=cv2.CascadeClassifier('haarcascade_frontalface_alt2.xml')
 
 # Hàm cập nhật tên và ID vào file Excel
 def insertOrUpdate(id, name):
-    translator = Translator()
-    name_rv = translator.translate(name, src="vi", dest="en")
-    result = name_rv.text.replace(' ','')
-    print(result)
     # drivers = [item for item in pyodbc.drivers()]
     # driver = drivers[-1]
     # conn_str = f'Driver={driver};Server=localhost;Database=CORNSHOP;UID=sa;PWD=Huy0908617538huy;Trusted_Connection=no;Encrypt=no;'
@@ -29,7 +25,7 @@ def insertOrUpdate(id, name):
     # engine = create_engine(connection_url)
     # df = pd.read_sql_query('select * from ACCOUNT', engine)
     # print(df)
-    df = pd.read_excel('emp.xlsx',engine='openpyxl',dtype='str')
+    df = pd.read_excel('./emp.xlsx',engine='openpyxl',dtype='str')
     if len(np.where(df['ID']==id)[0]) == 0:
         df.loc[len(df.index)] = [id, name]
         employee_workbook = xlsxwriter.Workbook('emp.xlsx')
@@ -55,12 +51,16 @@ def getEndValue(path, id):
 
 def speak(audio):
     text_to_speech = gTTS(text=audio, lang='vi')
-    text_to_speech.save('audio1.mp3')
-    playsound.playsound('audio1.mp3')
+    os.remove("audio1.mp3")
+    text_to_speech.save("audio1.mp3")
+    playsound.playsound("audio1.mp3")
 
     
 id=input('Nhập mã nhân viên:')
 name=input('Nhập tên nhân viên:')
+translator = Translator()
+name_rv = translator.translate(name, src="vi", dest="en")
+name = name_rv.text.replace(' ','')
 print("Bắt đầu chụp ảnh nhân viên, nhấn q để thoát!")
 
 insertOrUpdate(id,name)
@@ -72,14 +72,6 @@ while(True):
 
     # Lật ảnh cho đỡ bị ngược
     img = cv2.flip(img,1)
-
-    # Kẻ khung giữa màn hình để người dùng đưa mặt vào khu vực này
-    # centerH = img.shape[0] // 2
-    # centerW = img.shape[1] // 2
-    # sizeboxW = 300
-    # sizeboxH = 400
-    # cv2.rectangle(img, (centerW - sizeboxW // 2, centerH - sizeboxH // 2),
-    #               (centerW + sizeboxW // 2, centerH + sizeboxH // 2), (255, 255, 255), 5)
 
     # Đưa ảnh về ảnh xám
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
@@ -97,11 +89,16 @@ while(True):
     cv2.imshow('frame', img)
     # Check xem có bấm q hoặc trên 100 ảnh thì thoát
     if cv2.waitKey(100) & 0xFF == ord('q'):
-        speak("Xin vui lòng đợi trong giây lát")
-        os.system('python3 TrainModel.py')
-        speak("Đã ghi nhận khuôn mặt của bạn")
+        if platform.system() == "Windows":
+          speak("Xin vui lòng đợi trong giây lát")
+          os.system('python TrainModel.py')
+          speak("Đã ghi nhận khuôn mặt của bạn")
+        else:
+          speak("Xin vui lòng đợi trong giây lát")
+          os.system('python3.9 TrainModel.py')
+          speak("Đã ghi nhận khuôn mặt của bạn")
         break
-    elif tmpCount>200:
+    elif tmpCount>100:
         if platform.system() == "Windows":
           speak("Xin vui lòng đợi trong giây lát")
           os.system('python TrainModel.py')
