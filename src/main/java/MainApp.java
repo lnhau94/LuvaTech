@@ -28,17 +28,13 @@ public class MainApp extends Application {
     }
 
     public static void main(String[] args) {
-        System.out.println("" + new Validation().checkPhone("+84965026920"));
-
+//        System.out.println("" + new Validation().checkPhone("+84965026920"));
         launch(args);
     }
 
     @Override
     public void start(Stage stage) throws Exception {
         mainStage = stage;
-        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-        mainStage.setWidth(dim.getWidth());
-        mainStage.setHeight(dim.getHeight());
 
         AccountDAO.retrieve();
         ProductDAO.retrieve();

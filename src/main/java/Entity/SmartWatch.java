@@ -15,8 +15,8 @@ public class SmartWatch extends Product{
     }
 
     public SmartWatch(String productId, String productName, Brand brand, String screen,
-                      String frontGlass, String os, String battery) {
-        super(productId, productName, brand);
+                      String frontGlass, String os, String battery,String imgPath) {
+        super(productId, productName, brand, imgPath);
         this.screen = screen;
         this.frontGlass = frontGlass;
         this.os = os;

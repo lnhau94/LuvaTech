@@ -18,8 +18,8 @@ public class Phone extends Product{
     }
 
     public Phone(String productId, String productName, Brand brand, String chip, String screen,
-                 String connect, String os, String material, String battery, String sim, String camera) {
-        super(productId, productName, brand);
+                 String connect, String os, String material, String battery, String sim, String camera,String imgPath) {
+        super(productId, productName, brand, imgPath);
         this.chip = chip;
         this.screen = screen;
         this.connect = connect;
