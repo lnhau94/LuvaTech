@@ -36,9 +36,9 @@ public class MainApp extends Application {
                 pr = new ProcessBuilder("cmd.exe", "/c", command_windows).start();
             } else {
                 String currentDir = System.getProperty("user.dir") + "/python";
-                String command_mac = "cd " + currentDir + " && ./bin/activate" + " && python " + currentDir + "\\FaceRecognizer.py";
+                String command_mac = "cd " + currentDir + " && ./bin/activate" + " && python3.9 " + currentDir + "/FaceRecognizer.py";
+                pr = new ProcessBuilder("/bin/zsh", "-c", command_mac).start();
             }
-            assert pr != null;
             pr.waitFor();
             pr.exitValue();
             pr.onExit();
@@ -47,11 +47,9 @@ public class MainApp extends Application {
         }
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
 //        System.out.println("" + new Validation().checkPhone("+84965026920"));
-        String currentDir = System.getProperty("user.dir") + "\\python";
-        String command_windows = "cd " + currentDir + " && .\\Scripts\\activate" + " && python " + currentDir + "\\FaceRecognizer.py";
-        System.out.println("Working Directory = " + command_windows);
+        faceRecognition();
 //        launch(args);
     }
 
