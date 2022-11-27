@@ -1,12 +1,8 @@
 package App.Model;
 
-import App.Logic.AccountManagement;
-import App.Logic.CustomerManagement;
-import App.Logic.ProductManagement;
-import DAL.AccountDAO;
-import DAL.CustomerDAO;
-
-import java.util.ArrayList;
+import Logic.AccountManagement;
+import Logic.CustomerManagement;
+import Logic.ProductManagement;
 
 public class MainModel {
     public static AccountManagement accountManager;
