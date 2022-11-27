@@ -48,7 +48,7 @@ public class ProductDAO {
 
     private static final String laptopVariantQuery = "select p.productid , " +
             "s.sku , s.price , s.instock , " +
-            "l.variantid , l.laptopram , l.laptopcolor , l.laptopcpu , l.pathimage," +
+            "l.variantid , l.laptopram , l.laptopcolor , l.laptopstorage , l.pathimage " +
             "from specification s join laptopvariation l on s.sku = l.sku " +
             "join product p on p.productid = s.productid " +
             "where p.productid = ? ";
