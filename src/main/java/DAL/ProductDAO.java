@@ -506,4 +506,11 @@ public class ProductDAO {
         return keyboards;
     }
 
+    public static ArrayList<Brand> getBrands() {
+        return brands;
+    }
+
+    public static void setBrands(ArrayList<Brand> brands) {
+        ProductDAO.brands = brands;
+    }
 }

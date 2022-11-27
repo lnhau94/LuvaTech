@@ -15,6 +15,9 @@ public class MainModel {
     public static OrderManagement orderManager;
     public static StaffManagement staffManager;
 
+    public static BrandManagement brandManager;
+
+
 
 
     public static void start(){
@@ -23,6 +26,9 @@ public class MainModel {
         customerManager = new CustomerManagement();
         productManager = new ProductManagement();
         orderManager = new OrderManagement();
+
+        brandManager = new BrandManagement();
+
         mapData();
     }
 
