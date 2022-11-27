@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane fx:id="anchorPaneRight" minHeight="0.0" minWidth="0.0" prefHeight="399.0" prefWidth="494.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="App.Controller.StatisticCategoryController">
+   <children>
+      <TableView fx:id="tableStatisticCategory" layoutX="30.0" layoutY="120.0" prefHeight="265.0" prefWidth="434.0">
+         <columns>
+            <TableColumn fx:id="name" prefWidth="139.2000093460083" text="Name Of Category" />
+            <TableColumn fx:id="qty" prefWidth="152.00001525878906" text="Quantity Of Category" />
+            <TableColumn fx:id="totalPrice" prefWidth="140.00006103515625" text="Total Price Of Category" />
+         </columns>
+      </TableView>
+   </children>
+</AnchorPane>
