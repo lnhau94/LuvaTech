@@ -1,6 +1,9 @@
 package App.Controller;
 
 import App.Model.ProductModel;
+import Entity.Laptop;
+import Entity.Phone;
+import Entity.Product;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -45,19 +48,27 @@ public class itemController {
         Parent parent = loader.load();
         Scene scene = new Scene(parent);
         ProductDetailsController controller = loader.getController();
-        controller.setData(newProduct);
+        setDataLaptop(laptop);
+        setDataPhone(phone);
         stage.setScene(scene);
             //myListener.onClick(newProduct);
     }
-    private ProductModel newProduct;
-    private MyListener myListener;
-    public void setData(ProductModel newProduct, MyListener  myListener) throws IOException {
-        this.newProduct = newProduct;
-        this.myListener = myListener;
-        Image newImage = new Image(String.valueOf((new File(newProduct.getImgSrc()).toURI()).toURL()));
-        imageproduct.setImage(newImage);
-        textCategory.setText(newProduct.getCpu());
-        textName.setText(newProduct.getName());
-        textCurrentPrice.setText(String.valueOf(newProduct.getPrice()));
+    private Laptop laptop;
+    private Phone phone;
+    public void setDataLaptop( Laptop laptop) throws IOException {
+        this.laptop = laptop;
+//        Image newImage = new Image(String.valueOf((new File().toURI()).toURL()));
+//        imageproduct.setImage(newImage);
+        textCategory.setText("Laptop");
+        textName.setText(laptop.getProductName());
+      //  textCurrentPrice.setText(String.valueOf(laptop));
+    }
+    public void setDataPhone( Phone phone) throws IOException {
+        this.phone = phone;
+        //  Image newImage = new Image(String.valueOf((new File(phone).toURI()).toURL()));
+        //imageproduct.setImage(newImage);
+        textCategory.setText("Smart Phone");
+        textName.setText(phone.getProductName());
+     //   textCurrentPrice.setText(String.valueOf(laptop));
     }
 }

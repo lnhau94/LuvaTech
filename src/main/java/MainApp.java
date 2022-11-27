@@ -1,5 +1,6 @@
 import DAL.AccountDAO;
 import DAL.ProductDAO;
+import Entity.Product;
 import Util.Validation;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -12,6 +13,8 @@ import javafx.stage.Stage;
 
 import java.awt.*;
 import java.io.File;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class MainApp extends Application {
     private static Stage mainStage;
