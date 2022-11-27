@@ -22,8 +22,8 @@ public class Laptop extends Product{
     }
 
     public Laptop(String productId, String productName, Brand brand, String screen, String connect,
-                  String os, String material, String size, String weight, String camera,String cpu) {
-        super(productId, productName, brand);
+                  String os, String material, String size, String weight, String camera,String cpu,String imgPath) {
+        super(productId, productName, brand,imgPath);
         this.screen = screen;
         this.connect = connect;
         this.os = os;
