@@ -1,4 +1,4 @@
-package App.Controller.view.Component;
+package App.View.Component;
 
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
