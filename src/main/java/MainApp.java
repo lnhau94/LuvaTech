@@ -35,7 +35,7 @@ public class MainApp extends Application {
                 String command_windows = "cd " + currentDir + " && .\\Scripts\\activate" + " && python " + currentDir + "\\FaceRecognizer.py";
                 pr = new ProcessBuilder("cmd.exe", "/c", command_windows).start();
             } else {
-                String currentDir = System.getProperty("user.dir") + "/python";
+                String currentDir = System.getProperty("user.dir") + "/python_macOs";
                 String command_mac = "cd " + currentDir + " && ./bin/activate" + " && python3.9 " + currentDir + "/FaceRecognizer.py";
                 pr = new ProcessBuilder("/bin/zsh", "-c", command_mac).start();
             }
