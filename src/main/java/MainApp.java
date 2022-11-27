@@ -12,6 +12,7 @@ import javafx.stage.Stage;
 
 import java.awt.*;
 import java.io.File;
+import java.io.IOException;
 
 public class MainApp extends Application {
     private static Stage mainStage;
@@ -24,10 +25,34 @@ public class MainApp extends Application {
         mainStage.setScene(newScene);
     }
 
-    public static void main(String[] args) {
-        System.out.println("" + new Validation().checkPhone("+84965026920"));
+    private static final boolean isWindows = System.getProperty("os.name").toLowerCase().startsWith("windows");
+    public static void faceRecognition() throws InterruptedException{
+        Process pr;
+        pr = null;
+        try {
+            if (isWindows) {
+                String currentDir = System.getProperty("user.dir") + "\\python";
+                String command_windows = "cd " + currentDir + " && .\\Scripts\\activate" + " && python " + currentDir + "\\FaceRecognizer.py";
+                pr = new ProcessBuilder("cmd.exe", "/c", command_windows).start();
+            } else {
+                String currentDir = System.getProperty("user.dir") + "/python";
+                String command_mac = "cd " + currentDir + " && ./bin/activate" + " && python " + currentDir + "\\FaceRecognizer.py";
+            }
+            assert pr != null;
+            pr.waitFor();
+            pr.exitValue();
+            pr.onExit();
+        } catch (IOException e) {
+            System.out.println("Error open model face recognize !!");
+        }
+    }
 
-        launch(args);
+    public static void main(String[] args) {
+//        System.out.println("" + new Validation().checkPhone("+84965026920"));
+        String currentDir = System.getProperty("user.dir") + "\\python";
+        String command_windows = "cd " + currentDir + " && .\\Scripts\\activate" + " && python " + currentDir + "\\FaceRecognizer.py";
+        System.out.println("Working Directory = " + command_windows);
+//        launch(args);
     }
 
     @Override
@@ -63,7 +88,6 @@ public class MainApp extends Application {
                 switchScene(new Scene(pane));
             }
         });
-
         stage.show();
     }
 }
