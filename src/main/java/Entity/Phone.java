@@ -93,4 +93,12 @@ public class Phone extends Product{
     public void setCamera(String camera) {
         this.camera = camera;
     }
+
+    public ArrayList<PhoneVariant> getVariants() {
+        return variants;
+    }
+
+    public void setVariants(ArrayList<PhoneVariant> variants) {
+        this.variants = variants;
+    }
 }

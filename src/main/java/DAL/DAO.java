@@ -11,11 +11,11 @@ public class DAO {
     /**
      * pass cua Hau
      */
-//    private final String dbpass = "postgres";
+    private final String dbpass = "postgres";
     /**
      * Password của Hữu Đại
      */
-    private final String dbpass = "123456";
+//    private final String dbpass = "123456";
     public DAO(){
         try {
             conn = DriverManager.getConnection(connectString,dbuser,dbpass);
@@ -36,5 +36,15 @@ public class DAO {
             System.err.println(e.getMessage());
         }
         return stmt;
+    }
+
+    public PreparedStatement getPreStmt(String qry){
+        try {
+            preStmt = conn.prepareStatement(qry);
+        } catch (SQLException e) {
+            System.err.println(this.getClass().toString());
+            System.err.println(e.getMessage());
+        }
+        return preStmt;
     }
 }
