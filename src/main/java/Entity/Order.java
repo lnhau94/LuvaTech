@@ -16,6 +16,20 @@ public class Order {
     public Order() {
     }
 
+    public Order(String orderId, int totalPrice, Date date) {
+        this.orderId = orderId;
+        this.totalPrice = totalPrice;
+        this.date = date;
+    }
+
+    public String getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(String orderId) {
+        this.orderId = orderId;
+    }
+
     public Order(Staff cashier, Customer customer, int totalPrice, Date date, Staff takeBackStaff, ArrayList<OrderDetails> details) {
         this.cashier = cashier;
         this.customer = customer;
