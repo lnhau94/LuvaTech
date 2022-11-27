@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.util.ArrayList;
 
 public class Order {
+    private String orderId;
     private Staff cashier;
     private Customer customer;
     private int totalPrice;
@@ -13,6 +14,20 @@ public class Order {
     private ArrayList<GiveBackItem> giveBackItems;
 
     public Order() {
+    }
+
+    public Order(String orderId, int totalPrice, Date date) {
+        this.orderId = orderId;
+        this.totalPrice = totalPrice;
+        this.date = date;
+    }
+
+    public String getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(String orderId) {
+        this.orderId = orderId;
     }
 
     public Order(Staff cashier, Customer customer, int totalPrice, Date date, Staff takeBackStaff, ArrayList<OrderDetails> details) {
