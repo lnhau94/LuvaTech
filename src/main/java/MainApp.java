@@ -63,8 +63,6 @@ public class MainApp extends Application {
                 switchScene(new Scene(pane));
             }
         });
-
-        System.out.println(getClass().getResource("/Users/lnhau/Documents/Code/luvatech/src/main/java/MainApp.java"));
         stage.show();
     }
 }
