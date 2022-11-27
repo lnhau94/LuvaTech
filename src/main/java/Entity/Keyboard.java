@@ -1,10 +1,14 @@
 package Entity;
 
+import java.util.ArrayList;
+
 public class Keyboard extends Product{
     private String led;
     private String keycap;
     private String os;
     private String battery;
+
+    ArrayList<KeyboardVariant> variants;
 
     public Keyboard() {
     }
@@ -16,6 +20,14 @@ public class Keyboard extends Product{
         this.keycap = keycap;
         this.os = os;
         this.battery = battery;
+    }
+
+    public ArrayList<KeyboardVariant> getVariants() {
+        return variants;
+    }
+
+    public void setVariants(ArrayList<KeyboardVariant> variants) {
+        this.variants = variants;
     }
 
     public String getLed() {

@@ -1,11 +1,15 @@
 package Entity;
 
+import java.util.ArrayList;
+
 public class SmartWatch extends Product{
 
     private String screen;
     private String frontGlass;
     private String os;
     private String battery;
+
+    private ArrayList<SmartWatchVariant> variants;
 
     public SmartWatch() {
     }
@@ -17,6 +21,14 @@ public class SmartWatch extends Product{
         this.frontGlass = frontGlass;
         this.os = os;
         this.battery = battery;
+    }
+
+    public ArrayList<SmartWatchVariant> getVariants() {
+        return variants;
+    }
+
+    public void setVariants(ArrayList<SmartWatchVariant> variants) {
+        this.variants = variants;
     }
 
     public String getScreen() {

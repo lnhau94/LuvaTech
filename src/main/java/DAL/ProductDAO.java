@@ -2,6 +2,7 @@ package DAL;
 
 import Entity.*;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -31,6 +32,44 @@ public class ProductDAO {
             "join brand b on p.brandid = b.brandid " +
             "where deletedate is null";
 
+    private static final String headphoneQuery = "select p.productid , p.productname , " +
+            "h.usetime , h.boxtime , h.os , h.charger , h.connected , h.headphonecontrol , " +
+            "b.brandid , b.brandname , b.brandcountry " +
+            "from product p join headphoneinfo h on p.productid = h.productid " +
+            "join brand b on p.brandid  = b.brandid " +
+            "where deletedate is null";
+
+    private static final String keyboardQuery = "select p.productid , p .productname , " +
+            "k.led , k.keycap , k.os , k.battery , " +
+            "b.brandid , b.brandname , b.brandcountry " +
+            "from product p join keyboardinfo k on p.productid = k.productid " +
+            "join brand b on p.brandid  = b.brandid " +
+            "where deletedate is null";
+
+    private static final String laptopVariantQuery = "select p.productid , " +
+            "s.sku , s.price , s.instock , " +
+            "l.variantid , l.laptopram , l.laptopcolor , l.laptopcpu " +
+            "from specification s join laptopvariation l on s.sku = l.sku " +
+            "join product p on p.productid = s.productid " +
+            "where p.productid = ? ";
+
+    private static final String phoneVariantQuery = "select s.sku , s.productid , s.price , s.instock , " +
+            "p2.variantid , p2.phoneram , p2.phonecolor , p2.phonestorage " +
+            "from specification s join phonevariation p2  on s.sku = p2.sku " +
+            "where s.productid = ? ";
+    private static final String smartWatchVariantQuery = "select s.sku , s.productid , s.price , s.instock , " +
+            "s2.variantid , s2.smartwatchedition , s2.smartwatchcolor " +
+            "from specification s join smartwatchvariation s2  on s2.sku = s.sku " +
+            "where s.productid = ? ";
+    private static final String headphoneVariantQuery = "select s.sku , s.productid , s.price , s.instock , " +
+            "h.variantid , h.headphonecolor " +
+            "from specification s join headphonevariation h on s.sku = h.sku " +
+            "where s.productid = ? ";
+    private static final String keyboardVariantQuery = "select s.sku , s.productid , s.price , s.instock , " +
+            "k.variantid , k.keyboardswitch , k.keyboardcolor " +
+            "from specification s join keyboardvariation k  on s.sku = k.sku " +
+            "where s.productid = ? ";
+
     public ProductDAO() {
     }
 
@@ -45,9 +84,193 @@ public class ProductDAO {
         products.put("laptop",laptopRetrieve());
         products.put("phone",phoneRetrieve());
         products.put("smartwatch",smartWatchRetrieve());
-        products.put("keyboard",new ArrayList<Keyboard>());
-        products.put("headphone",new ArrayList<Headphone>());
+        products.put("keyboard",headphoneRetrieve());
+        products.put("headphone",keyboardRetrieve());
+
+        for(Laptop lap : (ArrayList<Laptop>)products.get("laptop")){
+            lap.setVariants(laptopVariantRetrieve(lap));
+        }
+
+        for (Phone p : (ArrayList<Phone>)products.get("phone")){
+            p.setVariants(phoneVariantRetrieve(p));
+        }
+
+        for (SmartWatch sm : (ArrayList<SmartWatch>)products.get("smartwatch")){
+            sm.setVariants(smartWatchVariantRetrieve(sm));
+        }
+
+        for (Headphone hp : (ArrayList<Headphone>)products.get("headphone")){
+            hp.setVariants(headphoneVariantRetrieve(hp));
+        }
+
+        for (Keyboard kb : (ArrayList<Keyboard>)products.get("keyboard")){
+            kb.setVariants(keyboardVariantRetrieve(kb));
+        }
+
         return products;
+    }
+
+    /**
+     * get all variant for a laptop
+     * @param laptop laptop need to get its variant
+     * @return list of laptop variant
+     */
+    private static ArrayList<LaptopVariant> laptopVariantRetrieve(Laptop laptop){
+        ArrayList<LaptopVariant> variants = new ArrayList<>();
+        DAO dao = new DAO();
+        PreparedStatement preStmt = dao.getPreStmt(laptopVariantQuery);
+        try {
+            preStmt.setString(1,laptop.getProductId());
+            ResultSet rs = preStmt.executeQuery();
+            while(rs != null && rs.next()){
+                LaptopVariant lv = new LaptopVariant(
+                        rs.getString(5),
+                        rs.getString(6),
+                        rs.getString(7),
+                        rs.getString(8)
+                        );
+                lv.setSpecs(new Specification(
+                        rs.getString(2),
+                        rs.getString(1),
+                        rs.getInt(3),
+                        rs.getInt(4))
+                );
+
+                variants.add(lv);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return variants;
+    }
+
+    /**
+     * get all variant for phone
+     * @param phone phone need to geet its variant
+     * @return list of variant
+     */
+    private static ArrayList<PhoneVariant> phoneVariantRetrieve(Phone phone){
+        ArrayList<PhoneVariant> variants = new ArrayList<>();
+
+        DAO dao = new DAO();
+        PreparedStatement preStmt = dao.getPreStmt(phoneVariantQuery);
+        try {
+            preStmt.setString(1,phone.getProductId());
+            ResultSet rs = preStmt.executeQuery();
+            while(rs != null && rs.next()){
+                variants.add(new PhoneVariant(
+                        new Specification(
+                                rs.getString(1),
+                                rs.getString(2),
+                                rs.getInt(3),
+                                rs.getInt(4)),
+                        rs.getString(5),
+                        rs.getString(6),
+                        rs.getString(7),
+                        rs.getString(8)
+                ));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return variants;
+    }
+
+    /**
+     * get all smartwatch variant
+     * @param smartWatch smartwatch need to get its variant
+     * @return list of smartwatch variant
+     */
+    private static ArrayList<SmartWatchVariant> smartWatchVariantRetrieve(SmartWatch smartWatch){
+        ArrayList<SmartWatchVariant> variants = new ArrayList<>();
+
+        DAO dao = new DAO();
+        PreparedStatement preStmt = dao.getPreStmt(smartWatchVariantQuery);
+        try {
+            preStmt.setString(1,smartWatch.getProductId());
+            ResultSet rs = preStmt.executeQuery();
+            while(rs != null && rs.next()){
+                variants.add(new SmartWatchVariant(
+                        new Specification(
+                                rs.getString(1),
+                                rs.getString(2),
+                                rs.getInt(3),
+                                rs.getInt(4)),
+                        rs.getString(5),
+                        rs.getString(6),
+                        rs.getString(7)
+                ));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return variants;
+    }
+
+    /**
+     * get all variant for headphone
+     * @param headphone headphone need to get its variant
+     * @return list of headphone variant
+     */
+    private static ArrayList<HeadphoneVariant> headphoneVariantRetrieve(Headphone headphone){
+        ArrayList<HeadphoneVariant> variants = new ArrayList<>();
+
+        DAO dao = new DAO();
+        PreparedStatement preStmt = dao.getPreStmt(headphoneVariantQuery);
+        try {
+            preStmt.setString(1,headphone.getProductId());
+            ResultSet rs = preStmt.executeQuery();
+            while(rs != null && rs.next()){
+                variants.add(new HeadphoneVariant(
+                        new Specification(
+                                rs.getString(1),
+                                rs.getString(2),
+                                rs.getInt(3),
+                                rs.getInt(4)),
+                        rs.getString(5),
+                        rs.getString(6)
+                ));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return variants;
+    }
+
+    /**
+     * get all keyboard variant
+     * @param keyboard keyboard need to get its variant
+     * @return list of keyboard variant
+     */
+    private static ArrayList<KeyboardVariant> keyboardVariantRetrieve(Keyboard keyboard){
+        ArrayList<KeyboardVariant> variants = new ArrayList<>();
+
+        DAO dao = new DAO();
+        PreparedStatement preStmt = dao.getPreStmt(keyboardVariantQuery);
+        try {
+            preStmt.setString(1,keyboard.getProductId());
+            ResultSet rs = preStmt.executeQuery();
+            while(rs != null && rs.next()){
+                variants.add(new KeyboardVariant(
+                        new Specification(
+                                rs.getString(1),
+                                rs.getString(2),
+                                rs.getInt(3),
+                                rs.getInt(4)),
+                        rs.getString(5),
+                        rs.getString(6),
+                        rs.getString(7)
+                ));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return variants;
     }
 
     /**
@@ -133,7 +356,8 @@ public class ProductDAO {
                         rs.getString(7),
                         rs.getString(8),
                         rs.getString(9),
-                        rs.getString(10)));
+                        rs.getString(10))
+                );
 
             }
         } catch (SQLException e) {
@@ -176,22 +400,110 @@ public class ProductDAO {
                         rs.getString(3),
                         rs.getString(4),
                         rs.getString(5),
-                        rs.getString(6)));
-
-                System.out.println(tmp.getBrandId());
-                System.out.println(tmp.getBrandName());
-                System.out.println(tmp.getBrandCountry());
+                        rs.getString(6))
+                );
 
             }
         } catch (SQLException e) {
             System.err.println("ProductDAO laptop retrieve err");
             System.err.println(e.getMessage());
         }
-        System.out.println(smartWatches.size());
+
         return smartWatches;
     }
 
+    /**
+     * get all headphone data
+     * @return list of headphones
+     */
+    private static ArrayList<Headphone> headphoneRetrieve(){
+        ArrayList<Headphone> headphones = new ArrayList<>();
 
+        boolean flag = false;
+        DAO dao = new DAO();
+        Statement stmt = dao.getStmt();
+        try {
+            ResultSet rs = stmt.executeQuery(headphoneQuery);
 
+            while (rs != null && rs.next()){
+                Brand tmp = null;
+                for(Brand brd : brands){
+                    if(brd.getBrandId().equals(rs.getString(1))){
+                        flag = true;
+                        tmp = brd;
+                    }
+                }
+
+                if(!flag){
+                    tmp = new Brand(rs.getString(7),
+                            rs.getString(8),
+                            rs.getString(9));
+                }
+                headphones.add(new Headphone(
+                        rs.getString(1),
+                        rs.getString(2),
+                        tmp,
+                        rs.getString(3),
+                        rs.getString(4),
+                        rs.getString(5),
+                        rs.getString(6),
+                        rs.getString(7),
+                        rs.getString(8))
+                );
+
+            }
+        } catch (SQLException e) {
+            System.err.println("ProductDAO laptop retrieve err");
+            System.err.println(e.getMessage());
+        }
+
+        return headphones;
+    }
+
+    /**
+     * get all keyboard data
+     * @return list of keyboard
+     */
+    private static ArrayList<Keyboard> keyboardRetrieve(){
+        ArrayList<Keyboard> keyboards = new ArrayList<>();
+
+        boolean flag = false;
+        DAO dao = new DAO();
+        Statement stmt = dao.getStmt();
+        try {
+            ResultSet rs = stmt.executeQuery(keyboardQuery);
+
+            while (rs != null && rs.next()){
+                Brand tmp = null;
+                for(Brand brd : brands){
+                    if(brd.getBrandId().equals(rs.getString(1))){
+                        flag = true;
+                        tmp = brd;
+                    }
+                }
+
+                if(!flag){
+                    tmp = new Brand(rs.getString(7),
+                            rs.getString(8),
+                            rs.getString(9));
+                }
+                keyboards.add(new Keyboard(
+                        rs.getString(1),
+                        rs.getString(2),
+                        tmp,
+                        rs.getString(3),
+                        rs.getString(4),
+                        rs.getString(5),
+                        rs.getString(6))
+                );
+
+            }
+        } catch (SQLException e) {
+            System.err.println("ProductDAO laptop retrieve err");
+            System.err.println(e.getMessage());
+        }
+
+        return keyboards;
+    }
 
 }
