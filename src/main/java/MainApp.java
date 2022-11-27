@@ -32,9 +32,6 @@ public class MainApp extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         mainStage = stage;
-        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-        mainStage.setWidth(dim.getWidth());
-        mainStage.setHeight(dim.getHeight());
 
         AccountDAO.retrieve();
         ProductDAO.retrieve();
