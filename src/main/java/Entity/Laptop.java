@@ -11,6 +11,8 @@ public class Laptop extends Product{
     private String weight;
     private String camera;
 
+    private String cpu;
+
     private ArrayList<LaptopVariant> variants;
 
 
@@ -20,8 +22,8 @@ public class Laptop extends Product{
     }
 
     public Laptop(String productId, String productName, Brand brand, String screen, String connect,
-                  String os, String material, String size, String weight, String camera) {
-        super(productId, productName, brand);
+                  String os, String material, String size, String weight, String camera,String cpu,String imgPath) {
+        super(productId, productName, brand,imgPath);
         this.screen = screen;
         this.connect = connect;
         this.os = os;
@@ -29,6 +31,7 @@ public class Laptop extends Product{
         this.size = size;
         this.weight = weight;
         this.camera = camera;
+        this.cpu = cpu;
         this.variants = new ArrayList<>();
     }
 

@@ -13,34 +13,34 @@ public class ProductDAO {
 
     private static ArrayList<Brand> brands;
     private static final String laptopQuery = "select p.productid, p.productname, l.screen, l.connected, " +
-            "l.os, l.material, l.laptopsize, l.weight, l.camera, " +
+            "l.os, l.material, l.laptopsize, l.weight, l.camera, l.cpu, p.pathimage, " +
             "b.brandid, b.brandname, b.brandcountry " +
             "from product p join laptopinfo l on p.productid  = l.productid " +
             "join brand b on p.brandid = b.brandid " +
             "where deletedate is null " ;
 
     private static final String phoneQuery = "select p.productid, p.productname, p2.chip , " +
-            "p2.screen , p2.connected , p2.os , p2.material , p2.battery , p2.sim , p2.camera, " +
+            "p2.screen , p2.connected , p2.os , p2.material , p2.battery , p2.sim , p2.camera, p.pathimage, " +
             "b.brandid, b.brandname, b.brandcountry " +
             "from product p join phoneinfo p2 on p.productid = p2.productid " +
             "join brand b on p.brandid = b.brandid " +
             "where deletedate is null";
     private static final String smartwatchQuery = "select p.productid , p.productname , " +
-            "s.screen , s.frontglass , s.os , s.battery , " +
+            "s.screen , s.frontglass , s.os , s.battery , p.pathimage,  " +
             "b.brandid, b.brandname , b.brandcountry " +
             "from product p join smartwatchinfo s on s.productid = p.productid " +
             "join brand b on p.brandid = b.brandid " +
             "where deletedate is null";
 
     private static final String headphoneQuery = "select p.productid , p.productname , " +
-            "h.usetime , h.boxtime , h.os , h.charger , h.connected , h.headphonecontrol , " +
+            "h.usetime , h.boxtime , h.os , h.charger , h.connected , h.headphonecontrol, p.pathimage, " +
             "b.brandid , b.brandname , b.brandcountry " +
             "from product p join headphoneinfo h on p.productid = h.productid " +
             "join brand b on p.brandid  = b.brandid " +
             "where deletedate is null";
 
     private static final String keyboardQuery = "select p.productid , p .productname , " +
-            "k.led , k.keycap , k.os , k.battery , " +
+            "k.led , k.keycap , k.os , k.battery , p.pathimage, " +
             "b.brandid , b.brandname , b.brandcountry " +
             "from product p join keyboardinfo k on p.productid = k.productid " +
             "join brand b on p.brandid  = b.brandid " +
@@ -48,25 +48,25 @@ public class ProductDAO {
 
     private static final String laptopVariantQuery = "select p.productid , " +
             "s.sku , s.price , s.instock , " +
-            "l.variantid , l.laptopram , l.laptopcolor , l.laptopcpu " +
+            "l.variantid , l.laptopram , l.laptopcolor , l.laptopcpu , l.pathimage," +
             "from specification s join laptopvariation l on s.sku = l.sku " +
             "join product p on p.productid = s.productid " +
             "where p.productid = ? ";
 
     private static final String phoneVariantQuery = "select s.sku , s.productid , s.price , s.instock , " +
-            "p2.variantid , p2.phoneram , p2.phonecolor , p2.phonestorage " +
+            "p2.variantid , p2.phoneram , p2.phonecolor , p2.phonestorage, p2.pathimage " +
             "from specification s join phonevariation p2  on s.sku = p2.sku " +
             "where s.productid = ? ";
     private static final String smartWatchVariantQuery = "select s.sku , s.productid , s.price , s.instock , " +
-            "s2.variantid , s2.smartwatchedition , s2.smartwatchcolor " +
+            "s2.variantid , s2.smartwatchedition , s2.smartwatchcolor, s2.pathimage " +
             "from specification s join smartwatchvariation s2  on s2.sku = s.sku " +
             "where s.productid = ? ";
     private static final String headphoneVariantQuery = "select s.sku , s.productid , s.price , s.instock , " +
-            "h.variantid , h.headphonecolor " +
+            "h.variantid , h.headphonecolor, h.pathimage " +
             "from specification s join headphonevariation h on s.sku = h.sku " +
             "where s.productid = ? ";
     private static final String keyboardVariantQuery = "select s.sku , s.productid , s.price , s.instock , " +
-            "k.variantid , k.keyboardswitch , k.keyboardcolor " +
+            "k.variantid , k.keyboardswitch , k.keyboardcolor, k.pathimage " +
             "from specification s join keyboardvariation k  on s.sku = k.sku " +
             "where s.productid = ? ";
 
@@ -135,6 +135,7 @@ public class ProductDAO {
                         rs.getInt(3),
                         rs.getInt(4))
                 );
+                lv.setImgPath(rs.getString(9));
 
                 variants.add(lv);
             }
@@ -159,7 +160,7 @@ public class ProductDAO {
             preStmt.setString(1,phone.getProductId());
             ResultSet rs = preStmt.executeQuery();
             while(rs != null && rs.next()){
-                variants.add(new PhoneVariant(
+                PhoneVariant pv = new PhoneVariant(
                         new Specification(
                                 rs.getString(1),
                                 rs.getString(2),
@@ -169,7 +170,11 @@ public class ProductDAO {
                         rs.getString(6),
                         rs.getString(7),
                         rs.getString(8)
-                ));
+                );
+
+                pv.setImgPath(rs.getString(9));
+
+                variants.add(pv);
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -192,7 +197,7 @@ public class ProductDAO {
             preStmt.setString(1,smartWatch.getProductId());
             ResultSet rs = preStmt.executeQuery();
             while(rs != null && rs.next()){
-                variants.add(new SmartWatchVariant(
+                SmartWatchVariant sm = new SmartWatchVariant(
                         new Specification(
                                 rs.getString(1),
                                 rs.getString(2),
@@ -201,7 +206,10 @@ public class ProductDAO {
                         rs.getString(5),
                         rs.getString(6),
                         rs.getString(7)
-                ));
+                );
+
+                sm.setImgPath(rs.getString(8));
+                variants.add(sm);
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -224,7 +232,7 @@ public class ProductDAO {
             preStmt.setString(1,headphone.getProductId());
             ResultSet rs = preStmt.executeQuery();
             while(rs != null && rs.next()){
-                variants.add(new HeadphoneVariant(
+                HeadphoneVariant hv = new HeadphoneVariant(
                         new Specification(
                                 rs.getString(1),
                                 rs.getString(2),
@@ -232,7 +240,10 @@ public class ProductDAO {
                                 rs.getInt(4)),
                         rs.getString(5),
                         rs.getString(6)
-                ));
+                );
+
+                hv.setImgPath(rs.getString(7));
+                variants.add(hv);
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -255,7 +266,7 @@ public class ProductDAO {
             preStmt.setString(1,keyboard.getProductId());
             ResultSet rs = preStmt.executeQuery();
             while(rs != null && rs.next()){
-                variants.add(new KeyboardVariant(
+                KeyboardVariant kv = new KeyboardVariant(
                         new Specification(
                                 rs.getString(1),
                                 rs.getString(2),
@@ -264,7 +275,10 @@ public class ProductDAO {
                         rs.getString(5),
                         rs.getString(6),
                         rs.getString(7)
-                ));
+                );
+
+                kv.setImgPath(rs.getString(8));
+                variants.add(kv);
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -295,9 +309,9 @@ public class ProductDAO {
                 }
 
                 if(!flag){
-                    tmp = new Brand(rs.getString(10),
-                            rs.getString(11),
-                            rs.getString(12));
+                    tmp = new Brand(rs.getString(12),
+                            rs.getString(13),
+                            rs.getString(14));
                 }
                 laptops.add(new Laptop(
                         rs.getString(1),
@@ -309,7 +323,9 @@ public class ProductDAO {
                         rs.getString(6),
                         rs.getString(7),
                         rs.getString(8),
-                        rs.getString(9)));
+                        rs.getString(9),
+                        rs.getString(10),
+                        rs.getString(11)));
 
             }
         } catch (SQLException e) {
@@ -341,9 +357,9 @@ public class ProductDAO {
                 }
 
                 if(!flag){
-                    tmp = new Brand(rs.getString(11),
-                            rs.getString(12),
-                            rs.getString(13));
+                    tmp = new Brand(rs.getString(12),
+                            rs.getString(13),
+                            rs.getString(14));
                 }
                 phones.add(new Phone(
                         rs.getString(1),
@@ -356,7 +372,8 @@ public class ProductDAO {
                         rs.getString(7),
                         rs.getString(8),
                         rs.getString(9),
-                        rs.getString(10))
+                        rs.getString(10),
+                        rs.getString(11))
                 );
 
             }
@@ -389,9 +406,9 @@ public class ProductDAO {
                 }
 
                 if(!flag){
-                    tmp = new Brand(rs.getString(7),
-                            rs.getString(8),
-                            rs.getString(9));
+                    tmp = new Brand(rs.getString(8),
+                            rs.getString(9),
+                            rs.getString(10));
                 }
                 smartWatches.add(new SmartWatch(
                         rs.getString(1),
@@ -400,7 +417,8 @@ public class ProductDAO {
                         rs.getString(3),
                         rs.getString(4),
                         rs.getString(5),
-                        rs.getString(6))
+                        rs.getString(6),
+                        rs.getString(7))
                 );
 
             }
@@ -435,9 +453,9 @@ public class ProductDAO {
                 }
 
                 if(!flag){
-                    tmp = new Brand(rs.getString(7),
-                            rs.getString(8),
-                            rs.getString(9));
+                    tmp = new Brand(rs.getString(10),
+                            rs.getString(11),
+                            rs.getString(12));
                 }
                 headphones.add(new Headphone(
                         rs.getString(1),
@@ -448,7 +466,8 @@ public class ProductDAO {
                         rs.getString(5),
                         rs.getString(6),
                         rs.getString(7),
-                        rs.getString(8))
+                        rs.getString(8),
+                        rs.getString(9))
                 );
 
             }
@@ -483,9 +502,9 @@ public class ProductDAO {
                 }
 
                 if(!flag){
-                    tmp = new Brand(rs.getString(7),
-                            rs.getString(8),
-                            rs.getString(9));
+                    tmp = new Brand(rs.getString(8),
+                            rs.getString(9),
+                            rs.getString(10));
                 }
                 keyboards.add(new Keyboard(
                         rs.getString(1),
@@ -494,7 +513,8 @@ public class ProductDAO {
                         rs.getString(3),
                         rs.getString(4),
                         rs.getString(5),
-                        rs.getString(6))
+                        rs.getString(6),
+                        rs.getString(7))
                 );
 
             }
