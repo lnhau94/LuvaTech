@@ -14,7 +14,7 @@ from googletrans import Translator
 import platform
 
 cam = cv2.VideoCapture(0)
-detector=cv2.CascadeClassifier('haarcascade_frontalface_alt2.xml')
+detector=cv2.CascadeClassifier('./haarcascade_frontalface_alt2.xml')
 
 # Hàm cập nhật tên và ID vào file Excel
 def insertOrUpdate(id, name):
