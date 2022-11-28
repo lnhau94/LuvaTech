@@ -3,6 +3,7 @@ package App.Controller;
 import App.View.Component.Component;
 import App.Model.ProductModel;
 
+import Entity.Product;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -50,8 +51,8 @@ public class laptopDetails {
     ToggleGroup StorageTG = new ToggleGroup();
     ToggleGroup colorTG = new ToggleGroup();
     Component component = new Component();
-    public void setData(ProductModel product){
-        productTilte.setText(product.getName());
+    public void setData(Product product){
+        productTilte.setText(product.getProductName());
         List<String> ramList = new ArrayList<String>();
         ramList.add("2GB");
         ramList.add("4GB");

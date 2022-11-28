@@ -49,24 +49,30 @@ public class itemController {
         Scene scene = new Scene(parent);
         ProductDetailsController controller = loader.getController();
         setDataLaptop(laptop);
-        setDataPhone(phone);
+        //setDataPhone(phone);
         stage.setScene(scene);
-            //myListener.onClick(newProduct);
+       // myListener.onClick(newProduct);
     }
     private Laptop laptop;
     private Phone phone;
     public void setDataLaptop( Laptop laptop) throws IOException {
         this.laptop = laptop;
-//        Image newImage = new Image(String.valueOf((new File().toURI()).toURL()));
-//        imageproduct.setImage(newImage);
+        Image newImage;
+        if(phone != null){
+            newImage = new Image(String.valueOf((new File(laptop.getImgPath()).toURI()).toURL()));
+        }else{
+            newImage = new Image(String.valueOf((new File("src/main/java/Assets/Image/laptop/Laptop_Dell_XPS13_9320/dell-xps-1.jpg").toURI()).toURL()));
+        }
+
+      imageproduct.setImage(newImage);
         textCategory.setText("Laptop");
         textName.setText(laptop.getProductName());
       //  textCurrentPrice.setText(String.valueOf(laptop));
     }
     public void setDataPhone( Phone phone) throws IOException {
         this.phone = phone;
-        //  Image newImage = new Image(String.valueOf((new File(phone).toURI()).toURL()));
-        //imageproduct.setImage(newImage);
+//        Image newImage = new Image(String.valueOf((new File(phone.getImgPath()).toURI()).toURL()));
+//        imageproduct.setImage(newImage);
         textCategory.setText("Smart Phone");
         textName.setText(phone.getProductName());
      //   textCurrentPrice.setText(String.valueOf(laptop));
