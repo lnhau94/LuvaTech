@@ -4,16 +4,16 @@ public class LaptopVariant extends Variant{
     private String variantId;
     private String ram;
     private String color;
-    private String cpu;
+    private String storage;
 
     public LaptopVariant() {
     }
 
-    public LaptopVariant(String variantId, String ram, String color, String cpu) {
+    public LaptopVariant(String variantId, String ram, String color, String storage) {
         this.variantId = variantId;
         this.ram = ram;
         this.color = color;
-        this.cpu = cpu;
+        this.storage = storage;
     }
 
     public String getVariantId() {
@@ -40,11 +40,11 @@ public class LaptopVariant extends Variant{
         this.color = color;
     }
 
-    public String getCpu() {
-        return cpu;
+    public String getStorage() {
+        return storage;
     }
 
-    public void setCpu(String cpu) {
-        this.cpu = cpu;
+    public void setStorage(String storage) {
+        this.storage = storage;
     }
 }

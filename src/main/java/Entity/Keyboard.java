@@ -14,8 +14,8 @@ public class Keyboard extends Product{
     }
 
     public Keyboard(String productId, String productName, Brand brand, String led,
-                    String keycap, String os, String battery) {
-        super(productId, productName, brand);
+                    String keycap, String os, String battery, String imgPath) {
+        super(productId, productName, brand, imgPath);
         this.led = led;
         this.keycap = keycap;
         this.os = os;

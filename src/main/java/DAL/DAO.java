@@ -11,11 +11,11 @@ public class DAO {
     /**
      * pass cua Hau
      */
-    private final String dbpass = "password";
+    //private final String dbpass = "postgres";
     /**
      * Password của Hữu Đại
      */
-//    private final String dbpass = "123456";
+    private final String dbpass = "password";
     public DAO(){
         try {
             conn = DriverManager.getConnection(connectString,dbuser,dbpass);

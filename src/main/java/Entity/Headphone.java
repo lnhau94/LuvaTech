@@ -17,8 +17,8 @@ public class Headphone extends Product{
     }
 
     public Headphone(String productId, String productName, Brand brand, String useTime, String boxTime,
-                     String os, String charger, String connect, String headphoneControl) {
-        super(productId, productName, brand);
+                     String os, String charger, String connect, String headphoneControl, String imgPath) {
+        super(productId, productName, brand, imgPath);
         this.useTime = useTime;
         this.boxTime = boxTime;
         this.os = os;
