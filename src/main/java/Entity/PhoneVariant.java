@@ -1,6 +1,6 @@
 package Entity;
 
-public class PhoneVariant extends Variant{
+public class   PhoneVariant extends Variant{
     private String variantId;
     private String ram;
     private String color;

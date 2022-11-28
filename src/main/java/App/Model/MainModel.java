@@ -26,7 +26,6 @@ public class MainModel {
         customerManager = new CustomerManagement();
         productManager = new ProductManagement();
         orderManager = new OrderManagement();
-
         brandManager = new BrandManagement();
 
         mapData();
