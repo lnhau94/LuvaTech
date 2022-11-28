@@ -302,7 +302,7 @@ public class ProductDAO {
             while (rs != null && rs.next()){
                 Brand tmp = null;
                 for(Brand brd : brands){
-                    if(brd.getBrandId().equals(rs.getString(1))){
+                    if(brd.getBrandId().equals(rs.getString(12))){
                         flag = true;
                         tmp = brd;
                     }
@@ -312,6 +312,7 @@ public class ProductDAO {
                     tmp = new Brand(rs.getString(12),
                             rs.getString(13),
                             rs.getString(14));
+                    brands.add(tmp);
                 }
                 laptops.add(new Laptop(
                         rs.getString(1),
@@ -350,7 +351,7 @@ public class ProductDAO {
             while (rs != null && rs.next()){
                 Brand tmp = null;
                 for(Brand brd : brands){
-                    if(brd.getBrandId().equals(rs.getString(1))){
+                    if(brd.getBrandId().equals(rs.getString(12))){
                         flag = true;
                         tmp = brd;
                     }
@@ -360,6 +361,7 @@ public class ProductDAO {
                     tmp = new Brand(rs.getString(12),
                             rs.getString(13),
                             rs.getString(14));
+                    brands.add(tmp);
                 }
                 phones.add(new Phone(
                         rs.getString(1),
@@ -399,7 +401,7 @@ public class ProductDAO {
             while (rs != null && rs.next()){
                 Brand tmp = null;
                 for(Brand brd : brands){
-                    if(brd.getBrandId().equals(rs.getString(1))){
+                    if(brd.getBrandId().equals(rs.getString(12))){
                         flag = true;
                         tmp = brd;
                     }
@@ -409,6 +411,7 @@ public class ProductDAO {
                     tmp = new Brand(rs.getString(8),
                             rs.getString(9),
                             rs.getString(10));
+                    brands.add(tmp);
                 }
                 smartWatches.add(new SmartWatch(
                         rs.getString(1),
@@ -446,7 +449,7 @@ public class ProductDAO {
             while (rs != null && rs.next()){
                 Brand tmp = null;
                 for(Brand brd : brands){
-                    if(brd.getBrandId().equals(rs.getString(1))){
+                    if(brd.getBrandId().equals(rs.getString(10))){
                         flag = true;
                         tmp = brd;
                     }
@@ -456,6 +459,7 @@ public class ProductDAO {
                     tmp = new Brand(rs.getString(10),
                             rs.getString(11),
                             rs.getString(12));
+                    brands.add(tmp);
                 }
                 headphones.add(new Headphone(
                         rs.getString(1),
@@ -495,7 +499,7 @@ public class ProductDAO {
             while (rs != null && rs.next()){
                 Brand tmp = null;
                 for(Brand brd : brands){
-                    if(brd.getBrandId().equals(rs.getString(1))){
+                    if(brd.getBrandId().equals(rs.getString(8))){
                         flag = true;
                         tmp = brd;
                     }
@@ -505,6 +509,7 @@ public class ProductDAO {
                     tmp = new Brand(rs.getString(8),
                             rs.getString(9),
                             rs.getString(10));
+                    brands.add(tmp);
                 }
                 keyboards.add(new Keyboard(
                         rs.getString(1),
