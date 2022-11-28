@@ -41,5 +41,6 @@ public class ProductController {
         addDetails("8GB","256GB","Red");
         addDetails("16GB","256GB","Red");
         addDetails("16GB","128GB","Pink");
+        System.out.println(details);
     }
 }

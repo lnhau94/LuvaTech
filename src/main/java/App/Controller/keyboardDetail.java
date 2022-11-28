@@ -1,8 +1,8 @@
 package App.Controller;
 
 import App.View.Component.Component;
-import App.Model.ProductModel;
 
+import Entity.Product;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -63,9 +63,9 @@ public class keyboardDetail {
         }
     }
 
-    public void setData(ProductModel product) {
+    public void setData(Product product) {
         {
-            productTilte.setText(product.getName());
+            productTilte.setText(product.getProductName());
             ObservableList<String> switchListRender;
             List<String> switchList = new ArrayList<String>();
             switchList.add("Red Switch");
