@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+
+<AnchorPane prefHeight="465.0" prefWidth="759.0" stylesheets="@css/staff.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="App.Controller.StaffDetail">
+   <children>
+      <Pane layoutX="14.0" layoutY="14.0" prefHeight="348.0" prefWidth="733.0" styleClass="background">
+         <children>
+            <Label prefHeight="28.0" prefWidth="110.0" styleClass="title-staffdetail" text="Profile" />
+            <ImageView fitHeight="160.0" fitWidth="161.0" layoutX="19.0" layoutY="60.0">
+               <image>
+                  <Image url="@../../Assets/Image/icon/man.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="189.0" layoutY="88.0" prefHeight="28.0" prefWidth="71.0" styleClass="title-staffdetail" text="Fullname:" />
+            <Label layoutX="189.0" layoutY="126.0" prefHeight="28.0" prefWidth="71.0" styleClass="title-staffdetail" text="Address:" />
+            <Label layoutX="189.0" layoutY="160.0" prefHeight="28.0" prefWidth="71.0" styleClass="title-staffdetail" text="Position:" />
+            <Label layoutX="470.0" layoutY="88.0" prefHeight="28.0" prefWidth="71.0" styleClass="title-staffdetail" text="Birthday:" />
+            <Label layoutX="251.0" layoutY="213.0" prefHeight="28.0" prefWidth="71.0" styleClass="title-staffdetail" text="Salary:" />
+            <Label layoutX="270.0" layoutY="88.0" prefHeight="28.0" prefWidth="161.0" text="...." />
+            <Label layoutX="270.0" layoutY="126.0" prefHeight="28.0" prefWidth="299.0" text="...." />
+            <Label layoutX="270.0" layoutY="160.0" prefHeight="28.0" prefWidth="299.0" text="..." />
+            <Label layoutX="558.0" layoutY="88.0" prefHeight="28.0" prefWidth="161.0" text="...." />
+            <Label layoutX="331.0" layoutY="213.0" prefHeight="28.0" prefWidth="299.0" text="..." />
+            <Button styleClass="btn-exit" layoutX="677.0" layoutY="9.0" mnemonicParsing="false">
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="33.0">
+                     <image>
+                        <Image url="@../../Assets/Image/icon/cross.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
