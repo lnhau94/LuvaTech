@@ -15,7 +15,7 @@ conn = psycopg2.connect(
     host='localhost',
     database='postgres',
     user='postgres',
-    password='123456',
+    password='Huy150902',
     port='5432',
     options='-c search_path=luvashop'
 )
@@ -23,7 +23,7 @@ cur=conn.cursor()
 for i in range(df_brand.shape[0]):
     cur.execute("Insert into Brand(BrandName, BrandCountry) values (%s, %s);", (df_brand['BrandName'][i],df_brand['BrandCountry'][i]))
 for i in range(df_product.shape[0]):
-    cur.execute("Insert into Product(ProductName, BrandID) values (%s, %s);", (df_product['ProductName'][i],df_product['BrandID'][i]))
+    cur.execute("Insert into Product(ProductName, BrandID, PathImage) values (%s, %s, %s);", (df_product['ProductName'][i],df_product['BrandID'][i],df_product['PathImage'][i]))
 for i in range(df_phone.shape[0]):
     cur.execute("Insert into Specification(SKU,ProductID,Price,Instock) values (%s, %s, %s, %s);", (df_phone['SKU'][i],df_phone['ProductID'][i], df_phone['Price'][i], df_phone['Instock'][i]))
     cur.execute("Insert into PhoneVariation(SKU,phoneram,phonecolor,phonestorage) values (%s, %s, %s, %s);", (df_phone['SKU'][i],df_phone['Ram'][i], df_phone['Color'][i], df_phone['Storage'][i]))
