@@ -1,8 +1,8 @@
 package App.Controller;
 
 import App.View.Component.Component;
-import App.Model.ProductModel;
 
+import Entity.Product;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -58,8 +58,8 @@ public class smartDetails {
             Quality.setText(String.valueOf(inputValue));
         }
     }
-    public void setData(ProductModel product){
-        productTitle.setText(product.getName());
+    public void setData(Product product){
+        productTitle.setText(product.getProductName());
         List<String> colorList = new ArrayList<String>();
         colorList.add("#2f3640");
         colorList.add("#fbc531");

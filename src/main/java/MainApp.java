@@ -1,3 +1,4 @@
+import App.Model.MainModel;
 import DAL.AccountDAO;
 import DAL.ProductDAO;
 import Entity.Product;
@@ -35,9 +36,13 @@ public class MainApp extends Application {
     @Override
     public void start(Stage stage) throws Exception {
 //        mainStage = stage;
+
 //
 //        AccountDAO.retrieve();
 //        ProductDAO.retrieve();
+
+//        MainModel.start();
+
 //        stage.setTitle("LuvaTech");
 //        Button btn = new Button();
 //        btn.setText("Say 'Hello World'");
@@ -62,7 +67,10 @@ public class MainApp extends Application {
 //                switchScene(new Scene(pane));
 //            }
 //        });
-        stage.setScene(new Scene(FXMLLoader.load(new File("src/main/java/App/View/StaffMenu.fxml").toURL())));
+
+        stage.setScene(new Scene(FXMLLoader.load(new File("src/main/java/App/View/StaffAdd.fxml").toURI().toURL())));
+
         stage.show();
+
     }
 }

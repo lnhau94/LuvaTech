@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="810.0" prefWidth="1111.0" stylesheets="@css/staff.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="App.Controller.StaffInfor">
+   <children>
+      <Pane layoutX="14.0" layoutY="14.0" prefHeight="80.0" prefWidth="297.0" styleClass="background-staffinfor">
+         <children>
+            <Label layoutX="47.0" layoutY="23.0" prefHeight="35.0" prefWidth="204.0" styleClass="staff-title" text="Staff Information">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Pane layoutX="14.0" layoutY="105.0" prefHeight="687.0" prefWidth="887.0" styleClass="background-staffinfor-content">
+         <children>
+            <TableView layoutX="32.0" layoutY="25.0" prefHeight="562.0" prefWidth="820.0">
+              <columns>
+                  <TableColumn prefWidth="195" text="ID" />
+                  <TableColumn prefWidth="325" text="Name" />
+                  <TableColumn prefWidth="224" text="Birthday" />
+                  <TableColumn prefWidth="75.0" text="Details" />
+              </columns>
+            </TableView>
+         </children>
+      </Pane>
+      <Button styleClass="btn-staffinfor" layoutX="941.0" layoutY="105.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="128.0">
+         <graphic>
+            <ImageView fitHeight="25.0" fitWidth="25.0">
+               <image>
+                  <Image url="@../../Assets/Image/icon/loupe.png" />
+               </image>
+            </ImageView>
+         </graphic></Button>
+      <Button styleClass="btn-staffinfor" layoutX="941.0" layoutY="194.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="128.0">
+         <graphic>
+            <ImageView fitHeight="25.0" fitWidth="25.0">
+               <image>
+                  <Image url="@../../Assets/Image/icon/add-user.png" />
+               </image>
+            </ImageView>
+         </graphic></Button>
+      <Button styleClass="btn-staffinfor" layoutX="941.0" layoutY="150.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="128.0">
+         <graphic>
+            <ImageView fitHeight="25.0" fitWidth="25.0">
+               <image>
+                  <Image url="@../../Assets/Image/icon/edit.png" />
+               </image>
+            </ImageView>
+         </graphic></Button>
+      <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="1062.0" layoutY="14.0">
+         <image>
+            <Image url="@../../Assets/Image/icon/cross.png" />
+         </image>
+      </ImageView>
+      <Button styleClass="btn-staffinfor" layoutX="941.0" layoutY="240.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="128.0">
+         <graphic>
+            <ImageView fitHeight="25.0" fitWidth="25.0">
+               <image>
+                  <Image url="@../../Assets/Image/icon/delete.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+
+   </children>
+</AnchorPane>

@@ -117,49 +117,7 @@ public class viemProductController implements Initializable {
         categories.add(category);
         return categories;
     }
-    private List<ProductModel> getDataProduct()  {
-       List<ProductModel> products = new ArrayList<>();
-       ArrayList<String> colors = new ArrayList<>();
-       colors.add("red");
-       colors.add("green");
-       colors.add("blue");
-        ArrayList<String> rams = new ArrayList<>();
-        colors.add("2GB");
-        colors.add("3GB");
-        colors.add("4GB");
-        ProductModel product;
-       product = new ProductModel();
-       product.setName("Iphone 12");
-       product.setPrice(1000);
-       product.setCategory("laptop");
-       product.setCpu("Chip A11");
-       product.setDescription("Iphone 12 ngon lam!");
-       product.setColors(colors);
-        product.setImgSrc(("src/main/java/Assets/Image/laptop/Laptop_Dell_XPS13_9320/dell-xps-1.jpg"));
-       product.setRam(rams);
-       products.add(product);
-        product = new ProductModel();
-        product.setName("ban phim ne");
-        product.setPrice(1000);
-        product.setCategory("keyboard");
-        product .setCpu("Chip A11");
-        product.setDescription("Iphone 12 ngon lam!");
-        product.setColors(colors);
-        product.setImgSrc(("src/main/java/Assets/Image/laptop/Laptop_Dell_XPS13_9320/dell-xps-1.jpg"));
-        product.setRam(rams);
-        products.add(product);
-        product = new ProductModel();
-        product.setName("Iphone 12");
-        product.setPrice(1000);
-        product.setCategory("SmartWatch");
-        product.setCpu("Chip A11");
-        product.setDescription("Iphone 12 ngon lam!");
-        product.setColors(colors);
-        product.setImgSrc(("src/main/java/Assets/Image/laptop/Laptop_Dell_XPS13_9320/dell-xps-1.jpg"));
-        product.setRam(rams);
-        products.add(product);
-       return products;
-    }
+
 
 //    public void renderProducts()  {
 //        products.addAll(getDataProduct());
