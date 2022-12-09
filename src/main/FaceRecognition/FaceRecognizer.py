@@ -34,7 +34,7 @@ def myInit():
   faceDetect=cv2.CascadeClassifier('./haarcascade_frontalface_alt2.xml')
   # Khởi tạo bộ nhận diện khuôn mặt
   recognizer = cv2.face.LBPHFaceRecognizer_create()
-  recognizer.read('./recognize/trainner.yml') 
+  recognizer.read('./recognize/trainner_LOCAL_338.yml')
   return faceDetect, recognizer
 t0 = ThreadWithReturnValue(target=myInit)
 t0.start()

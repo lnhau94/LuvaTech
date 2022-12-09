@@ -11,6 +11,7 @@ public class DAO {
     /**
      * pass cua Hau
      */
+
     private final String dbpass = "Huy150902";
     public DAO(){
         try {
