@@ -58,63 +58,82 @@ public class ProductDetailsController {
     private Product newProduct;
 
     //render Product Details View
-   // new File("src/main/java/App/View/view-product.fxml").toURI().toURL())
+    // new File("src/main/java/App/View/view-product.fxml").toURI().toURL())
+    public AnchorPane setRenderDetail(Laptop laptop, Map<String, String> pathScreen ) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setLocation(new File(pathScreen.get("laptop")).toURI().toURL());
+        AnchorPane anchorPane = fxmlLoader.load();
+        laptopDetails laptopDetails = fxmlLoader.getController();
+        laptopDetails.setData(laptop);
+        return  anchorPane;
+    }
+    public AnchorPane setRenderDetail(Phone phone, Map<String, String> pathScreen) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setLocation(new File(pathScreen.get("SmartPhone")).toURI().toURL());
+        AnchorPane anchorPane = fxmlLoader.load();
+        phoneDetails phoneDetails = fxmlLoader.getController();
+        phoneDetails.setData(phone);
+        return  anchorPane;
+    }
+    public AnchorPane setRenderDetail(SmartWatch smartWatch, Map<String, String> pathScreen) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setLocation(new File(pathScreen.get("SmartWatch")).toURI().toURL());
+        AnchorPane anchorPane = fxmlLoader.load();
+        smartDetails smartDetails = fxmlLoader.getController();
+        smartDetails.setData(smartWatch);
+        return  anchorPane;
+    }
+    public AnchorPane setRenderDetail(Headphone headphone,Map<String, String> pathScreen ) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setLocation(new File(pathScreen.get("headPhone")).toURI().toURL());
+        AnchorPane anchorPane = fxmlLoader.load();
+        headPhoneDetails headPhoneDetails = fxmlLoader.getController();
+        headPhoneDetails.setData(headphone);
+        return  anchorPane;
+    }
+    public AnchorPane setRenderDetail(Keyboard keyboard,Map<String, String> pathScreen ) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setLocation(new File(pathScreen.get("keyboard")).toURI().toURL());
+        AnchorPane anchorPane = fxmlLoader.load();
+        keyboardDetail keyboardDetail = fxmlLoader.getController();
+        keyboardDetail.setData(keyboard);
+        return  anchorPane;
+    }
+
+
     public void SwitchScreenDetails(Product product) throws IOException {
 
         Map<String, String> pathScreen = new HashMap<>();
-        pathScreen.put("laptop","src/main/java/App/View/laptopDetail.fxml");
-        pathScreen.put("SmartPhone","src/main/java/App/View/laptopDetail.fxml");
-        pathScreen.put("keyboard","src/main/java/App/View/keyboardDetail.fxml");
-        pathScreen.put("SmartWatch","src/main/java/App/View/smartDetails.fxml");
-        FXMLLoader fxmlLoader = new FXMLLoader();
-        if(product instanceof Phone){
-            fxmlLoader.setLocation(new File(pathScreen.get("laptop")).toURI().toURL());
-            AnchorPane anchorPane= fxmlLoader.load();
-            laptopDetails laptopDetails =fxmlLoader.getController();
-            laptopDetails.setData(product);
-            hboxDetails.getChildren().add(anchorPane);
-        }else if(product instanceof Laptop){
-            System.out.println("Check");
-            fxmlLoader.setLocation(new File(pathScreen.get("laptop")).toURI().toURL());
-            AnchorPane anchorPane1= fxmlLoader.load();
-            keyboardDetail keyboardDetail = fxmlLoader.getController();
-            keyboardDetail.setData(product);
-            hboxDetails.getChildren().add(anchorPane1);
-
-        }else if(product instanceof SmartWatch){
-            fxmlLoader.setLocation(new File(pathScreen.get("SmartWatch")).toURI().toURL());
-            AnchorPane anchorPane2= fxmlLoader.load();
-            smartDetails smartDetails = fxmlLoader.getController();
-            smartDetails.setData(product);
-            hboxDetails.getChildren().add(anchorPane2);
-
+        pathScreen.put("laptop", "src/main/java/App/View/laptopDetail.fxml");
+        pathScreen.put("SmartPhone", "src/main/java/App/View/phoneDetail.fxml");
+        pathScreen.put("keyboard", "src/main/java/App/View/keyboardDetail.fxml");
+        pathScreen.put("SmartWatch", "src/main/java/App/View/smartDetails.fxml");
+        pathScreen.put("headPhone", "src/main/java/App/View/headPhoneDetails.fxml");
+        AnchorPane anchorPane = null;
+        if (product instanceof Laptop) {
+            anchorPane = setRenderDetail((Laptop) product, pathScreen);
+        } else if (product instanceof SmartWatch) {
+            anchorPane = setRenderDetail((SmartWatch) product, pathScreen);
+        }else if(product instanceof Phone){
+            anchorPane = setRenderDetail((Phone) product, pathScreen);
+        }else if(product instanceof Headphone){
+            anchorPane = setRenderDetail((Headphone) product, pathScreen);
         }else {
-            fxmlLoader.setLocation(new File(pathScreen.get("SmartWatch")).toURI().toURL());
-            AnchorPane anchorPane2= fxmlLoader.load();
-            smartDetails smartDetails = fxmlLoader.getController();
-            smartDetails.setData(product);
-            hboxDetails.getChildren().add(anchorPane2);
+            anchorPane = setRenderDetail((Keyboard) product, pathScreen);
         }
-//        switch (I){
-//            case  "laptop":
-//
-//                break;
-//            case  "keyboard":
-//
-//               break;
-//            case  "SmartWatch":
-//
-//                break;
-//           default:
-//                System.out.printf("Code sai roi leu leu");
-//        }
+        hboxDetails.getChildren().add(anchorPane);
     }
+
 
     //render product Details data
     public void setData(Product newProduct) throws IOException {
-        productTitle.setText(newProduct.getProductName());
-       // Image newImage = new Image(String.valueOf(new File(newProduct.getImgSrc()).toURI().toURL()));
-     //   productImage.setImage(newImage);
+        Image newImage;
+        if(newProduct != null){
+            newImage = new Image(String.valueOf((new File(newProduct.getImgPath()).toURI()).toURL()));
+        }else{
+            newImage = new Image(String.valueOf((new File("src/main/java/Assets/Image/laptop/Laptop_Dell_XPS13_9320/dell-xps-1.jpg").toURI()).toURL()));
+        }
+        productImage.setImage(newImage);
         SwitchScreenDetails(newProduct);
     }
     //back to Shop

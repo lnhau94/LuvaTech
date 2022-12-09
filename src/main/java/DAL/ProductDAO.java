@@ -401,7 +401,7 @@ public class ProductDAO {
             while (rs != null && rs.next()){
                 Brand tmp = null;
                 for(Brand brd : brands){
-                    if(brd.getBrandId().equals(rs.getString(12))){
+                    if(brd.getBrandId().equals(rs.getString(10))){
                         flag = true;
                         tmp = brd;
                     }
