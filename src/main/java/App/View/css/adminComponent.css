@@ -1,0 +1,36 @@
+.admin-main-button{
+   -fx-pref-width: 150px;
+   -fx-pref-height: 100px;
+   -fx-background-color: none;
+   -fx-text-fill: white;
+   -fx-effect: dropshadow(three-pass-box, rgba(255,255,255,0.5), 1, 5, 3, 3);
+}
+.admin-main-button:hover{
+    -fx-border-color: white;
+    -fx-background-color: rgba(255,255,255,0.2);
+    -fx-border-width: 2px;
+    -fx-border-radius: 25px;
+    -fx-background-radius: 25px;
+    -fx-effect: dropshadow(gaussian, rgba(255,255,255,0.2), 2, 0, 0, 0);
+}
+
+.admin-table-view{
+    -fx-pref-width: 800px;
+    -fx-pref-height: 650px;
+}
+.admin-tab-view{
+    -fx-tab-min-height: 50px;
+    -fx-tab-min-width: 100px;
+    -fx-tab-background-color: red;
+}
+
+.admin-screen{
+    -fx-pref-width: 1000px;
+    -fx-pref-height: 850px;
+
+}
+
+
+.admin-main-background{
+    -fx-background-color: linear-gradient(to bottom right, #355C7D,#6C5B7B,#C06C84);
+}

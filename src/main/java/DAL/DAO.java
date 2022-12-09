@@ -15,7 +15,7 @@ public class DAO {
     /**
      * Password của Hữu Đại
      */
-    private final String dbpass = "123456";
+    private final String dbpass = "Huy150902";
     public DAO(){
         try {
             conn = DriverManager.getConnection(connectString,dbuser,dbpass);
