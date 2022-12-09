@@ -2,6 +2,7 @@ package App.Controller;
 
 import App.View.Component.Component;
 
+import Entity.Keyboard;
 import Entity.Product;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -63,7 +64,7 @@ public class keyboardDetail {
         }
     }
 
-    public void setData(Product product) {
+    public void setData(Keyboard product) {
         {
             productTilte.setText(product.getProductName());
             ObservableList<String> switchListRender;
