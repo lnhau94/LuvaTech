@@ -17,6 +17,8 @@
 .admin-table-view{
     -fx-pref-width: 850px;
     -fx-pref-height: 650px;
+    -fx-max-height: 10000px;
+    -fx-max-width: 10000px;
     -fx-table-cell-border-color: #273c75;
 }
 
@@ -63,4 +65,24 @@
 
 .admin-main-background{
     -fx-background-color: linear-gradient(to bottom right, #355C7D,#6C5B7B,#C06C84);
+}
+
+.admin-product-title{
+    -fx-pref-width: 350px;
+    -fx-pref-height: 50px;
+    -fx-alignment: center;
+    -fx-text-fill: white;
+    -fx-font-size: 25px;
+}
+.admin-product-content-label{
+    -fx-pref-width: 350px;
+    -fx-pref-height: 50px;
+    -fx-alignment: center;
+    -fx-text-fill: white;
+    -fx-font-size: 20px;
+}
+
+.admin-product-info-container{
+    -fx-background-color: linear-gradient(to bottom, #8c7ae6, #000);
+
 }

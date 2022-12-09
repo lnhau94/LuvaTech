@@ -6,13 +6,12 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="App.Controller.AdminLaptopDetailControl">
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="admin-product-info-container" stylesheets="@css/adminComponent.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="App.Controller.AdminLaptopDetailControl">
    <children>
       <FlowPane fx:id="sumarryInfoContainer" prefHeight="200.0" prefWidth="200.0">
          <children>
-            <Label fx:id="laptopName" text="Name" />
-            <Label fx:id="laptopBrand" text="Brand" />
+            <Label fx:id="laptopName" styleClass="admin-product-title" stylesheets="@css/adminComponent.css" text="Name" />
+            <Label fx:id="laptopBrand" styleClass="admin-product-content-label" stylesheets="@css/adminComponent.css" text="Brand" />
          </children>
       </FlowPane>
       <ImageView fx:id="laptopImage" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
@@ -25,8 +24,8 @@
       </VBox>
       <FlowPane fx:id="variantInfoContainer" layoutX="10.0" layoutY="285.0" prefHeight="200.0" prefWidth="200.0">
          <children>
-            <Label fx:id="priceLabel" text="Price" />
-            <Label fx:id="instockLabel" layoutX="10.0" layoutY="10.0" text="Instock" />
+            <Label fx:id="priceLabel" styleClass="admin-product-content-label" stylesheets="@css/adminComponent.css" text="Price" />
+            <Label fx:id="instockLabel" layoutX="10.0" layoutY="10.0" styleClass="admin-product-content-label" stylesheets="@css/adminComponent.css" text="Instock" />
          </children>
       </FlowPane>
    </children>
