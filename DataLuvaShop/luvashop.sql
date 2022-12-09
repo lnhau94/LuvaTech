@@ -92,6 +92,12 @@ create table Specification (
 	constraint pk_specification primary key (SKU), 
 	constraint fk_specification foreign key (ProductID) references Product(ProductID)
 );
+create table Colors (
+	NameColor text not null,
+	HexColor text not null,
+	constraint pk_namecolor primary key (NameColor),
+	constraint uq_colors unique (NameColor, HexColor)
+);
 create table PhoneVariation (
 	ID serial not null,
 	VariantID varchar(10) generated always as (lpad(MOD(ID, 100000)::text,4,'0')) stored unique,
@@ -102,6 +108,7 @@ create table PhoneVariation (
 	PathImage text default null,
 	constraint pk_phonevariation primary key (ID),
 	constraint fk_phonevariation foreign key (SKU) references Specification(SKU),
+	constraint fk_colorphonevariation foreign key (PhoneColor) references Colors(NameColor),
 	constraint uq_phonevariaiton unique (SKU, PhoneRam, PhoneColor, PhoneStorage, PathImage)
 );
 create table LaptopVariation (
@@ -114,6 +121,7 @@ create table LaptopVariation (
 	PathImage text default null,
 	constraint pk_laptopvariation primary key (ID),
 	constraint fk_laptopvariation foreign key (SKU) references Specification(SKU),
+	constraint fk_colorlaptopvariation foreign key (LaptopColor) references Colors(NameColor),
 	constraint uq_laptopvariation unique (SKU, LaptopRam, LaptopColor, LaptopStorage, PathImage)
 );
 create table SmartwatchVariation (
@@ -125,6 +133,7 @@ create table SmartwatchVariation (
 	PathImage text default null,
 	constraint pk_smartwatchvariation primary key (ID),
 	constraint fk_smartwatchvariation foreign key (SKU) references Specification(SKU),
+	constraint fk_colorsmartwatchvariation foreign key (SmartwatchColor) references Colors(NameColor),
 	constraint uq_smartwatchvariation unique (SKU, SmartwatchEdition, SmartwatchColor, PathImage)
 );
 create table KeyboardVariation (
@@ -136,6 +145,7 @@ create table KeyboardVariation (
 	PathImage text default null,
 	constraint pk_keyboardvariation primary key (ID),
 	constraint fk_keyboardvariation foreign key (SKU) references Specification(SKU),
+	constraint fk_colorkeyboardvariation foreign key (KeyboardColor) references Colors(NameColor),
 	constraint uq_keyboardvariation unique (SKU, KeyboardSwitch, KeyboardColor, PathImage)
 );
 create table HeadphoneVariation (
@@ -146,6 +156,7 @@ create table HeadphoneVariation (
 	PathImage text default null,
 	constraint pk_headphonevariation primary key (ID),
 	constraint fk_headphonevariation foreign key (SKU) references Specification(SKU),
+	constraint fk_colorheadphonevariation foreign key (HeadphoneColor) references Colors(NameColor),
 	constraint uq_headphonevariation unique (SKU, HeadphoneColor, PathImage)
 );
 create table Staff (
@@ -250,5 +261,4 @@ create table PurchaseOrderDetail (
 	constraint fk_purchaseorderdetailid foreign key (PurchaseOrderID) references PurchaseOrder(PurchaseOrderID),
 	constraint pk_purchaseorderdetail primary key (PurchaseOrderID, SKU)
 );
-
 

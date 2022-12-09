@@ -11,6 +11,7 @@ df_laptop = pd.read_excel('./phone_laptop_watch_data_tth.xlsx',engine='openpyxl'
 df_laptopinfo = pd.read_excel('./phone_laptop_watch_data_tth.xlsx',engine='openpyxl',sheet_name='LaptopInfo',dtype={'ProductID': object})
 df_watch = pd.read_excel('./phone_laptop_watch_data_tth.xlsx',engine='openpyxl',sheet_name='Watch',dtype={'SKU': object,'ProductID': object})
 df_watchinfo = pd.read_excel('./phone_laptop_watch_data_tth.xlsx',engine='openpyxl',sheet_name='WatchInfo',dtype={'ProductID': object})
+df_colors = pd.read_excel('./phone_laptop_watch_data_tth.xlsx',engine='openpyxl',sheet_name='Colors',dtype={'Hex': object})
 conn = psycopg2.connect(
     host='localhost',
     database='postgres',
@@ -20,6 +21,13 @@ conn = psycopg2.connect(
     options='-c search_path=luvashop'
 )
 cur=conn.cursor()
+# cur.execute("Select * from product")
+# list_id = [i[0] for i in cur.fetchall()]
+# print(list_id)
+# for pd in cur.fetchall():
+#   print(pd[0])
+for i in range(df_colors.shape[0]):
+  cur.execute("Insert into Colors(NameColor, HexColor) values (%s, %s);", (df_colors['NameColor'][i],df_colors['HexColor'][i]))
 for i in range(df_brand.shape[0]):
     cur.execute("Insert into Brand(BrandName, BrandCountry) values (%s, %s);", (df_brand['BrandName'][i],df_brand['BrandCountry'][i]))
 for i in range(df_product.shape[0]):
