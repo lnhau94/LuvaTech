@@ -5,8 +5,8 @@ import java.util.ArrayList;
 
 public class PurchaseOrder {
     private String purchaseOrderId;
-    private String employeeIdCreate;
-    private String employeeIdConfirm;
+    private Staff employeeCreate;
+    private Staff employeeConfirm;
     private int totalPrice;
     private Date date;
     private Date expectedDeliveryDate;
@@ -18,12 +18,23 @@ public class PurchaseOrder {
     public PurchaseOrder() {
     }
 
-    public PurchaseOrder(String purchaseOrderId, String employeeIdCreate, String employeeIdConfirm, int totalPrice,
+    public PurchaseOrder(String purchaseOrderId, int totalPrice, Date date, Date expectedDeliveryDate,
+                         String supplierName, String supplierAddress, String status) {
+        this.purchaseOrderId = purchaseOrderId;
+        this.totalPrice = totalPrice;
+        this.date = date;
+        this.expectedDeliveryDate = expectedDeliveryDate;
+        this.supplierName = supplierName;
+        this.supplierAddress = supplierAddress;
+        this.status = status;
+    }
+
+    public PurchaseOrder(String purchaseOrderId, Staff employeeCreate, Staff employeeConfirm, int totalPrice,
                          Date date, Date expectedDeliveryDate, String supplierName, String supplierAddress,
                          String status, ArrayList<PurchaseOrderDetail> details) {
         this.purchaseOrderId = purchaseOrderId;
-        this.employeeIdCreate = employeeIdCreate;
-        this.employeeIdConfirm = employeeIdConfirm;
+        this.employeeCreate = employeeCreate;
+        this.employeeConfirm = employeeConfirm;
         this.totalPrice = totalPrice;
         this.date = date;
         this.expectedDeliveryDate = expectedDeliveryDate;
@@ -37,20 +48,20 @@ public class PurchaseOrder {
         return purchaseOrderId;
     }
 
-    public String getEmployeeIdCreate() {
-        return employeeIdCreate;
+    public Staff getEmployeeCreate() {
+        return employeeCreate;
     }
 
-    public void setEmployeeIdCreate(String employeeIdCreate) {
-        this.employeeIdCreate = employeeIdCreate;
+    public void setEmployeeCreate(Staff employeeCreate) {
+        this.employeeCreate = employeeCreate;
     }
 
-    public String getEmployeeIdConfirm() {
-        return employeeIdConfirm;
+    public Staff getEmployeeConfirm() {
+        return employeeConfirm;
     }
 
-    public void setEmployeeIdConfirm(String employeeIdConfirm) {
-        this.employeeIdConfirm = employeeIdConfirm;
+    public void setEmployeeConfirm(Staff employeeConfirm) {
+        this.employeeConfirm = employeeConfirm;
     }
 
     public int getTotalPrice() {

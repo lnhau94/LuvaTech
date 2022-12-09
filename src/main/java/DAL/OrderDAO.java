@@ -1,5 +1,6 @@
 package DAL;
 
+import Entity.GiveBackItem;
 import Entity.Order;
 import Entity.OrderDetails;
 
@@ -37,6 +38,7 @@ public class OrderDAO {
 
         for (Order o : orders){
             o.setDetails(orderDetailRetrieve(o));
+            o.setGiveBackItems(giveBackItemRetrieve(o));
         }
 
         return orders;
@@ -65,5 +67,32 @@ public class OrderDAO {
         }
 
         return orderDetails;
+    }
+
+    /**
+     * get all give back detail for order
+     * @param o order need to get give back details
+     * @return list of give back details
+     */
+    public static ArrayList<GiveBackItem> giveBackItemRetrieve(Order o){
+        ArrayList<GiveBackItem> giveBackItems = new ArrayList<>();
+
+        DAO dao = new DAO();
+        PreparedStatement preStmt = dao.getPreStmt("select sku, quantity, " +
+                "reason, payback, backdate " +
+                "from orders o join givebackitems gb on o.orderid = gb.orderid " +
+                "where o.orderid = ? ");
+        try {
+            preStmt.setString(1,o.getOrderId());
+            ResultSet rs = preStmt.executeQuery();
+            while (rs != null && rs.next()){
+                giveBackItems.add(new GiveBackItem(rs.getString(1),rs.getInt(2),
+                        rs.getString(3), rs.getInt(4), rs.getDate(5)));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return giveBackItems;
     }
 }
