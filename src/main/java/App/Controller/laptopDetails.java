@@ -94,20 +94,17 @@ public void Ram(List<String> ramList) {
        storageColor.forEach(stringListHashMap ->
        {
         addDetails(stringListHashMap.keySet().stream().toList(),StorageTG,storageHB);
-           System.out.println(stringListHashMap);
            List<Node> storageRB = storageHB.getChildren().stream().toList();
            if (StorageTG.getSelectedToggle()==null){
                StorageTG.selectToggle((Toggle) storageRB.get(0));
-               RadioButton radioButton = (RadioButton) StorageTG.getSelectedToggle();
                colorHbox.getChildren().clear();
-               Color(stringListHashMap.get(radioButton.getText()));
            }
            for (Node radio : storageRB) {
                radio.setOnMouseClicked(e -> {
                    StorageTG.selectToggle((Toggle) radio);
                    RadioButton radioButton = (RadioButton) StorageTG.getSelectedToggle();
                    colorHbox.getChildren().clear();
-                  Color(stringListHashMap.get(radioButton.getText()));
+
                });
 
            }
