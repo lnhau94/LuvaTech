@@ -19,10 +19,11 @@
     -fx-pref-height: 650px;
     -fx-table-cell-border-color: #273c75;
 }
-.table-row-cell:selected {
-   -fx-background-color: steelblue;
-   -fx-text-background-color: red;
+
+.admin-table-view .table-row-cell:selected > .table-cell{
+    -fx-background-color: #487eb0;
 }
+
 .admin-table-view .table-cell{
     -fx-font-size: 15px;
     -fx-font-weight: 600;

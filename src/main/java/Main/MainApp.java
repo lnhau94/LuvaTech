@@ -1,3 +1,5 @@
+package Main;
+
 import App.Model.MainModel;
 import DAL.AccountDAO;
 import DAL.ProductDAO;
@@ -36,7 +38,7 @@ public class MainApp extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         MainModel.start();
-//        mainStage = stage;
+        mainStage = stage;
 //        MainModel.start();
 //        stage.setTitle("LuvaTech");
 //        Button btn = new Button();
@@ -64,8 +66,10 @@ public class MainApp extends Application {
 //        });
         stage.setScene(new Scene(
 
+      FXMLLoader.load(
+                        new File("src/main/java/App/View/adminMainView.fxml").toURI().toURL()))
+        );
 
-                FXMLLoader.load(new File("src/main/java/App/View/view-product.fxml").toURI().toURL())));
         stage.show();
 
     }

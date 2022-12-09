@@ -8,6 +8,7 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
@@ -15,9 +16,13 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.BorderPane;
 
+import java.beans.EventHandler;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -26,6 +31,8 @@ import java.util.function.Function;
 public class AdminProductControl implements Initializable {
     ArrayList<Product> products;
 
+    @FXML
+    private BorderPane productScreen;
     @FXML
     private TableView<Product> adminProductTable;
     @FXML
@@ -110,13 +117,29 @@ public class AdminProductControl implements Initializable {
         productIdCol.setPrefWidth(100);
         productNameCol.setPrefWidth(400);
 
-        adminProductTable.setItems(FXCollections.observableList(products));
-        updateProductList();
 
+        adminProductTable.setOnMouseClicked(e->{
+            try {
+                FXMLLoader fxmlLoader = new FXMLLoader(
+                        new File("src/main/java/App/View/adminLaptopDetailView.fxml").toURI().toURL()
+                );
+                productScreen.setRight(
+                      fxmlLoader.load()
+                );
+                ((AdminLaptopDetailControl)fxmlLoader.getController()).setData(
+                        (Laptop) adminProductTable.getSelectionModel().getSelectedItem()
+                );
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
+
+        updateProductList();
 
     }
 
     public void updateProductList(){
+
         products.clear();
         for(Laptop laptop : MainModel.productManager.getLaptopList()){
             products.add(laptop);
@@ -133,6 +156,8 @@ public class AdminProductControl implements Initializable {
         for(Headphone item : MainModel.productManager.getHeadphoneList()){
             products.add(item);
         }
+        adminProductTable.setItems(FXCollections.observableList(products));
+
 
     }
 
