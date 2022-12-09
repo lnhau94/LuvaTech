@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="491.0" prefWidth="758.0" stylesheets="@css/staff.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="App.Controller.Orders">
+   <children>
+      <Pane layoutX="25.0" layoutY="86.0" prefHeight="378.0" prefWidth="714.0" styleClass="background-order">
+         <children>
+            <TableView layoutX="25.0" layoutY="16.0" prefHeight="346.0" prefWidth="665.0">
+              <columns>
+                <TableColumn prefWidth="75.0" text="ID" />
+                <TableColumn prefWidth="139.3333511352539" text="Suplier" />
+                  <TableColumn prefWidth="145.33331298828125" text="Customer" />
+                  <TableColumn prefWidth="86.66668701171875" text="Date" />
+                  <TableColumn prefWidth="114.66665649414062" text="Total" />
+                  <TableColumn prefWidth="104.6666259765625" text="Status" />
+              </columns>
+            </TableView>
+         </children>
+      </Pane>
+      <TextField layoutX="528.0" layoutY="78.0" />
+      <Button layoutX="677.0" layoutY="78.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="36.0">
+         <graphic>
+            <ImageView fitHeight="15.0" fitWidth="16.0">
+               <image>
+                  <Image url="@../../Assets/Image/icon/loupe.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Label layoutX="297.0" layoutY="14.0" prefHeight="30.0" prefWidth="170.0" styleClass="background-order" text="Orders">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="30.0" fitWidth="36.0" layoutX="710.0" layoutY="12.0">
+         <image>
+            <Image url="@../../Assets/Image/icon/cross.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

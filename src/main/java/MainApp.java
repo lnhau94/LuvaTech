@@ -68,7 +68,7 @@ public class MainApp extends Application {
 //            }
 //        });
 
-        stage.setScene(new Scene(FXMLLoader.load(new File("src/main/java/App/View/StaffDetail.fxml").toURI().toURL())));
+        stage.setScene(new Scene(FXMLLoader.load(new File("src/main/java/App/View/OrderDetails.fxml").toURI().toURL())));
 
         stage.show();
 
