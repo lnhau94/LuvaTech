@@ -1,9 +1,10 @@
 package App.Controller;
 import App.Model.CategoryModel;
-import App.Model.ProductModel;
 import DAL.ProductDAO;
 import Entity.Laptop;
+import Entity.Phone;
 import Entity.Product;
+import Entity.SmartWatch;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -11,7 +12,6 @@ import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
@@ -21,7 +21,6 @@ import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -40,54 +39,69 @@ public class viemProductController implements Initializable {
     private HBox hboxCartegory;
     @FXML
     private ScrollPane scroll;
-    private List<ProductModel> products = new ArrayList<>();
+    //private List<ProductModel> products = new ArrayList<>();
     private List<CategoryModel> categories = new ArrayList<>();
-    private MyListener myListener;
-
-    HashMap<String, ArrayList<? extends Product>> productList = ProductDAO.retrieve();
-
-    ArrayList<Laptop> laptops = (ArrayList<Laptop>) productList.get("laptop");
-
-    ArrayList<Laptop> phones = (ArrayList<Laptop>) productList.get("phone");
-    public void renderProducts1()  {
-        if (products.size() > 0) {
-//            myListener= new MyListener(){
-//
-//                @Override
-//                public void onClick(Product product) throws IOException {
-//
-//                }
-//            };
+    private HashMap<String, ArrayList<? extends Product>> productList = ProductDAO.retrieve();
+    private ArrayList<? extends Product> laptops = (ArrayList<Laptop>) productList.get("laptop");
+    private ArrayList<? extends Product> phones = (ArrayList<Phone>) productList.get("phone");
+    private ArrayList<? extends Product> smartWatchs = (ArrayList<SmartWatch>) productList.get("smartwatch");
+    public ArrayList<Product> products (){
+        ArrayList<Product> products = new ArrayList<>();
+        for (Product laptop : laptops) {
+            products.add(laptop);
         }
+        for (Product phone : phones) {
+            products.add(phone);
+        }
+        System.out.println("Samrt");
+        for (Product smartWatch : smartWatchs) {
+            products.add(smartWatch);
+        }
+        return products;
+    }
+
+    ArrayList<Product> AllproductsList =products();
+    public void render(ArrayList<Product> products){
+
         int column=0;
         int row=1;
         try {
-            for (int i=0; i<laptops.size(); i++) {
-                FXMLLoader fxmlLoader = new FXMLLoader();
-                fxmlLoader.setLocation(new File("src/main/java/App/View/item.fxml").toURI().toURL());
-                AnchorPane anchorPane = fxmlLoader.load();
-                itemController itemController = fxmlLoader.getController();
-                itemController.setDataLaptop(laptops.get(i));
-                if(column==4){
-                    column = 0;
-                    row++;
-                }
-                grid.add(anchorPane,column++,row);
-                grid.setMinWidth(Region.USE_COMPUTED_SIZE);
-                grid.setPrefWidth(Region.USE_COMPUTED_SIZE);
-                grid.setMaxWidth(Region.USE_PREF_SIZE);
+            if (products.size() == 0) {
+                System.out.println("Khong co san pham nao!");
+            }else{
+                for (int i=0; i<products.size(); i++) {
+                    FXMLLoader fxmlLoader = new FXMLLoader();
+                    fxmlLoader.setLocation(new File("src/main/java/App/View/item.fxml").toURI().toURL());
+                    AnchorPane anchorPane = fxmlLoader.load();
+                    itemController itemController = fxmlLoader.getController();
+                    itemController.setData(products.get(i));
+                    if(column==4){
+                        column = 0;
+                        row++;
+                    }
+                    grid.add(anchorPane,column++,row);
+                    grid.setMinWidth(Region.USE_COMPUTED_SIZE);
+                    grid.setPrefWidth(Region.USE_COMPUTED_SIZE);
+                    grid.setMaxWidth(Region.USE_PREF_SIZE);
 
-                grid.setMinHeight(Region.USE_COMPUTED_SIZE);
-                grid.setPrefHeight(Region.USE_COMPUTED_SIZE);
-                grid.setMaxHeight(Region.USE_PREF_SIZE);
-                GridPane.setMargin(anchorPane, new Insets(15));
-                GridPane.setVgrow(anchorPane, Priority.ALWAYS);
+                    grid.setMinHeight(Region.USE_COMPUTED_SIZE);
+                    grid.setPrefHeight(Region.USE_COMPUTED_SIZE);
+                    grid.setMaxHeight(Region.USE_PREF_SIZE);
+                    GridPane.setMargin(anchorPane, new Insets(15));
+                    GridPane.setVgrow(anchorPane, Priority.ALWAYS);
+                }
             }
+
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
 
+    /**
+     * Tạo dữ lệu thể loại
+     * @return
+     * @throws IOException
+     */
     private List<CategoryModel> getDataCategories() throws IOException {
         List<CategoryModel> categories = new ArrayList<>();
         CategoryModel category;
@@ -118,47 +132,14 @@ public class viemProductController implements Initializable {
         return categories;
     }
 
-
-//    public void renderProducts()  {
-//        products.addAll(getDataProduct());
-//        if (products.size() > 0) {
-////            myListener= new MyListener(){
-////
-////                @Override
-////                public void onClick(Product product) throws IOException {
-////
-////                }
-////            };
-//        }
-//        int column=0;
-//        int row=1;
-//        try {
-//            for (int i=0; i<products.size(); i++) {
-//                FXMLLoader fxmlLoader = new FXMLLoader();
-//                fxmlLoader.setLocation(new File("src/main/java/App/View/item.fxml").toURI().toURL());
-//                AnchorPane anchorPane = fxmlLoader.load();
-//                itemController itemController = fxmlLoader.getController();
-//                itemController.setData(products.get(i),myListener);
-//                if(column==4){
-//                    column = 0;
-//                    row++;
-//                }
-//                grid.add(anchorPane,column++,row);
-//                grid.setMinWidth(Region.USE_COMPUTED_SIZE);
-//                grid.setPrefWidth(Region.USE_COMPUTED_SIZE);
-//                grid.setMaxWidth(Region.USE_PREF_SIZE);
-//
-//                grid.setMinHeight(Region.USE_COMPUTED_SIZE);
-//                grid.setPrefHeight(Region.USE_COMPUTED_SIZE);
-//                grid.setMaxHeight(Region.USE_PREF_SIZE);
-//                GridPane.setMargin(anchorPane, new Insets(15));
-//                GridPane.setVgrow(anchorPane, Priority.ALWAYS);
-//            }
-//        } catch (Exception e) {
-//            throw new RuntimeException(e);
-//        }
-//    }
-    public AnchorPane renderCategory(CategoryModel category) throws MalformedURLException {
+    /**
+     * Hàm hiển thị từng thể loại sản phẩm
+     * @param category Thể loại sản phẩm
+     * @param products Danh sách các sản phẩm theo loại
+     * @return
+     * @throws MalformedURLException
+     */
+    public AnchorPane renderCategory(CategoryModel category, ArrayList<Product> products) throws MalformedURLException {
         AnchorPane anchorPane = new AnchorPane();
         anchorPane.setPrefHeight(200);
         HBox vbox = new HBox();
@@ -187,16 +168,30 @@ public class viemProductController implements Initializable {
         vbox.getChildren().add(imageView);
         vbox.getChildren().add(label);
         anchorPane.getChildren().add(vbox);
+        anchorPane.setOnMouseClicked(e->{
+            grid.getChildren().clear();
+            render(products);
+            System.out.println("hello");
+        });
         return anchorPane;
     }
+
+    /**
+     * Hàm render các thể loại và sản phẩm theo thể loại
+     */
     public void renderCategories() throws IOException {
         categories.addAll(getDataCategories());
         hboxCartegory.setStyle("-fx-effect:"+"dropShadow(three-pass-box, rgba(0,0,0,0.1),10.0,0.0,0.0,10.0);");
-     for (int i = 0; i <categories.size();i++){
-         hboxCartegory.getChildren().add(renderCategory(categories.get(i)));
-     }
-
+        hboxCartegory.getChildren().add(renderCategory(categories.get(0),AllproductsList));
+        hboxCartegory.getChildren().add(renderCategory(categories.get(1), (ArrayList<Product>) laptops));
+        hboxCartegory.getChildren().add(renderCategory(categories.get(2), (ArrayList<Product>) phones));
     }
+
+    /**
+     * Hàm chuyển từ giao diện bán hàng sang giao diện giỏ hàng
+     * @param e
+     * @throws IOException
+     */
     public  void  switchCartPage(MouseEvent e) throws IOException {
         Stage stage = (Stage) ((Node)e.getSource()).getScene().getWindow();
         stage.centerOnScreen();
@@ -214,9 +209,9 @@ public class viemProductController implements Initializable {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+        System.out.println(AllproductsList.size());
+        render(AllproductsList);
 
-
-        renderProducts1();
 
     }
 }

@@ -1,9 +1,7 @@
 package App.Controller;
 
 import App.View.Component.Component;
-
-import Entity.Laptop;
-import Entity.LaptopVariant;
+import Entity.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -11,14 +9,11 @@ import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicReference;
 
-public class laptopDetails {
-
+public class phoneDetails {
     @FXML
     private Label ProductPrice;
 
@@ -52,24 +47,24 @@ public class laptopDetails {
     ToggleGroup StorageTG = new ToggleGroup();
     ToggleGroup colorTG = new ToggleGroup();
     Component component = new Component();
-    public void setData(Laptop product) {
+    public void setData(Phone product) {
         productTilte.setText(product.getProductName());
         RadioButton ramSelected = new RadioButton();
-        ArrayList<LaptopVariant> laptopVariants = product.getVariants();
+        ArrayList<PhoneVariant> phoneVariants = product.getVariants();
         List<String> ramList=null;
         ProductController.details.clear();
-        for (int i = 0; i < laptopVariants.size(); i++) {
-            ProductController.addDetails(laptopVariants.get(i).getRam(), laptopVariants.get(i).getStorage(), laptopVariants.get(i).getColor());
-            }
-        ramList = ProductController.details.keySet().stream().toList();
-       Ram(ramList);
+        for (int i = 0; i < phoneVariants.size(); i++) {
+            ProductController.addDetails(phoneVariants.get(i).getRam(), phoneVariants.get(i).getStorage(), phoneVariants.get(i).getColor());
         }
+        ramList = ProductController.details.keySet().stream().toList();
+        Ram(ramList);
+    }
 
-public void Ram(List<String> ramList) {
+    public void Ram(List<String> ramList) {
         if (ramList.size()>0){
-           ramList.forEach((ram)->{
-               renderHB.getChildren().add( component.cusTomRB(ram,ramTG));
-           });
+            ramList.forEach((ram)->{
+                renderHB.getChildren().add( component.cusTomRB(ram,ramTG));
+            });
         }else{
             System.out.println("is empty");
         }
@@ -79,44 +74,44 @@ public void Ram(List<String> ramList) {
             RadioButton radioButton = (RadioButton) ramTG.getSelectedToggle();
             Storage(radioButton);
         }
-    for (Node radio : ramRadioButtons) {
-        radio.setOnMouseClicked(e -> {
-            ramTG.selectToggle((Toggle) radio);
-            RadioButton radioButton = (RadioButton) ramTG.getSelectedToggle();
-            storageHB.getChildren().clear();
-            Storage(radioButton);
-        });
-    }
+        for (Node radio : ramRadioButtons) {
+            radio.setOnMouseClicked(e -> {
+                ramTG.selectToggle((Toggle) radio);
+                RadioButton radioButton = (RadioButton) ramTG.getSelectedToggle();
+                storageHB.getChildren().clear();
+                Storage(radioButton);
+            });
+        }
     }
     public void Storage(RadioButton ramRB){
         String ram = ramRB.getText();
         List<HashMap<String, List<String>>> storageColor = ProductController.details.get(ram);
-       storageColor.forEach(stringListHashMap ->
-       {
-        addDetails(stringListHashMap.keySet().stream().toList(),StorageTG,storageHB);
-           System.out.println(stringListHashMap);
-           List<Node> storageRB = storageHB.getChildren().stream().toList();
-           if (StorageTG.getSelectedToggle()==null){
-               StorageTG.selectToggle((Toggle) storageRB.get(0));
-               RadioButton radioButton = (RadioButton) StorageTG.getSelectedToggle();
-               colorHbox.getChildren().clear();
-               Color(stringListHashMap.get(radioButton.getText()));
-           }
-           for (Node radio : storageRB) {
-               radio.setOnMouseClicked(e -> {
-                   StorageTG.selectToggle((Toggle) radio);
-                   RadioButton radioButton = (RadioButton) StorageTG.getSelectedToggle();
-                   colorHbox.getChildren().clear();
-                  Color(stringListHashMap.get(radioButton.getText()));
-               });
+        storageColor.forEach(stringListHashMap ->
+        {
+            addDetails(stringListHashMap.keySet().stream().toList(),StorageTG,storageHB);
+            System.out.println(stringListHashMap);
+            List<Node> storageRB = storageHB.getChildren().stream().toList();
+            if (StorageTG.getSelectedToggle()==null){
+                StorageTG.selectToggle((Toggle) storageRB.get(0));
+                RadioButton radioButton = (RadioButton) StorageTG.getSelectedToggle();
+                colorHbox.getChildren().clear();
+                Color(stringListHashMap.get(radioButton.getText()));
+            }
+            for (Node radio : storageRB) {
+                radio.setOnMouseClicked(e -> {
+                    StorageTG.selectToggle((Toggle) radio);
+                    RadioButton radioButton = (RadioButton) StorageTG.getSelectedToggle();
+                    colorHbox.getChildren().clear();
+                    Color(stringListHashMap.get(radioButton.getText()));
+                });
 
-           }
-       });
+            }
+        });
 
     }
 
     private void Color(List<String>colorHas) {
-       addDetails(colorHas,colorTG,colorHbox);
+        addDetails(colorHas,colorTG,colorHbox);
         List<Node> colorRB = colorHbox.getChildren().stream().toList();
         if (colorTG.getSelectedToggle()==null){
             colorTG.selectToggle((Toggle) colorRB.get(0));
@@ -156,11 +151,6 @@ public void Ram(List<String> ramList) {
             return  false;
         }
     }
-
-    public void Description(Laptop laptop){
-        laptop.getCamera();
-        laptop.getConnect();
-    }
     //plusBtn
     public void Plus(ActionEvent e) {
         if (Quality.getText().equalsIgnoreCase("")) {
@@ -171,7 +161,8 @@ public void Ram(List<String> ramList) {
         Quality.setText(String.valueOf(inputValue));
 
     }
-            //minusBtn
+
+    //minusBtn
     public void Minus(ActionEvent e) {
         int inputValue = Integer.parseInt(Quality.getText());
         if (inputValue > 1) {
