@@ -159,13 +159,20 @@ create table HeadphoneVariation (
 	constraint fk_colorheadphonevariation foreign key (HeadphoneColor) references Colors(NameColor),
 	constraint uq_headphonevariation unique (SKU, HeadphoneColor, PathImage)
 );
+create table StaffPosition (
+	PositionID serial not null,
+	PositionName text not null,
+	constraint pk_staffposition primary key (PositionID),
+	constraint uq_staffposition unique (PositionName)
+);
 create table Staff (
 	StaffID serial not null,
 	StaffName text not null,
 	StaffBirthday date not null,
 	StaffAddress text not null,
-	StaffPosition text not null,
+	StaffPosition int not null,
 	constraint pk_staff primary key (StaffID),
+	constraint fk_staffposition foreign key (StaffPosition) references StaffPosition(PositionID),
 	constraint uq_staff unique (StaffName, StaffBirthday, StaffAddress, StaffPosition)
 );
 create table Customer (
