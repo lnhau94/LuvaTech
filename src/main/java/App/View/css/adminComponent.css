@@ -59,9 +59,7 @@
 .admin-screen{
     -fx-pref-width: 1000px;
     -fx-pref-height: 850px;
-
 }
-
 
 .admin-main-background{
     -fx-background-color: linear-gradient(to bottom right, #355C7D,#6C5B7B,#C06C84);
@@ -84,5 +82,20 @@
 
 .admin-product-info-container{
     -fx-background-color: linear-gradient(to bottom, #8c7ae6, #000);
+}
 
+.admin-toggle-button{
+    -fx-background-color: #7f8fa6;
+    -fx-text-fill: white;
+
+}
+.admin-toggle-button:selected{
+    -fx-background-color: #fbc531;
+}
+
+.admin-text-area{
+    -fx-text-fill: #7f8fa6;
+    -fx-font-size: 15px;
+    -fx-border-color: #7f8fa6;
+    -fx-border-radius: 15px;
 }

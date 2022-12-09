@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.HBox?>
@@ -18,15 +19,16 @@
       <VBox fx:id="variantChoiceContainer" prefHeight="200.0" prefWidth="100.0">
          <children>
             <HBox fx:id="ramChoiceContainer" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" />
-            <HBox fx:id="storageChoiceContainer" alignment="CENTER" layoutX="10.0" layoutY="52.0" prefHeight="100.0" prefWidth="200.0" />
             <HBox fx:id="colorChoiceContainer" alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0" />
+            <HBox fx:id="storageChoiceContainer" alignment="CENTER" layoutX="10.0" layoutY="52.0" prefHeight="100.0" prefWidth="200.0" />
          </children>
       </VBox>
       <FlowPane fx:id="variantInfoContainer" layoutX="10.0" layoutY="285.0" prefHeight="200.0" prefWidth="200.0">
          <children>
-            <Label fx:id="priceLabel" styleClass="admin-product-content-label" stylesheets="@css/adminComponent.css" text="Price" />
-            <Label fx:id="instockLabel" layoutX="10.0" layoutY="10.0" styleClass="admin-product-content-label" stylesheets="@css/adminComponent.css" text="Instock" />
+            <Label fx:id="priceLabel" styleClass="admin-product-content-label" text="Price" />
+            <Label fx:id="instockLabel" layoutX="10.0" layoutY="10.0" styleClass="admin-product-content-label" text="Instock" />
          </children>
       </FlowPane>
+      <TextArea fx:id="laptopInfoTxt" editable="false" prefHeight="200.0" prefWidth="200.0" styleClass="admin-text-area" stylesheets="@css/adminComponent.css" wrapText="true" />
    </children>
 </VBox>
