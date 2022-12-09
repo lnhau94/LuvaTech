@@ -219,7 +219,7 @@ create table Attendence (
 	StaffID integer not null,
 	Workday date not null,
 	Checkin time,
-	Checkout time,
+	Checkout time default null,
 	constraint fk_attendence_staff foreign key (StaffID) references Staff(StaffID),
 	constraint pk_attendence primary key (StaffID, Workday)
 );
@@ -263,7 +263,7 @@ create table PurchaseOrderDetail (
 	PurchaseOrderID int NOT NULL,
 	SKU text not null,
 	OrderQty int not null,
-	ReceiveQty int not null,
+	ReceiveQty int default null,
 	constraint fk_purchasesku foreign key (SKU) references Specification(SKU),
 	constraint fk_purchaseorderdetailid foreign key (PurchaseOrderID) references PurchaseOrder(PurchaseOrderID),
 	constraint pk_purchaseorderdetail primary key (PurchaseOrderID, SKU)
