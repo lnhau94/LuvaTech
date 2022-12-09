@@ -19,7 +19,7 @@ public class StaffDAO {
         Statement stmt = dao.getStmt();
         try {
             ResultSet rs = stmt.executeQuery("select staffid, staffname, staffaddress, " +
-                    "staffbirthday, staffposition from staff");
+                    " staffposition, staffbirthday from staff");
             while (rs != null && rs.next()){
                 System.out.print(rs.getString(1));
                 System.out.print(rs.getString(2));
