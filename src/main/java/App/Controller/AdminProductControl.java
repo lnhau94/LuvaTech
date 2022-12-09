@@ -10,6 +10,7 @@ import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -17,6 +18,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.VBox;
 
 import java.beans.EventHandler;
 import java.io.File;
@@ -50,7 +52,7 @@ public class AdminProductControl implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         products = new ArrayList<>();
-
+        BorderPane.setMargin(productScreen.getCenter(),new Insets(0,0,0,0));
         productIdCol.setCellValueFactory(new PropertyValueFactory<>("productId"));
         productBrandCol.setCellValueFactory(data -> new SimpleStringProperty(
                 data.getValue().getBrand()!=null
@@ -123,8 +125,11 @@ public class AdminProductControl implements Initializable {
                 FXMLLoader fxmlLoader = new FXMLLoader(
                         new File("src/main/java/App/View/adminLaptopDetailView.fxml").toURI().toURL()
                 );
+                VBox v = fxmlLoader.load();
+                v.setMaxHeight(10000);
+                BorderPane.setMargin(v,new Insets(0,0,0,0));
                 productScreen.setRight(
-                      fxmlLoader.load()
+                      v
                 );
                 ((AdminLaptopDetailControl)fxmlLoader.getController()).setData(
                         (Laptop) adminProductTable.getSelectionModel().getSelectedItem()
