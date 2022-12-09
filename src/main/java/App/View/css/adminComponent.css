@@ -15,8 +15,37 @@
 }
 
 .admin-table-view{
-    -fx-pref-width: 800px;
+    -fx-pref-width: 850px;
     -fx-pref-height: 650px;
+    -fx-table-cell-border-color: #273c75;
+}
+.table-row-cell:selected {
+   -fx-background-color: steelblue;
+   -fx-text-background-color: red;
+}
+.admin-table-view .table-cell{
+    -fx-font-size: 15px;
+    -fx-font-weight: 600;
+    -fx-text-fill: white;
+}
+.admin-table-view .column-header-background .label{
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-color: #273c75;
+    -fx-alignment: center;
+
+}
+
+
+.admin-table-view .table-cell{
+    -fx-alignment: center;
+}
+
+.admin-table-view .table-cell:odd{
+    -fx-background-color: #8c7ae6;
+}
+.admin-table-view .table-cell:even{
+    -fx-background-color: #9c88ff;
 }
 .admin-tab-view{
     -fx-tab-min-height: 50px;

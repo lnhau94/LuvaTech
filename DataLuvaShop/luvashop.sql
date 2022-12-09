@@ -4,7 +4,7 @@ set client_encoding = 'UTF8';
 drop schema if exists luvashop cascade;
 create schema luvashop;
 set search_path = luvashop;
-set datestyle to DMY;
+set datestyle to "ISO, YMD";
 
 
 --Init my define data types 

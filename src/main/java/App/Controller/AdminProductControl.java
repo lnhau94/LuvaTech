@@ -1,8 +1,7 @@
 package App.Controller;
 
 import App.Model.MainModel;
-import Entity.Laptop;
-import Entity.Product;
+import Entity.*;
 import javafx.beans.InvalidationListener;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ChangeListener;
@@ -45,11 +44,6 @@ public class AdminProductControl implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         products = new ArrayList<>();
 
-
-
-        for(Laptop laptop : MainModel.productManager.getLaptopList()){
-            products.add(laptop);
-        }
         productIdCol.setCellValueFactory(new PropertyValueFactory<>("productId"));
         productBrandCol.setCellValueFactory(data -> new SimpleStringProperty(
                 data.getValue().getBrand()!=null
@@ -86,8 +80,8 @@ public class AdminProductControl implements Initializable {
                         ImageView img = null;
                         try {
                             img =  new ImageView(new Image(new FileInputStream(data.getValue().getImgPath())));
-                            img.setFitHeight(50);
-                            img.setFitWidth(50);
+                            img.setFitHeight(100);
+                            img.setFitWidth(100);
                         } catch (FileNotFoundException e) {
                             throw new RuntimeException(e);
                         }
@@ -111,7 +105,35 @@ public class AdminProductControl implements Initializable {
                 }
 
         );
+        productImageCol.setPrefWidth(120);
+        productBrandCol.setPrefWidth(200);
+        productIdCol.setPrefWidth(100);
+        productNameCol.setPrefWidth(400);
 
         adminProductTable.setItems(FXCollections.observableList(products));
+        updateProductList();
+
+
     }
+
+    public void updateProductList(){
+        products.clear();
+        for(Laptop laptop : MainModel.productManager.getLaptopList()){
+            products.add(laptop);
+        }
+        for(Phone item : MainModel.productManager.getPhoneList()){
+            products.add(item);
+        }
+        for(SmartWatch item : MainModel.productManager.getSmartWatchList()){
+            products.add(item);
+        }
+        for(Keyboard item : MainModel.productManager.getKeyboardList()){
+            products.add(item);
+        }
+        for(Headphone item : MainModel.productManager.getHeadphoneList()){
+            products.add(item);
+        }
+
+    }
+
 }

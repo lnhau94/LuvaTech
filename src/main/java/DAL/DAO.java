@@ -8,10 +8,6 @@ public class DAO {
     private PreparedStatement preStmt;
     private final String connectString = "jdbc:postgresql://localhost:5432/postgres?currentSchema=luvashop";
     private final String dbuser = "postgres";
-    /**
-     * pass cua Hau
-     */
-
     private final String dbpass = "Huy150902";
     public DAO(){
         try {
