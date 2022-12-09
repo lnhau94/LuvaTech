@@ -66,9 +66,10 @@ public class MainApp extends Application {
 //        });
         stage.setScene(new Scene(
 
-                FXMLLoader.load(
+      FXMLLoader.load(
                         new File("src/main/java/App/View/adminMainView.fxml").toURI().toURL()))
         );
+
         stage.show();
 
     }

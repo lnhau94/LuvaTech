@@ -98,7 +98,7 @@
                               <String fx:value="shadow" />
                            </styleClass>
                         </ImageView>
-                        <Label alignment="CENTER" prefHeight="27.0" prefWidth="27.0" text="99" textAlignment="RIGHT" textFill="#e52507">
+                        <Label fx:id="quality" alignment="CENTER" prefHeight="27.0" prefWidth="27.0" text="99" textAlignment="RIGHT" textFill="#e52507">
                            <HBox.margin>
                               <Insets left="-5.0" right="16.0" top="-25.0" />
                            </HBox.margin>
