@@ -1,8 +1,15 @@
 package App.Controller;
 
+import Main.MainApp;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
+
+import java.io.File;
+import java.io.IOException;
+
 
 public class AdminMainControl {
 
@@ -27,7 +34,13 @@ public class AdminMainControl {
 
     @FXML
     void showProductScreen(ActionEvent event) {
-        System.out.println("product click");
+        try {
+            MainApp.switchScene(new Scene(FXMLLoader.load(
+                    new File("src/main/java/App/View/adminProductView.fxml").toURI().toURL()))
+            );
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
 
     }
 
