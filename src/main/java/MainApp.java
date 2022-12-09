@@ -29,12 +29,13 @@ public class MainApp extends Application {
     }
 
     public static void main(String[] args) {
-//        System.out.println("" + new Validation().checkPhone("+84965026920"));
+        System.out.println("" + new Validation().checkPhone("+84965026920"));
         launch(args);
     }
 
     @Override
     public void start(Stage stage) throws Exception {
+        MainModel.start();
 //        mainStage = stage;
 //        MainModel.start();
 //        stage.setTitle("LuvaTech");
@@ -61,7 +62,10 @@ public class MainApp extends Application {
 //                switchScene(new Scene(pane));
 //            }
 //        });
-        stage.setScene(new Scene(FXMLLoader.load(new File("src/main/java/App/View/view-product.fxml").toURI().toURL())));
+        stage.setScene(new Scene(
+                FXMLLoader.load(new File("src/main/java/App/View/adminProductView.fxml").toURI().toURL()),
+                700,500)
+        );
         stage.show();
 
     }

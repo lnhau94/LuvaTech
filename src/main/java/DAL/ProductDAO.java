@@ -293,13 +293,13 @@ public class ProductDAO {
      */
     private static ArrayList<Laptop> laptopRetrieve(){
         ArrayList<Laptop> laptops = new ArrayList<>();
-        boolean flag = false;
         DAO dao = new DAO();
         Statement stmt = dao.getStmt();
         try {
             ResultSet rs = stmt.executeQuery(laptopQuery);
 
             while (rs != null && rs.next()){
+                boolean flag = false;
                 Brand tmp = null;
                 for(Brand brd : brands){
                     if(brd.getBrandId().equals(rs.getString(12))){
@@ -342,13 +342,13 @@ public class ProductDAO {
      */
     private static ArrayList<Phone> phoneRetrieve(){
         ArrayList<Phone> phones = new ArrayList<>();
-        boolean flag = false;
         DAO dao = new DAO();
         Statement stmt = dao.getStmt();
         try {
             ResultSet rs = stmt.executeQuery(phoneQuery);
 
             while (rs != null && rs.next()){
+                boolean flag = false;
                 Brand tmp = null;
                 for(Brand brd : brands){
                     if(brd.getBrandId().equals(rs.getString(12))){
@@ -392,16 +392,16 @@ public class ProductDAO {
      */
     private static ArrayList<SmartWatch> smartWatchRetrieve(){
         ArrayList<SmartWatch> smartWatches = new ArrayList<>();
-        boolean flag = false;
         DAO dao = new DAO();
         Statement stmt = dao.getStmt();
         try {
             ResultSet rs = stmt.executeQuery(smartwatchQuery);
 
             while (rs != null && rs.next()){
+                boolean flag = false;
                 Brand tmp = null;
                 for(Brand brd : brands){
-                    if(brd.getBrandId().equals(rs.getString(12))){
+                    if(brd.getBrandId().equals(rs.getString(8))){
                         flag = true;
                         tmp = brd;
                     }
@@ -440,13 +440,13 @@ public class ProductDAO {
     private static ArrayList<Headphone> headphoneRetrieve(){
         ArrayList<Headphone> headphones = new ArrayList<>();
 
-        boolean flag = false;
         DAO dao = new DAO();
         Statement stmt = dao.getStmt();
         try {
             ResultSet rs = stmt.executeQuery(headphoneQuery);
 
             while (rs != null && rs.next()){
+                boolean flag = false;
                 Brand tmp = null;
                 for(Brand brd : brands){
                     if(brd.getBrandId().equals(rs.getString(10))){
@@ -489,14 +489,13 @@ public class ProductDAO {
      */
     private static ArrayList<Keyboard> keyboardRetrieve(){
         ArrayList<Keyboard> keyboards = new ArrayList<>();
-
-        boolean flag = false;
         DAO dao = new DAO();
         Statement stmt = dao.getStmt();
         try {
             ResultSet rs = stmt.executeQuery(keyboardQuery);
 
             while (rs != null && rs.next()){
+                boolean flag = false;
                 Brand tmp = null;
                 for(Brand brd : brands){
                     if(brd.getBrandId().equals(rs.getString(8))){
