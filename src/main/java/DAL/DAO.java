@@ -11,10 +11,7 @@ public class DAO {
     /**
      * pass cua Hau
      */
-    //private final String dbpass = "postgres";
-    /**
-     * Password của Hữu Đại
-     */
+
     private final String dbpass = "Huy150902";
     public DAO(){
         try {
