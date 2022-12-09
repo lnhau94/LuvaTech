@@ -176,7 +176,7 @@
                </font>
             </TextArea>
             <Pane prefHeight="35.0" prefWidth="948.0" />
-            <Button mnemonicParsing="false" prefHeight="66.0" prefWidth="357.0" text="Thêm vào giỏ hàng">
+            <Button fx:id="addtoCart" mnemonicParsing="false" prefHeight="66.0" prefWidth="357.0" text="Thêm vào giỏ hàng">
                <font>
                   <Font name="System Bold" size="31.0" />
                </font>

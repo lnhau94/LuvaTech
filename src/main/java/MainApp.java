@@ -65,7 +65,7 @@ public class MainApp extends Application {
         stage.setScene(new Scene(
 
 
-                FXMLLoader.load(new File("src/main/java/App/View/adminProductView.fxml").toURI().toURL())));
+                FXMLLoader.load(new File("src/main/java/App/View/view-product.fxml").toURI().toURL())));
         stage.show();
 
     }
