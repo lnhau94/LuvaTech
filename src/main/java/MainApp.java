@@ -29,12 +29,13 @@ public class MainApp extends Application {
     }
 
     public static void main(String[] args) {
-//        System.out.println("" + new Validation().checkPhone("+84965026920"));
+        System.out.println("" + new Validation().checkPhone("+84965026920"));
         launch(args);
     }
 
     @Override
     public void start(Stage stage) throws Exception {
+        MainModel.start();
 //        mainStage = stage;
 
 //
@@ -68,7 +69,7 @@ public class MainApp extends Application {
 //            }
 //        });
 
-        stage.setScene(new Scene(FXMLLoader.load(new File("src/main/java/App/View/OrderDetails.fxml").toURI().toURL())));
+        stage.setScene(new Scene(FXMLLoader.load(new File("src/main/java/App/View/StaffMenu.fxml").toURI().toURL())));
 
         stage.show();
 

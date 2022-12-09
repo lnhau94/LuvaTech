@@ -92,6 +92,12 @@ create table Specification (
 	constraint pk_specification primary key (SKU), 
 	constraint fk_specification foreign key (ProductID) references Product(ProductID)
 );
+create table Colors (
+	NameColor text not null,
+	HexColor text not null,
+	constraint pk_namecolor primary key (NameColor),
+	constraint uq_colors unique (NameColor, HexColor)
+);
 create table PhoneVariation (
 	ID serial not null,
 	VariantID varchar(10) generated always as (lpad(MOD(ID, 100000)::text,4,'0')) stored unique,
@@ -102,6 +108,7 @@ create table PhoneVariation (
 	PathImage text default null,
 	constraint pk_phonevariation primary key (ID),
 	constraint fk_phonevariation foreign key (SKU) references Specification(SKU),
+	constraint fk_colorphonevariation foreign key (PhoneColor) references Colors(NameColor),
 	constraint uq_phonevariaiton unique (SKU, PhoneRam, PhoneColor, PhoneStorage, PathImage)
 );
 create table LaptopVariation (
@@ -114,6 +121,7 @@ create table LaptopVariation (
 	PathImage text default null,
 	constraint pk_laptopvariation primary key (ID),
 	constraint fk_laptopvariation foreign key (SKU) references Specification(SKU),
+	constraint fk_colorlaptopvariation foreign key (LaptopColor) references Colors(NameColor),
 	constraint uq_laptopvariation unique (SKU, LaptopRam, LaptopColor, LaptopStorage, PathImage)
 );
 create table SmartwatchVariation (
@@ -125,6 +133,7 @@ create table SmartwatchVariation (
 	PathImage text default null,
 	constraint pk_smartwatchvariation primary key (ID),
 	constraint fk_smartwatchvariation foreign key (SKU) references Specification(SKU),
+	constraint fk_colorsmartwatchvariation foreign key (SmartwatchColor) references Colors(NameColor),
 	constraint uq_smartwatchvariation unique (SKU, SmartwatchEdition, SmartwatchColor, PathImage)
 );
 create table KeyboardVariation (
@@ -136,6 +145,7 @@ create table KeyboardVariation (
 	PathImage text default null,
 	constraint pk_keyboardvariation primary key (ID),
 	constraint fk_keyboardvariation foreign key (SKU) references Specification(SKU),
+	constraint fk_colorkeyboardvariation foreign key (KeyboardColor) references Colors(NameColor),
 	constraint uq_keyboardvariation unique (SKU, KeyboardSwitch, KeyboardColor, PathImage)
 );
 create table HeadphoneVariation (
@@ -146,15 +156,23 @@ create table HeadphoneVariation (
 	PathImage text default null,
 	constraint pk_headphonevariation primary key (ID),
 	constraint fk_headphonevariation foreign key (SKU) references Specification(SKU),
+	constraint fk_colorheadphonevariation foreign key (HeadphoneColor) references Colors(NameColor),
 	constraint uq_headphonevariation unique (SKU, HeadphoneColor, PathImage)
+);
+create table StaffPosition (
+	PositionID serial not null,
+	PositionName text not null,
+	constraint pk_staffposition primary key (PositionID),
+	constraint uq_staffposition unique (PositionName)
 );
 create table Staff (
 	StaffID serial not null,
 	StaffName text not null,
 	StaffBirthday date not null,
 	StaffAddress text not null,
-	StaffPosition text not null,
+	StaffPosition int not null,
 	constraint pk_staff primary key (StaffID),
+	constraint fk_staffposition foreign key (StaffPosition) references StaffPosition(PositionID),
 	constraint uq_staff unique (StaffName, StaffBirthday, StaffAddress, StaffPosition)
 );
 create table Customer (
@@ -201,7 +219,7 @@ create table Attendence (
 	StaffID integer not null,
 	Workday date not null,
 	Checkin time,
-	Checkout time,
+	Checkout time default null,
 	constraint fk_attendence_staff foreign key (StaffID) references Staff(StaffID),
 	constraint pk_attendence primary key (StaffID, Workday)
 );
@@ -245,10 +263,9 @@ create table PurchaseOrderDetail (
 	PurchaseOrderID int NOT NULL,
 	SKU text not null,
 	OrderQty int not null,
-	ReceiveQty int not null,
+	ReceiveQty int default null,
 	constraint fk_purchasesku foreign key (SKU) references Specification(SKU),
 	constraint fk_purchaseorderdetailid foreign key (PurchaseOrderID) references PurchaseOrder(PurchaseOrderID),
 	constraint pk_purchaseorderdetail primary key (PurchaseOrderID, SKU)
 );
-
 

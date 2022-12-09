@@ -1,27 +1,33 @@
 package App.Controller;
 
-import com.sun.javafx.stage.EmbeddedWindow;
-
-import javafx.application.Application;
+import com.sun.marlin.Dasher;
+import javafx.collections.FXCollections;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.stage.Stage;
-
 import java.io.IOException;
+import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Optional;
+import java.util.ResourceBundle;
+import javafx.scene.control.Label;
+import javafx.stage.Stage;
 
-import static javafx.application.Application.launch;
+public class StaffMenu implements Initializable{
 
-public class StaffMenu extends Application {
+    private Stage stage;
+    private Scene scene;
+    private Parent root;
 
-    @Override
-    public void start(Stage primaryStage) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("../App/View/StaffMenu.fxml"));
+    public void SceneStaffInfor(ActionEvent event) throws IOException {
 
     }
-    public static void main(String[] args) {
-        launch(args);
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
     }
 }

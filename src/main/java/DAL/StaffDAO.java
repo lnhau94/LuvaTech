@@ -18,8 +18,14 @@ public class StaffDAO {
         DAO dao = new DAO();
         Statement stmt = dao.getStmt();
         try {
-            ResultSet rs = stmt.executeQuery("select * from staff");
+            ResultSet rs = stmt.executeQuery("select staffid, staffname, staffaddress, " +
+                    " staffposition, staffbirthday from staff");
             while (rs != null && rs.next()){
+                System.out.print(rs.getString(1));
+                System.out.print(rs.getString(2));
+                System.out.print(rs.getString(3));
+                System.out.print(rs.getString(4));
+                System.out.print(rs.getString(5));
                 staffs.add(new Staff(
                         rs.getString(1),
                         rs.getString(2),

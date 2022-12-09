@@ -17,7 +17,7 @@
                   <Font size="27.0" />
                </font>
             </Label>
-            <Button layoutX="124.0" layoutY="86.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="258.0" styleClass="btn" text="Staff Information" />
+            <Button layoutX="124.0" layoutY="86.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="258.0" styleClass="btn" text="Staff Information" onAction="#SceneStaffInfor"/>
             <Button layoutX="124.0" layoutY="179.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="258.0" styleClass="btn" text="Salary" />
             <ImageView fitHeight="31.0" fitWidth="31.0" layoutX="467.0" layoutY="8.0">
                <image>
