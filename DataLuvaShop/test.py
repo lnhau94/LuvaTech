@@ -12,6 +12,8 @@ df_laptopinfo = pd.read_excel('./phone_laptop_watch_data_tth.xlsx',engine='openp
 df_watch = pd.read_excel('./phone_laptop_watch_data_tth.xlsx',engine='openpyxl',sheet_name='Watch',dtype={'SKU': object,'ProductID': object})
 df_watchinfo = pd.read_excel('./phone_laptop_watch_data_tth.xlsx',engine='openpyxl',sheet_name='WatchInfo',dtype={'ProductID': object})
 df_colors = pd.read_excel('./phone_laptop_watch_data_tth.xlsx',engine='openpyxl',sheet_name='Colors',dtype={'Hex': object})
+df_position = pd.read_excel('./phone_laptop_watch_data_tth.xlsx',engine='openpyxl',sheet_name='StaffPosition')
+df_staff = pd.read_excel('./phone_laptop_watch_data_tth.xlsx',engine='openpyxl',sheet_name='Staff')
 conn = psycopg2.connect(
     host='localhost',
     database='postgres',
@@ -26,6 +28,10 @@ cur=conn.cursor()
 # print(list_id)
 # for pd in cur.fetchall():
 #   print(pd[0])
+for i in range(df_position.shape[0]):
+  cur.execute("Insert into StaffPosition(PositionName) values ('{0}');".format(df_position['PositionName'][i]))
+for i in range(df_staff.shape[0]):
+  cur.execute("Insert into Staff(StaffName, StaffBirthday, StaffAddress, StaffPosition) values (%s, %s, %s, %s);", (df_staff['StaffName'][i],df_staff['StaffBirthday'][i],df_staff['StaffAddress'][i],df_staff['StaffPosition'][i]))
 for i in range(df_colors.shape[0]):
   cur.execute("Insert into Colors(NameColor, HexColor) values (%s, %s);", (df_colors['NameColor'][i],df_colors['HexColor'][i]))
 for i in range(df_brand.shape[0]):
