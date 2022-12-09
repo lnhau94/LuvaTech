@@ -58,9 +58,9 @@ public class itemController {
         }else{
             newImage = new Image(String.valueOf((new File("src/main/java/Assets/Image/laptop/Laptop_Dell_XPS13_9320/dell-xps-1.jpg").toURI()).toURL()));
         }
-
       imageproduct.setImage(newImage);
       textName.setText(product.getProductName());
+      textCategory.setText(product.getBrand().getBrandName());
     }
 
 }

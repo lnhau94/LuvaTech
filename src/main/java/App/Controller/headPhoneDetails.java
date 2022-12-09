@@ -57,16 +57,16 @@ public class headPhoneDetails {
             Quality.setText(String.valueOf(inputValue));
         }
     }
-    public void setData(Headphone product){
-        productTitle.setText(product.getProductName());
-        List<String> colorList = new ArrayList<String>();
-        colorList.add("#2f3640");
-        colorList.add("#fbc531");
-        colorList.add("#dcdde1");
-        colorList.add("#f5f6fa");
-        for (int i = 0; i < colorList.size(); i++) {
-            renderColor.getChildren().add(component.ColorRB(colorList.get(i),colorTG));
-        }
-
-    }
+//    public void setData(Headphone product){
+//        productTitle.setText(product.getProductName());
+//        List<String> colorList = new ArrayList<String>();
+//        colorList.add("#2f3640");
+//        colorList.add("#fbc531");
+//        colorList.add("#dcdde1");
+//        colorList.add("#f5f6fa");
+//        for (int i = 0; i < colorList.size(); i++) {
+//            renderColor.getChildren().add(component.ColorRB(colorList.get(i),colorTG));
+//        }
+//
+//    }
 }

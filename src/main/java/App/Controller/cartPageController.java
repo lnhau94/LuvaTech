@@ -1,5 +1,6 @@
 package App.Controller;
 
+import App.Model.cartPage;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -9,9 +10,10 @@ import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class cartPageController {
-
+public static ArrayList<cartPage> cartPages = new ArrayList<cartPage>();
 
     public void backToShop(ActionEvent e)throws IOException {
         Stage stage = (Stage) ((Node)e.getSource()).getScene().getWindow();

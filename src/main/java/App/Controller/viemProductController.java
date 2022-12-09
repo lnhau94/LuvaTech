@@ -38,6 +38,8 @@ public class viemProductController implements Initializable {
     @FXML
     private HBox hboxCartegory;
     @FXML
+    private Label quality;
+    @FXML
     private ScrollPane scroll;
     //private List<ProductModel> products = new ArrayList<>();
     private List<CategoryModel> categories = new ArrayList<>();
@@ -211,7 +213,7 @@ public class viemProductController implements Initializable {
         }
         System.out.println(AllproductsList.size());
         render(AllproductsList);
-
+        quality.setText(String.valueOf(cartPageController.cartPages.size()));
 
     }
 }
