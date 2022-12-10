@@ -1,8 +1,7 @@
 package App.Controller;
 
 import App.View.Component.Component;
-
-import Entity.Product;
+import Entity.Headphone;
 import Entity.SmartWatch;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -13,11 +12,10 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 
-
 import java.util.ArrayList;
 import java.util.List;
 
-public class smartDetails {
+public class headPhoneDetails {
     @FXML
     private Label ProductPrice;
 
@@ -59,7 +57,7 @@ public class smartDetails {
             Quality.setText(String.valueOf(inputValue));
         }
     }
-    public void setData(SmartWatch product){
+    public void setData(Headphone product){
         productTitle.setText(product.getProductName());
         List<String> colorList = new ArrayList<String>();
         colorList.add("#2f3640");

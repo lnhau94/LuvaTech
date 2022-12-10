@@ -69,3 +69,10 @@
     -fx-background-color: #C0C0C0 ;
     -fx-border-color: #000000;
 }
+.btn-cricle{
+    -fx-border-radius: 50;
+    -fx-background-color: #EAF9F4;
+}
+.btn-cricle:hover{
+    -fx-border-color: red;
+}
