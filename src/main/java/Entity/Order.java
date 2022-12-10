@@ -14,6 +14,8 @@ public class Order {
     private ArrayList<GiveBackItem> giveBackItems;
 
     public Order() {
+        details = new ArrayList<OrderDetails>();
+        giveBackItems = new ArrayList<GiveBackItem>();
     }
 
     public Order(String orderId, int totalPrice, Date date) {
