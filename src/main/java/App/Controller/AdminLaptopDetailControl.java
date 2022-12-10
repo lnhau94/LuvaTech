@@ -15,9 +15,11 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.MalformedURLException;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Locale;
 
 public class AdminLaptopDetailControl {
 
@@ -26,6 +28,9 @@ public class AdminLaptopDetailControl {
 
     @FXML
     private Label instockLabel;
+
+    @FXML
+    private TextArea laptopInfoTxt;
 
     @FXML
     private Label laptopBrand;
@@ -81,6 +86,7 @@ public class AdminLaptopDetailControl {
         renderStorage(filterStorage());
         renderColor(filterColor());
         renderSpecs();
+        laptopInfoTxt.setText(laptop.toString());
 
     }
 
@@ -91,6 +97,7 @@ public class AdminLaptopDetailControl {
             btn.setSelected(true);
             ramChoice = ram;
             btn.setToggleGroup(gr);
+            btn.getStyleClass().add("admin-toggle-button");
 
             ramChoiceContainer.getChildren().add(btn);
             btn.setOnAction(e -> {
@@ -110,6 +117,7 @@ public class AdminLaptopDetailControl {
         for (String st : list){
             ToggleButton btn = new ToggleButton(st);
             btn.setSelected(true);
+            btn.getStyleClass().add("admin-toggle-button");
             storageChoice = st;
             btn.setToggleGroup(gr);
             storageChoiceContainer.getChildren().add(btn);
@@ -127,6 +135,7 @@ public class AdminLaptopDetailControl {
         for (String cl : list){
             ToggleButton btn = new ToggleButton(cl);
             btn.setSelected(true);
+            btn.getStyleClass().add("admin-toggle-button");
             colorChoice = cl;
             btn.setToggleGroup(gr);
             colorChoiceContainer.getChildren().add(btn);
@@ -142,7 +151,7 @@ public class AdminLaptopDetailControl {
             if ( item.getRam().equals(ramChoice)
                     && item.getStorage().equals(storageChoice)
                     && item.getColor().equals(colorChoice)){
-                priceLabel.setText(String.valueOf(
+                priceLabel.setText(NumberFormat.getCurrencyInstance(new Locale("vi", "VN")).format(
                         item.getSpecs().getPrice()
                 ));
                 instockLabel.setText(String.valueOf(

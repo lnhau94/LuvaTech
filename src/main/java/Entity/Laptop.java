@@ -98,4 +98,16 @@ public class Laptop extends Product{
     public void setCamera(String camera) {
         this.camera = camera;
     }
+
+    @Override
+    public String toString() {
+        return "Screen: " + screen + "\n" +
+                "Connect: " + connect + "\n" +
+                "OS: " + os + '\n' +
+                "Material: " + material + '\n' +
+                "Size: " + size + '\n' +
+                "Weight: " + weight + '\n' +
+                "Camera: " + camera + '\n' +
+                "CPU: " + cpu + '\n';
+    }
 }

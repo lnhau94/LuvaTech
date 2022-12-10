@@ -28,6 +28,7 @@ public class MainApp extends Application {
      */
     public static void switchScene(Scene newScene){
         mainStage.setScene(newScene);
+        mainStage.setMaximized(true);
     }
 
     public static void main(String[] args) {
@@ -69,7 +70,7 @@ public class MainApp extends Application {
       FXMLLoader.load(
                         new File("src/main/java/App/View/view-product.fxml").toURI().toURL()))
         );
-
+        stage.setMaximized(true);
         stage.show();
 
     }

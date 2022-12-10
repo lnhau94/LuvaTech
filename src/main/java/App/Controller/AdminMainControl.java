@@ -1,6 +1,7 @@
 package App.Controller;
 
 import Main.MainApp;
+import Util.FaceRecognition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -29,7 +30,12 @@ public class AdminMainControl {
 
     @FXML
     void showBrandScreen(ActionEvent event) {
-        System.out.println("brand click");
+        try {
+            FaceRecognition.faceRecognition();
+        } catch (InterruptedException e) {
+            System.out.println("face recognize");
+            System.out.println(e.getMessage());
+        }
     }
 
     @FXML
