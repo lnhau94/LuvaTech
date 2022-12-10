@@ -45,14 +45,14 @@
                      <children>
                         <VBox prefHeight="768.0" prefWidth="879.0">
                            <children>
-                              <TableView prefHeight="608.0" prefWidth="867.0">
+                              <TableView fx:id="cartTable" prefHeight="608.0" prefWidth="867.0">
                                 <columns>
-                                  <TableColumn prefWidth="75.0" text="STT" />
-                                  <TableColumn prefWidth="223.0" text="Tên sản phẩm" />
-                                    <TableColumn prefWidth="253.0" text="Thông số kỹ thuật" />
-                                    <TableColumn prefWidth="57.0" text="Số lượng" />
-                                    <TableColumn prefWidth="135.0" text="Thành tiền" />
-                                    <TableColumn prefWidth="92.0" text="Edit" />
+                                  <TableColumn fx:id="productId" prefWidth="75.0" text="STT" />
+                                  <TableColumn fx:id="productName" prefWidth="223.0" text="Tên sản phẩm" />
+                                    <TableColumn fx:id="description" prefWidth="253.0" text="Thông số kỹ thuật" />
+                                    <TableColumn fx:id="quality" prefWidth="57.0" text="Số lượng" />
+                                    <TableColumn fx:id="total" prefWidth="135.0" text="Thành tiền" />
+                                    <TableColumn fx:id="editCol" prefWidth="92.0" text="Edit" />
                                 </columns>
                                  <VBox.margin>
                                     <Insets left="20.0" top="50.0" />
@@ -68,7 +68,7 @@
                                        </font>
                                     </Label>
                                     <Pane prefHeight="100.0" prefWidth="49.0" />
-                                    <Label prefHeight="55.0" prefWidth="283.0" text="40.000.000VND" textFill="#f80101">
+                                    <Label fx:id="totalAll" prefHeight="55.0" prefWidth="283.0" text="40.000.000VND" textFill="#f80101">
                                        <font>
                                           <Font name="Segoe UI Semibold" size="20.0" />
                                        </font>

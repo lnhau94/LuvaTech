@@ -44,9 +44,11 @@
      -fx-background-radius:50%;
      -fx-border-color:#F60A0A;
      -fx-border-radius:50%;
+     -fx-text-fill: rgba(255,255,255,0);
 }
 #colorBT:hover, #colorBT:selected{
     -fx-border-color:#2ecc71;
+    -fx-font-size: -55px;
 }
 
 .Orderpage_header{
