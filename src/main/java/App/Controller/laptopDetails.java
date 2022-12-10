@@ -64,6 +64,7 @@ public class laptopDetails {
     HashSet<String> storages;
     HashSet<String> colors;
     Component component = new Component();
+    cartPageController cartPageController= new cartPageController();
     public ArrayList<Color> colorsList = ColorDAO.retrieve();
     public void setData(Laptop product) {
         productTilte.setText(product.getProductName());
@@ -82,9 +83,7 @@ public class laptopDetails {
         renderSpecs();
         Description(product);
         addtoCart.setOnAction(e->{
-            cartPage cartPage = new cartPage();
-            cartPage =  cart(product);
-            cartPageController.cartPages.add(cartPage);
+            cartPageController.addToCart(cart(product));
         });
         }
 
@@ -95,6 +94,7 @@ public class laptopDetails {
             component.cusTomRB(item,ramTG).setSelected(true);
             ramSelected=item;
             component.cusTomRB(item,ramTG).setToggleGroup(ramTG);
+            ramTG.selectToggle( component.cusTomRB(item,ramTG));
             renderHB.getChildren().add(component.cusTomRB(item,ramTG));
         });
         List<Node> ramRB = renderHB.getChildren().stream().toList();

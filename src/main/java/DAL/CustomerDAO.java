@@ -1,14 +1,15 @@
 package DAL;
 
+import Entity.Account;
 import Entity.Customer;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
 public class CustomerDAO {
-
     public CustomerDAO() {
     }
 
@@ -34,6 +35,25 @@ public class CustomerDAO {
         return customers;
     }
 
+    public String insertCustomer(Customer customer) {
+        DAO dao = new DAO();
+        Statement stmt = dao.getStmt();
+        PreparedStatement preparedStatement= dao.getPreStmt("insert into customer (customername,customerbirthday,customeraddress,customerphone) " +
+                "values(?,?,?,?) returning customerid");
+        try {
+            preparedStatement.setString(1, customer.getName());
+            preparedStatement.setDate(2, customer.getBirthday());
+            preparedStatement.setString(3, customer.getAddress());
+            preparedStatement.setString(4, customer.getPhone());
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs != null && rs.next()){
+                return rs.getString(1);
+            }
 
-
+        } catch (SQLException e) {
+            System.out.println("CustomerDAO");
+            System.out.println(e.getMessage());
+        }
+        return null;
+    }
 }
