@@ -2,6 +2,7 @@ package App.Controller;
 
 import App.Model.MainModel;
 import Entity.*;
+import Main.MainApp;
 import javafx.beans.InvalidationListener;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ChangeListener;
@@ -11,6 +12,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -18,7 +22,11 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.beans.EventHandler;
 import java.io.File;
@@ -138,7 +146,8 @@ public class AdminProductControl implements Initializable {
                 throw new RuntimeException(ex);
             }
         });
-
+        renderActionChoice();
+        renderBackToMenu();
         updateProductList();
 
     }
@@ -166,4 +175,59 @@ public class AdminProductControl implements Initializable {
 
     }
 
+    public void renderActionChoice(){
+        Button addBtn = new Button("Add");
+        Button editBtn = new Button("Edit");
+        Button removeBtn = new Button("Remove");
+
+        FlowPane flowPane = new FlowPane(addBtn,editBtn,removeBtn);
+        flowPane.setAlignment(Pos.CENTER);
+        flowPane.setHgap(10);
+        flowPane.setPrefHeight(50);
+        productScreen.setTop(flowPane);
+
+        addBtn.getStyleClass().add("admin-function-button");
+        editBtn.getStyleClass().add("admin-function-button");
+        removeBtn.getStyleClass().add("admin-function-button");
+
+        addBtn.setOnAction(e->{
+            showLaptopForm();
+        });
+    }
+
+    public void showLaptopForm(){
+        Stage secondStage = new Stage(StageStyle.UNDECORATED);
+        try {
+            secondStage.setScene(new Scene(
+                    FXMLLoader.load(new File("src/main/java/App/View/newLaptopForm.fxml").toURI().toURL())
+            ));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        secondStage.initModality(Modality.NONE);
+        secondStage.setAlwaysOnTop(true);
+        secondStage.initOwner(MainApp.mainStage);
+        secondStage.show();
+    }
+
+    public void renderBackToMenu(){
+        Button backBtn = new Button("Back");
+        FlowPane flowPane = new FlowPane(backBtn);
+        flowPane.setAlignment(Pos.BOTTOM_LEFT);
+        productScreen.setBottom(flowPane);
+
+        backBtn.setOnAction(e-> {
+                    try {
+                        MainApp.switchScene(
+                                new Scene(FXMLLoader.load(
+                                        new File("src/main/java/App/View/adminMainView.fxml").toURI().toURL()
+                                )
+                        ));
+                    } catch (IOException ex) {
+                        throw new RuntimeException(ex);
+                    }
+                }
+            );
+    }
 }

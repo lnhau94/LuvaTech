@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.stage.FileChooser;
 
 import java.io.File;
 import java.io.IOException;
@@ -25,7 +26,7 @@ public class AdminMainControl {
 
     @FXML
     void showAccountScreen(ActionEvent event) {
-        System.out.println("account click");
+        System.out.println("Account click");
     }
 
     @FXML

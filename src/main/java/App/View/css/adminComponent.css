@@ -99,3 +99,10 @@
     -fx-border-color: #7f8fa6;
     -fx-border-radius: 15px;
 }
+
+.admin-function-button{
+    -fx-background-color: #40739e;
+    -fx-pref-width: 100px;
+    -fx-pref-height: 30px;
+    -fx-text-fill: white;
+}
