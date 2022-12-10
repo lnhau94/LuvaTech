@@ -41,7 +41,7 @@ public class MainApp extends Application {
     public void start(Stage stage) throws Exception {
         MainModel.start();
         mainStage = stage;
-//        MainModel.start();
+        MainModel.start();
 //        stage.setTitle("LuvaTech");
 //        Button btn = new Button();
 //        btn.setText("Say 'Hello World'");
