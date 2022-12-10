@@ -101,13 +101,13 @@ public class Laptop extends Product{
 
     @Override
     public String toString() {
-        return "screen: " + screen + "\n" +
-                "connect: " + connect + "\n" +
-                "os: " + os + '\n' +
-                "material: " + material + '\n' +
-                "size: " + size + '\n' +
-                "weight: " + weight + '\n' +
-                "camera: " + camera + '\n' +
-                "cpu: " + cpu + '\n';
+        return "Screen: " + screen + "\n" +
+                "Connect: " + connect + "\n" +
+                "OS: " + os + '\n' +
+                "Material: " + material + '\n' +
+                "Size: " + size + '\n' +
+                "Weight: " + weight + '\n' +
+                "Camera: " + camera + '\n' +
+                "CPU: " + cpu + '\n';
     }
 }
