@@ -79,7 +79,7 @@ public class AdminMainControl implements Initializable {
         showMenu();
     }
     public void showMenu(){
-        Stage mainMenu = new Stage(StageStyle.UNDECORATED);
+        Stage mainMenu = new Stage(StageStyle.UNIFIED);
         Button shopBtn = new Button("Shop");
         Button adminBtn = new Button("Admin");
         VBox v = new VBox(shopBtn,adminBtn,checkinBtn);
@@ -93,9 +93,11 @@ public class AdminMainControl implements Initializable {
 
         shopBtn.setOnAction(e->{
             MainApp.switchScene(MainApp.ShopScene);
+            MainApp.mainStage.setMaximized(true);
         });
         adminBtn.setOnAction(e->{
             MainApp.switchScene(MainApp.AdminScene);
+            MainApp.mainStage.setMaximized(true);
         });
 
         shopBtn.getStyleClass().add("admin-function-button");
@@ -110,8 +112,8 @@ public class AdminMainControl implements Initializable {
             mainMenu.sizeToScene();
         });
         mainMenu.setAlwaysOnTop(true);
-        mainMenu.setX(MainApp.mainStage.getX());
-        mainMenu.setY(MainApp.mainStage.getY());
+        mainMenu.setX(0);
+        mainMenu.setY(0);
         mainMenu.initOwner(MainApp.mainStage);
         mainMenu.show();
     }
