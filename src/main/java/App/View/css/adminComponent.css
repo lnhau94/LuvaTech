@@ -106,3 +106,35 @@
     -fx-pref-height: 30px;
     -fx-text-fill: white;
 }
+
+.admin-choiceBox{
+    -fx-background-color: #40739e;
+}
+
+.admin-choiceBox .label{
+    -fx-background-color: orange;
+    -fx-text-fill: black;
+}
+.admin-choiceBox .menu-item .label{
+     -fx-background-color: #40739e;
+     -fx-text-fill: white;
+ }
+
+.admin-choiceBox .menu-item:hover > .label{
+    -fx-background-color: orange;
+    -fx-text-fill: white;
+}
+.admin-choiceBox .context-menu{
+    -fx-background-color: #40739e;
+    -fx-text-fill: white;
+    -fx-mark-fill: white;
+}
+.admin-choiceBox .menu-item:hover{
+    -fx-background-color: orange;
+    -fx-text-fill: white;
+}
+
+.admin-choiceBox .menu-item:selected{
+    -fx-background-color: orange;
+    -fx-text-fill: white;
+}
