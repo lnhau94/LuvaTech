@@ -64,10 +64,15 @@ public class MainApp extends Application {
 //                switchScene(new Scene(pane));
 //            }
 //        });
-        stage.setScene(new Scene(
-
-                FXMLLoader.load(
-                        new File("src/main/java/App/View/adminMainView.fxml").toURI().toURL()))
+//        stage.setScene(new Scene(
+//
+//                FXMLLoader.load(
+//                        new File("src/main/java/App/View/adminMainView.fxml").toURI().toURL()))
+//        );
+        stage.setScene(
+                new Scene( FXMLLoader.load(new File
+                        ("src/main/java/App/View/AdminImportViews/layouts/DefaultLayout.fxml")
+                        .toURI().toURL()))
         );
         stage.show();
 
