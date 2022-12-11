@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+
+<HBox alignment="CENTER_LEFT" styleClass="table-item" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+   <opaqueInsets>
+      <Insets />
+   </opaqueInsets>
+   <children>
+      <Label prefHeight="20.0" prefWidth="118.0" styleClass="label-header" text="Order ID">
+         <padding>
+            <Insets left="20.0" />
+         </padding>
+      </Label>
+      <Pane prefHeight="45.0" prefWidth="78.0" HBox.hgrow="ALWAYS" />
+      <Label styleClass="label-header" text="Date" />
+      <Pane prefHeight="45.0" prefWidth="134.0" HBox.hgrow="ALWAYS" />
+      <Label styleClass="label-header" text="Vendor" />
+      <Pane prefHeight="45.0" prefWidth="75.0" HBox.hgrow="ALWAYS" />
+      <Label styleClass="label-header" text="Status" />
+      <Pane prefHeight="45.0" prefWidth="99.0" HBox.hgrow="ALWAYS" />
+      <Label styleClass="label-header" text="Amount" />
+      <Pane prefHeight="45.0" prefWidth="64.0" HBox.hgrow="ALWAYS" />
+      <ImageView fx:id="POIcon" fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../Assets/Image/icon/list.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
+   </children>
+</HBox>

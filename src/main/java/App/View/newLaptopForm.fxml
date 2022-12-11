@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="admin-product-info-container" stylesheets="@css/adminComponent.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="App.Controller.LaptopFormControl">
+   <children>
+      <HBox prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <Label styleClass="admin-product-content-label" stylesheets="@css/adminComponent.css" text="Brand" />
+            <ChoiceBox fx:id="brandsCb" prefWidth="150.0" />
+         </children>
+      </HBox>
+      <HBox layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <Label styleClass="admin-product-content-label" stylesheets="@css/adminComponent.css" text="Name" />
+            <TextField fx:id="nametxt" />
+         </children>
+      </HBox>
+      <HBox layoutX="10.0" layoutY="110.0" prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <Label styleClass="admin-product-content-label" stylesheets="@css/adminComponent.css" text="CPU" />
+            <TextField fx:id="cputxt" />
+         </children>
+      </HBox>
+      <HBox layoutX="10.0" layoutY="210.0" prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <Label styleClass="admin-product-content-label" stylesheets="@css/adminComponent.css" text="Screen" />
+            <TextField fx:id="screentxt" />
+         </children>
+      </HBox>
+      <HBox layoutX="10.0" layoutY="310.0" prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <Label styleClass="admin-product-content-label" stylesheets="@css/adminComponent.css" text="OS" />
+            <TextField fx:id="ostxt" />
+         </children>
+      </HBox>
+      <HBox layoutX="10.0" layoutY="330.0" prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <Label styleClass="admin-product-content-label" stylesheets="@css/adminComponent.css" text="Material" />
+            <TextField fx:id="materialtxt" />
+         </children>
+      </HBox>
+      <HBox layoutX="10.0" layoutY="344.0" prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <Label styleClass="admin-product-content-label" stylesheets="@css/adminComponent.css" text="Size" />
+            <TextField fx:id="sizetxt" />
+         </children>
+      </HBox>
+      <HBox layoutX="10.0" layoutY="353.0" prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <Label styleClass="admin-product-content-label" stylesheets="@css/adminComponent.css" text="Weight" />
+            <TextField fx:id="weighttxt" />
+         </children>
+      </HBox>
+      <HBox layoutX="10.0" layoutY="360.0" prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <Label styleClass="admin-product-content-label" stylesheets="@css/adminComponent.css" text="Camera" />
+            <TextField fx:id="cameratext" />
+         </children>
+      </HBox>
+      <HBox layoutX="10.0" layoutY="265.0" prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <Label styleClass="admin-product-content-label" stylesheets="@css/adminComponent.css" text="Connect" />
+            <TextField fx:id="connecttxt" />
+         </children>
+      </HBox>
+      <HBox layoutX="10.0" layoutY="366.0" prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <Label styleClass="admin-product-content-label" stylesheets="@css/adminComponent.css" text="Image" />
+            <Button fx:id="imagebtn" mnemonicParsing="false" styleClass="admin-function-button" text="Choose" />
+         </children>
+      </HBox>
+      <HBox alignment="CENTER_RIGHT" layoutX="10.0" layoutY="348.0" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+         <children>
+            <Button fx:id="cancelbtn" mnemonicParsing="false" styleClass="admin-function-button" text="Cancel" />
+            <Button fx:id="okbtn" mnemonicParsing="false" styleClass="admin-function-button" text="OK" />
+         </children>
+      </HBox>
+   </children>
+</VBox>

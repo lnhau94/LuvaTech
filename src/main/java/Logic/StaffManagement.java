@@ -25,7 +25,7 @@ public class StaffManagement {
 
     public Staff findById(String staffId){
         for (Staff st : staffList){
-            if(st.getStaffId().equals(staffId)){
+            if( staffId!=null && Integer.parseInt(st.getStaffId()) == Integer.parseInt(staffId)){
                 return st;
             }
         }
