@@ -15,7 +15,13 @@ public class Laptop extends Product{
 
     private ArrayList<LaptopVariant> variants;
 
+    public String getCpu() {
+        return cpu;
+    }
 
+    public void setCpu(String cpu) {
+        this.cpu = cpu;
+    }
 
     public Laptop() {
         this.variants = new ArrayList<>();

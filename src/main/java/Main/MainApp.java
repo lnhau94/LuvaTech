@@ -70,18 +70,16 @@ public class MainApp extends Application {
 //            }
 //        });
 
-        stage.setScene(new Scene(
-
-
-                FXMLLoader.load(
-                        new File("src/main/java/App/View/StaffMenu.fxml").toURI().toURL()))
-        );
-
-
-//      FXMLLoader.load(
-//                        new File("src/main/java/App/View/adminMainView.fxml").toURI().toURL()))
+//        stage.setScene(new Scene(
+//                FXMLLoader.load(
+//                        new File("src/main/java/App/View/StaffMenu.fxml").toURI().toURL()))
 //        );
-//        stage.setMaximized(true);
+
+
+        stage.setScene(new Scene(FXMLLoader.load(
+                        new File("src/main/java/App/View/adminMainView.fxml").toURI().toURL()))
+        );
+        stage.setMaximized(true);
 
         stage.show();
 
