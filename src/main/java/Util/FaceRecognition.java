@@ -1,5 +1,7 @@
 package Util;
 
+import javafx.scene.control.Alert;
+
 import java.io.IOException;
 
 public class FaceRecognition {
@@ -7,6 +9,7 @@ public class FaceRecognition {
     public static void faceRecognition() throws InterruptedException {
         Process pr;
         pr = null;
+        Alert myAlert = new Alert(Alert.AlertType.ERROR);
         try {
             if (isWindows) {
                 String currentDir = System.getProperty("user.dir") + "\\src\\main\\FaceRecognition";
@@ -18,15 +21,25 @@ public class FaceRecognition {
                 pr = new ProcessBuilder("/bin/zsh", "-c", command_mac).start();
             }
             pr.waitFor();
+            if (pr.waitFor() != 0) {
+                myAlert.setHeaderText(null);
+                myAlert.setContentText("Chưa có nhân viên để thực hiện nhận diện !!!");
+                myAlert.showAndWait();
+            }
             pr.exitValue();
             pr.onExit();
         } catch (IOException e) {
+            Alert newAlert = new Alert(Alert.AlertType.ERROR);
+            newAlert.setHeaderText(null);
+            newAlert.setContentText("Không thể bật nhận diện bằng khuôn mặt !!!");
+            newAlert.showAndWait();
             System.out.println("Error open model face recognize !!");
         }
     }
     public static void newUser() throws InterruptedException {
         Process pr;
         pr = null;
+        Alert myAlert = new Alert(Alert.AlertType.ERROR);
         try {
             if (isWindows) {
                 String currentDir = System.getProperty("user.dir") + "\\src\\main\\FaceRecognition";
@@ -38,9 +51,18 @@ public class FaceRecognition {
                 pr = new ProcessBuilder("/bin/zsh", "-c", command_mac).start();
             }
             pr.waitFor();
+            if (pr.waitFor() != 0) {
+                myAlert.setHeaderText(null);
+                myAlert.setContentText("Chưa có dữ liệu của nhân viên để thực hiện lấy dữ liệu khuôn mặt !!!");
+                myAlert.showAndWait();
+            }
             pr.exitValue();
             pr.onExit();
         } catch (IOException e) {
+            Alert newAlert = new Alert(Alert.AlertType.ERROR);
+            newAlert.setHeaderText(null);
+            newAlert.setContentText("Không thể lấy dữ liệu bằng khuôn mặt !!!");
+            newAlert.showAndWait();
             System.out.println("Can not create new User");
         }
     }

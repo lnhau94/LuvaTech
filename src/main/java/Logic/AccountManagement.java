@@ -1,7 +1,9 @@
 package Logic;
 
+import App.Model.MainModel;
 import DAL.AccountDAO;
 import Entity.Account;
+import Entity.Staff;
 
 import java.util.HashMap;
 
@@ -31,5 +33,16 @@ public class AccountManagement {
      */
     public Account findAccountByStaffId(String id){
         return accountsTable.get(id);
+    }
+
+    public void addAccount(Account acc, Staff staff) {
+        accountsTable.put(staff.getStaffId(),acc);
+        for (Staff st : MainModel.staffManager.getStaffList()){
+            if(st.getStaffId().equals(staff.getStaffId())){
+                st.setAccount(acc);
+                break;
+            }
+        }
+        AccountDAO.addAccount(staff.getStaffId(),acc);
     }
 }

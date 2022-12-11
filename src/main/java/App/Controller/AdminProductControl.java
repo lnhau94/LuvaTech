@@ -171,6 +171,7 @@ public class AdminProductControl implements Initializable {
             products.add(item);
         }
         adminProductTable.setItems(FXCollections.observableList(products));
+        adminProductTable.refresh();
 
 
     }
@@ -192,15 +193,80 @@ public class AdminProductControl implements Initializable {
 
         addBtn.setOnAction(e->{
             showLaptopForm();
+
         });
+
+        editBtn.setOnAction(e->{
+            if(adminProductTable.getSelectionModel().getSelectedIndex()>=0){
+                showEditLaptopForm((Laptop) adminProductTable.getSelectionModel().getSelectedItem());
+            }
+
+        });
+
+        removeBtn.setOnAction(e->{
+            if(adminProductTable.getSelectionModel().getSelectedIndex()>=0){
+                if (adminProductTable.getSelectionModel().getSelectedItem() instanceof Laptop){
+                    MainModel.productManager.getLaptopList().remove(adminProductTable.getSelectionModel().getSelectedItem());
+
+                }
+                if (adminProductTable.getSelectionModel().getSelectedItem() instanceof Phone){
+                    MainModel.productManager.getPhoneList().remove(adminProductTable.getSelectionModel().getSelectedItem());
+
+                }
+                if (adminProductTable.getSelectionModel().getSelectedItem() instanceof Headphone){
+                    MainModel.productManager.getHeadphoneList().remove(adminProductTable.getSelectionModel().getSelectedItem());
+
+                }
+                if (adminProductTable.getSelectionModel().getSelectedItem() instanceof Keyboard){
+                    MainModel.productManager.getKeyboardList().remove(adminProductTable.getSelectionModel().getSelectedItem());
+
+                }
+                if (adminProductTable.getSelectionModel().getSelectedItem() instanceof SmartWatch){
+                    MainModel.productManager.getSmartWatchList().remove(adminProductTable.getSelectionModel().getSelectedItem());
+
+                }
+                updateProductList();
+            }
+        });
+    }
+
+    public void showEditLaptopForm(Laptop laptop) {
+        Stage secondStage = new Stage(StageStyle.UNDECORATED);
+
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(
+                    new File("src/main/java/App/View/newLaptopForm.fxml").toURI().toURL())
+            ;
+
+            secondStage.setScene(new Scene(
+                    fxmlLoader.load()
+            ));
+
+            ((LaptopFormControl)fxmlLoader.getController()).setEditData(laptop);
+            ((LaptopFormControl)fxmlLoader.getController()).setState(false);
+            ((LaptopFormControl)fxmlLoader.getController()).setParent(this);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        secondStage.initModality(Modality.NONE);
+        secondStage.setAlwaysOnTop(true);
+        secondStage.initOwner(MainApp.mainStage);
+        secondStage.show();
     }
 
     public void showLaptopForm(){
         Stage secondStage = new Stage(StageStyle.UNDECORATED);
         try {
+            FXMLLoader fxmlLoader = new FXMLLoader(
+                    new File("src/main/java/App/View/newLaptopForm.fxml").toURI().toURL())
+                    ;
+
             secondStage.setScene(new Scene(
-                    FXMLLoader.load(new File("src/main/java/App/View/newLaptopForm.fxml").toURI().toURL())
+                    fxmlLoader.load()
             ));
+            ((LaptopFormControl)fxmlLoader.getController()).setState(true);
+            ((LaptopFormControl)fxmlLoader.getController()).setParent(this);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -218,16 +284,7 @@ public class AdminProductControl implements Initializable {
         productScreen.setBottom(flowPane);
 
         backBtn.setOnAction(e-> {
-                    try {
-                        MainApp.switchScene(
-                                new Scene(FXMLLoader.load(
-                                        new File("src/main/java/App/View/adminMainView.fxml").toURI().toURL()
-                                )
-                        ));
-                    } catch (IOException ex) {
-                        throw new RuntimeException(ex);
-                    }
-                }
-            );
+                    MainApp.switchScene(MainApp.AdminScene);
+        });
     }
 }

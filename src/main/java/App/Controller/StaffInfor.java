@@ -104,7 +104,7 @@ public class StaffInfor implements Initializable {
         StaffModel staffModel = new StaffModel();
         staffModel.deleteStaff(staffTableView.getSelectionModel().getSelectedItem().getStaffId());
         MainApp.switchScene(new Scene(FXMLLoader.load(
-                new File("src/main/java/App/View/StaffMenu.fxml").toURI().toURL())
+                new File("src/main/java/App/View/StaffInfor.fxml").toURI().toURL())
         ));
     }
     public void SceneStaffMenu() throws IOException {

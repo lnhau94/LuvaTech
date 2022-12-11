@@ -7,12 +7,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<GridPane alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity"
-          minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0"
-          styleClass="admin-main-background" stylesheets="@css/adminComponent.css"
-          xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1"
-          fx:controller="App.Controller.AdminMainControl"
->
+<GridPane alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="admin-main-background" stylesheets="@css/adminComponent.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="App.Controller.AdminMainControl">
   <columnConstraints>
     <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
     <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -23,9 +18,14 @@
     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <Button alignment="CENTER" contentDisplay="TOP" layoutX="10.0" layoutY="40.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="180.0" styleClass="admin-main-button" text="Button" GridPane.columnIndex="1" GridPane.rowIndex="1">
-
-      </Button>
+      <Button fx:id="staffBtn" alignment="CENTER" contentDisplay="TOP" layoutX="10.0" layoutY="40.0" mnemonicParsing="false" onAction="#showStaffScreen" prefHeight="75.0" prefWidth="180.0" styleClass="admin-main-button" text="Staff" GridPane.columnIndex="1" GridPane.rowIndex="1">
+         <graphic>
+            <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../Assets/Image/icon/man.png" />
+               </image>
+            </ImageView>
+         </graphic></Button>
       <Button fx:id="adminAccountBtn" alignment="CENTER" contentDisplay="TOP" layoutX="10.0" layoutY="40.0" mnemonicParsing="false" onAction="#showAccountScreen" prefHeight="75.0" prefWidth="180.0" styleClass="admin-main-button" text="Account" GridPane.rowIndex="1">
          <graphic>
             <ImageView fitHeight="54.0" fitWidth="98.0" pickOnBounds="true" preserveRatio="true">
@@ -34,9 +34,14 @@
                </image>
             </ImageView>
          </graphic></Button>
-      <Button alignment="CENTER" contentDisplay="TOP" layoutX="310.0" layoutY="40.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="180.0" styleClass="admin-main-button" text="Button" GridPane.rowIndex="2">
-
-      </Button>
+      <Button fx:id="checkinBtn" alignment="CENTER" contentDisplay="TOP" layoutX="310.0" layoutY="40.0" mnemonicParsing="false" onAction="#checkIn" prefHeight="75.0" prefWidth="180.0" styleClass="admin-main-button" text="CheckIn/CheckOut" GridPane.rowIndex="2">
+         <graphic>
+            <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../Assets/Image/icon/location.png" />
+               </image>
+            </ImageView>
+         </graphic></Button>
       <Button fx:id="adminBrandBtn" alignment="CENTER" contentDisplay="TOP" layoutX="310.0" layoutY="173.0" mnemonicParsing="false" onAction="#showBrandScreen" prefHeight="75.0" prefWidth="180.0" styleClass="admin-main-button" text="Brand" GridPane.columnIndex="1">
          <graphic>
             <ImageView fitHeight="57.0" fitWidth="71.0" pickOnBounds="true" preserveRatio="true">
@@ -53,5 +58,14 @@
                </image>
             </ImageView>
          </graphic></Button>
+      <Button fx:id="adminOrderBtn" alignment="CENTER" contentDisplay="TOP" layoutX="85.0" layoutY="27.0" mnemonicParsing="false" onAction="#showOrderScreen" prefHeight="75.0" prefWidth="180.0" styleClass="admin-main-button" stylesheets="@css/adminComponent.css" text="Order" GridPane.columnIndex="1" GridPane.rowIndex="2">
+         <graphic>
+            <ImageView fitHeight="61.0" fitWidth="101.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../Assets/Image/icon/clipboard.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
    </children>
 </GridPane>

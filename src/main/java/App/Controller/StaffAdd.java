@@ -3,6 +3,7 @@ package App.Controller;
 import  Entity.Staff;
 import App.Model.StaffModel;
 import Main.MainApp;
+import Util.FaceRecognition;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -24,6 +25,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import static Util.FaceRecognition.faceRecognition;
+
 public class StaffAdd implements Initializable{
     @FXML
     private TextField txtStaffName;
@@ -34,13 +37,14 @@ public class StaffAdd implements Initializable{
     @FXML
     private TextField txtStaffPos;
 
-    public void add() throws SQLException, IOException {
+    public void add() throws SQLException, IOException, InterruptedException {
         String name = txtStaffName.getText();
         String address = txtStaffAddress.getText();
         String birthday = txtStaffDob.getText();
         String position = txtStaffPos.getText();
         StaffModel staffModel = new StaffModel();
         staffModel.addStaff(name,address,position,birthday);
+        FaceRecognition.newUser();
         MainApp.switchScene(new Scene(FXMLLoader.load(
                 new File("src/main/java/App/View/StaffInfor.fxml").toURI().toURL())
         ));

@@ -15,25 +15,26 @@ public class AlertController {
     @FXML
     private Label informationLabel;
     @FXML
-    private ImageView image;
+    private ImageView imageStatus;
     @FXML
     private Button cancelButton;
 
     private ArrayList<Alert> getDataAlert() {
        ArrayList<Alert> alertList = new ArrayList<Alert>();
-       alertList.add(new Alert("Error","#c0392b","aaaa"));
-        alertList.add(new Alert("Warning","#f1c40f","aaaa"));
-        alertList.add(new Alert("Success","#27ae60","aaaa"));
+       alertList.add(new Alert("Error","#c0392b","src/main/java/Assets/Image/icon/warning (1).png"));
+        alertList.add(new Alert("Warning","#f1c40f","src/main/java/Assets/Image/icon/warning.png"));
+        alertList.add(new Alert("Success","#27ae60","src/main/java/Assets/Image/icon/check.png"));
         return alertList;
     }
-    public boolean RenderAlert(String status, String information) throws MalformedURLException {
+    public boolean RenderAlert(String status, String infomation) throws MalformedURLException {
         ArrayList<Alert> alerts = getDataAlert();
         for (Alert alert : alerts) {
-            if (alert.getStatus().equalsIgnoreCase(status)) {
-                alert.setInformation(information);
+            if (status.equalsIgnoreCase(alert.getStatus())) {
+                alert.setInformation(alert.getInformation());
                 statusLabel.setText(alert.getStatus());
+                alert.setInformation(infomation);
                 informationLabel.setText(alert.getInformation());
-                image.setImage(new Image(String.valueOf(new File(alert.getImgSrc()).toURI().toURL())));
+                imageStatus.setImage(new Image(String.valueOf(new File(alert.getImgSrc()).toURI().toURL())));
                 return true;
             }
         }
