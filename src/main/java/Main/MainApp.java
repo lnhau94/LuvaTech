@@ -21,6 +21,8 @@ import java.util.HashMap;
 
 public class MainApp extends Application {
     public static Stage mainStage;
+    public static Scene AdminScene;
+    public static Scene ShopScene;
 
 
     /**
@@ -45,6 +47,10 @@ public class MainApp extends Application {
         mainStage = stage;
 
         MainModel.start();
+        ShopScene = new Scene(FXMLLoader.load(
+                new File("src/main/java/App/View/view-product.fxml").toURI().toURL()));
+        AdminScene = new Scene(FXMLLoader.load(
+                new File("src/main/java/App/View/adminMainView.fxml").toURI().toURL()));
 
 //        stage.setTitle("LuvaTech");
 //        Button btn = new Button();
@@ -77,8 +83,8 @@ public class MainApp extends Application {
 //        );
 
 
-        stage.setScene(new Scene(FXMLLoader.load(
-                        new File("src/main/java/App/View/adminMainView.fxml").toURI().toURL()))
+        stage.setScene(
+                AdminScene
         );
         stage.setMaximized(true);
 

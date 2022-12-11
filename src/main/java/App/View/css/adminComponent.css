@@ -106,6 +106,43 @@
     -fx-pref-height: 30px;
     -fx-text-fill: white;
 }
+.admin-nav{
+    -fx-background-image: url("../../../Assets/Image/shoplogo.gif");
+    -fx-background-repeat: stretch;
+    -fx-background-size: 30 30;
+    -fx-background-position: center center;
+    -fx-pref-height: 30px;
+    -fx-min-height: 0px;
+    -fx-max-height: 1000px;
+    -fx-pref-width: 30px;
+    -fx-min-width: 0px;
+    -fx-max-width: 1000px;
+    -fx-border-color: white;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+}
+
+
+.admin-nav:hover{
+    -fx-background-image: none;
+    -fx-background: #40739e;
+    -fx-pref-height: 160px;
+    -fx-min-height: 0px;
+    -fx-max-height: 1000px;
+    -fx-pref-width: 100px;
+    -fx-min-width: 0px;
+    -fx-max-width: 1000px;
+}
+.admin-nav:hover > *{
+     visibility: visible;
+ }
+
+.admin-nav > *{
+    visibility: hidden;
+    -fx-border-color: white;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+}
 
 .admin-choiceBox{
     -fx-background-color: #40739e;
