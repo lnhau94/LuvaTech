@@ -80,7 +80,7 @@ public class ProductDetailsController {
         fxmlLoader.setLocation(new File(pathScreen.get("SmartWatch")).toURI().toURL());
         AnchorPane anchorPane = fxmlLoader.load();
         smartDetails smartDetails = fxmlLoader.getController();
-        smartDetails.setData(smartWatch);
+        // smartDetails.setData(smartWatch);
         return  anchorPane;
     }
     public AnchorPane setRenderDetail(Headphone headphone,Map<String, String> pathScreen ) throws IOException {
@@ -88,7 +88,7 @@ public class ProductDetailsController {
         fxmlLoader.setLocation(new File(pathScreen.get("headPhone")).toURI().toURL());
         AnchorPane anchorPane = fxmlLoader.load();
         headPhoneDetails headPhoneDetails = fxmlLoader.getController();
-        headPhoneDetails.setData(headphone);
+       // headPhoneDetails.setData(headphone);
         return  anchorPane;
     }
     public AnchorPane setRenderDetail(Keyboard keyboard,Map<String, String> pathScreen ) throws IOException {
@@ -96,7 +96,6 @@ public class ProductDetailsController {
         fxmlLoader.setLocation(new File(pathScreen.get("keyboard")).toURI().toURL());
         AnchorPane anchorPane = fxmlLoader.load();
         keyboardDetail keyboardDetail = fxmlLoader.getController();
-        keyboardDetail.setData(keyboard);
         return  anchorPane;
     }
 
@@ -134,6 +133,7 @@ public class ProductDetailsController {
             newImage = new Image(String.valueOf((new File("src/main/java/Assets/Image/laptop/Laptop_Dell_XPS13_9320/dell-xps-1.jpg").toURI()).toURL()));
         }
         productImage.setImage(newImage);
+        productTitle.setText(newProduct.getBrand().getBrandName());
         SwitchScreenDetails(newProduct);
     }
     //back to Shop

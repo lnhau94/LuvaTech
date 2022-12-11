@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="810.0" prefWidth="1111.0" stylesheets="@css/staff.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="App.Controller.StaffInfor">
+<AnchorPane stylesheets="@css/staff.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="App.Controller.StaffInfor">
    <children>
       <Pane layoutX="14.0" layoutY="14.0" prefHeight="80.0" prefWidth="297.0" styleClass="background-staffinfor">
          <children>
@@ -23,17 +23,16 @@
       </Pane>
       <Pane layoutX="14.0" layoutY="105.0" prefHeight="687.0" prefWidth="887.0" styleClass="background-staffinfor-content">
          <children>
-            <TableView fx:id="staffTableView" layoutX="32.0" layoutY="25.0" prefHeight="562.0" prefWidth="820.0"  onMouseClicked="#setNameDetail">
+            <TableView fx:id="staffTableView" layoutX="32.0" layoutY="25.0"  prefHeight="562.0" prefWidth="820.0">
               <columns>
                   <TableColumn fx:id="staffID" prefWidth="195" text="ID" />
-                  <TableColumn fx:id="staffName" prefWidth="325" text="Name" />
-                  <TableColumn fx:id="staffDob" prefWidth="224" text="Birthday" />
-                  <TableColumn fx:id="staffDetails" prefWidth="75.0" text="Details" />
+                  <TableColumn fx:id="staffName" prefWidth="360.66664123535156" text="Name" />
+                  <TableColumn fx:id="staffDob" prefWidth="262.66668701171875" text="Birthday" />
               </columns>
             </TableView>
          </children>
       </Pane>
-      <Button  layoutX="941.0" layoutY="105.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="128.0" styleClass="btn-staffinfor">
+      <Button layoutX="941.0" layoutY="105.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="128.0" styleClass="btn-staffinfor">
          <graphic>
             <ImageView fitHeight="25.0" fitWidth="25.0">
                <image>
@@ -41,7 +40,7 @@
                </image>
             </ImageView>
          </graphic></Button>
-      <Button onAction="#SceneStaffAdd" layoutX="941.0" layoutY="194.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="128.0" styleClass="btn-staffinfor">
+      <Button layoutX="941.0" layoutY="194.0" mnemonicParsing="false" onAction="#SceneStaffAdd" prefHeight="35.0" prefWidth="128.0" styleClass="btn-staffinfor">
          <graphic>
             <ImageView fitHeight="25.0" fitWidth="25.0">
                <image>
@@ -49,7 +48,7 @@
                </image>
             </ImageView>
          </graphic></Button>
-      <Button layoutX="941.0" layoutY="150.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="128.0" styleClass="btn-staffinfor">
+      <Button onAction="#SceneStaffEdit" layoutX="941.0" layoutY="150.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="128.0" styleClass="btn-staffinfor">
          <graphic>
             <ImageView fitHeight="25.0" fitWidth="25.0">
                <image>
@@ -71,6 +70,5 @@
             </ImageView>
          </graphic>
       </Button>
-
    </children>
 </AnchorPane>

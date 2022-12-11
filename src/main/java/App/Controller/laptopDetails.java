@@ -1,7 +1,10 @@
 package App.Controller;
 
+import App.Model.cartPage;
 import App.View.Component.Component;
 
+import DAL.ColorDAO;
+import Entity.Color;
 import Entity.Laptop;
 import Entity.LaptopVariant;
 import javafx.event.ActionEvent;
@@ -11,11 +14,13 @@ import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 
-
+import java.text.NumberFormat;
 import java.util.ArrayList;
-import java.util.HashMap;
+
+import java.util.HashSet;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicReference;
+import java.util.Locale;
+
 
 public class laptopDetails {
 
@@ -48,117 +53,145 @@ public class laptopDetails {
 
     @FXML
     private HBox storageHB;
-    ToggleGroup ramTG = new ToggleGroup();
-    ToggleGroup StorageTG = new ToggleGroup();
-    ToggleGroup colorTG = new ToggleGroup();
+    @FXML
+    private Button addtoCart;
+
+    String ramSelected;
+    String storageSelected;
+    String colorSelected;
+    ArrayList<LaptopVariant> laptopVariants;
+    HashSet<String> rams;
+    HashSet<String> storages;
+    HashSet<String> colors;
     Component component = new Component();
+    cartPageController cartPageController= new cartPageController();
+    public ArrayList<Color> colorsList = ColorDAO.retrieve();
     public void setData(Laptop product) {
         productTilte.setText(product.getProductName());
-        RadioButton ramSelected = new RadioButton();
-        ArrayList<LaptopVariant> laptopVariants = product.getVariants();
-        List<String> ramList=null;
-        ProductController.details.clear();
-        for (int i = 0; i < laptopVariants.size(); i++) {
-            ProductController.addDetails(laptopVariants.get(i).getRam(), laptopVariants.get(i).getStorage(), laptopVariants.get(i).getColor());
-            }
-        ramList = ProductController.details.keySet().stream().toList();
-       Ram(ramList);
+        rams=new HashSet<>();
+        storages= new HashSet<>();
+        colors=new HashSet<>();
+        laptopVariants=product.getVariants();
+        for(LaptopVariant item : laptopVariants){
+            rams.add(item.getRam());
+            storages.add(item.getStorage());
+            colors.add(item.getColor());
+        }
+        renderRam(rams);
+        renderStorage(filterStorage());
+        renderColor(filterColor());
+        renderSpecs();
+        Description(product);
+        addtoCart.setOnAction(e->{
+            cartPageController.addToCart(cart(product));
+        });
         }
 
-public void Ram(List<String> ramList) {
-        if (ramList.size()>0){
-           ramList.forEach((ram)->{
-               renderHB.getChildren().add( component.cusTomRB(ram,ramTG));
-           });
-        }else{
-            System.out.println("is empty");
-        }
-        List<Node> ramRadioButtons = renderHB.getChildren().stream().toList();
-        if (ramTG.getSelectedToggle()==null){
-            ramTG.selectToggle((Toggle) ramRadioButtons.get(0));
-            RadioButton radioButton = (RadioButton) ramTG.getSelectedToggle();
-            Storage(radioButton);
-        }
-    for (Node radio : ramRadioButtons) {
-        radio.setOnMouseClicked(e -> {
-            ramTG.selectToggle((Toggle) radio);
-            RadioButton radioButton = (RadioButton) ramTG.getSelectedToggle();
-            storageHB.getChildren().clear();
-            Storage(radioButton);
+    public void renderRam(HashSet<String> list) {
+        ToggleGroup ramTG = new ToggleGroup();
+        list.forEach((item)->{
+            component.cusTomRB(item,ramTG);
+            component.cusTomRB(item,ramTG).setSelected(true);
+            ramSelected=item;
+            component.cusTomRB(item,ramTG).setToggleGroup(ramTG);
+            ramTG.selectToggle( component.cusTomRB(item,ramTG));
+            renderHB.getChildren().add(component.cusTomRB(item,ramTG));
+        });
+        List<Node> ramRB = renderHB.getChildren().stream().toList();
+        ramRB.forEach(n->{
+                n.setOnMouseClicked(e->{
+                    ramSelected=((RadioButton) n).getText();
+                    System.out.println(ramSelected);
+                    renderStorage(filterStorage());
+                    renderColor(filterColor());
+                    renderSpecs();
+                });
         });
     }
-    }
-    public void Storage(RadioButton ramRB){
-        String ram = ramRB.getText();
-        List<HashMap<String, List<String>>> storageColor = ProductController.details.get(ram);
-       storageColor.forEach(stringListHashMap ->
-       {
-        addDetails(stringListHashMap.keySet().stream().toList(),StorageTG,storageHB);
-           List<Node> storageRB = storageHB.getChildren().stream().toList();
-           if (StorageTG.getSelectedToggle()==null){
-               StorageTG.selectToggle((Toggle) storageRB.get(0));
-               colorHbox.getChildren().clear();
-           }
-           for (Node radio : storageRB) {
-               radio.setOnMouseClicked(e -> {
-                   StorageTG.selectToggle((Toggle) radio);
-                   RadioButton radioButton = (RadioButton) StorageTG.getSelectedToggle();
-                   colorHbox.getChildren().clear();
+    public void renderStorage(HashSet<String> list){
+        ToggleGroup StorageTG = new ToggleGroup();
+        storageHB.getChildren().clear();
+        list.forEach((item)->{
+            component.cusTomRB(item,StorageTG);
+            component.cusTomRB(item,StorageTG).setSelected(true);
+            storageSelected=item;
+            component.cusTomRB(item,StorageTG).setToggleGroup(StorageTG);
+            storageHB.getChildren().add(component.cusTomRB(item,StorageTG));
 
-               });
-
-           }
-       });
-
+        });
+        List<Node> storageRB = storageHB.getChildren().stream().toList();
+        storageRB.forEach(n->{
+            n.setOnMouseClicked(e->{
+                storageSelected=((RadioButton) n).getText();
+                System.out.println(storageSelected);
+                renderColor(filterColor());
+                renderSpecs();
+            });
+        });
     }
 
-    private void Color(List<String>colorHas) {
-       addDetails(colorHas,colorTG,colorHbox);
+    public void renderColor(HashSet<String> list){
+        ToggleGroup colorTG = new ToggleGroup();
+        colorHbox.getChildren().clear();
+        list.forEach((item)->{
+            component.ColorRB(item,colorsList,colorTG);
+            component.ColorRB(item,colorsList,colorTG).setSelected(true);
+            colorSelected=item;
+            component.ColorRB(item,colorsList,colorTG).setToggleGroup(colorTG);
+            colorHbox.getChildren().add(component.ColorRB(item,colorsList,colorTG));
+        });
         List<Node> colorRB = colorHbox.getChildren().stream().toList();
-        if (colorTG.getSelectedToggle()==null){
-            colorTG.selectToggle((Toggle) colorRB.get(0));
-            RadioButton radioButton = (RadioButton) colorTG.getSelectedToggle();
-            Price();
-        }
-        for (Node radio : colorRB) {
-            radio.setOnMouseClicked(e -> {
-                colorTG.selectToggle((Toggle) radio);
-                RadioButton radioButton = (RadioButton) colorTG.getSelectedToggle();
-                Price();
+        colorRB.forEach(n->{
+            n.setOnMouseClicked(e->{
+                colorSelected=((RadioButton) n).getText();
+                System.out.println(colorRB);
+                renderSpecs();
             });
+        });
+    }
+    public void renderSpecs(){
+        for (LaptopVariant item : laptopVariants){
+            if(item.getRam().equals(ramSelected)  && item.getStorage().equals(storageSelected)  && item.getColor().equals(colorSelected) ){
+                ProductPrice.setText(NumberFormat.getCurrencyInstance(new Locale("vi", "VN")).format(
+                        item.getSpecs().getPrice()
+                ));
+            }
         }
     }
-    public void Price(){
-        RadioButton ram= (RadioButton) ramTG.getSelectedToggle();
-        RadioButton storage= (RadioButton) StorageTG.getSelectedToggle();
-        RadioButton color= (RadioButton) colorTG.getSelectedToggle();
-        System.out.println(ram.getText()+storage.getText()+color.getText());
+    public HashSet<String> filterColor(){
+        HashSet<String> set = new HashSet<>();
+        for (LaptopVariant item : laptopVariants){
+            if (item.getRam().equals(ramSelected)
+                    && item.getStorage().equals(storageSelected)){
+                set.add(item.getColor());
+            }
+        }
+        return set;
     }
 
-    /**
-     * Hien thi cac danh sach cau hinh
-     * @param list (cac item trong list)
-     * @param rb  (Toggle Group)
-     * @param renderHB (giao dien hien thi HBOX)
-     * @return
-     */
-    public boolean addDetails(List<String> list, ToggleGroup rb, HBox renderHB){
-        if (list.size()>0){
-            list.forEach((item)->{
-                renderHB.getChildren().add(component.cusTomRB(item,rb));
-            });
-            return true;
-        }else{
-            System.out.println("Storage is emty");
-            return  false;
+    public HashSet<String> filterStorage(){
+        HashSet<String> s = new HashSet<>();
+        for (LaptopVariant item : laptopVariants){
+            if (item.getRam().equals(ramSelected)){
+                s.add(item.getStorage());
+            }
         }
+        return s;
     }
-
     public void Description(Laptop laptop){
-        laptop.getCamera();
-        laptop.getConnect();
+        String desc= "Camera:"+laptop.getCamera()+"\n" +
+                "Material:"+laptop.getMaterial()+"\n" +
+                "Connect:"+laptop.getConnect()+"\n" +
+                "Os:"+laptop.getOs()+"\n" +
+                "Size:"+laptop.getSize()+"\n" +
+                "Weight:"+laptop.getWeight()+"\n";
+        drscText.setText(desc);
     }
-    //plusBtn
+
+
+
+
+        //plusBtn
     public void Plus(ActionEvent e) {
         if (Quality.getText().equalsIgnoreCase("")) {
             Quality.setText("1");
@@ -176,6 +209,23 @@ public void Ram(List<String> ramList) {
             Quality.setText(String.valueOf(inputValue));
         }
     }
+    public  cartPage cart(Laptop product ) {
+        cartPage cartItem = new cartPage();
+        cartItem.setProductName(product.getProductName());
+        for(LaptopVariant item : laptopVariants){
+            if(item.getRam().equals(ramSelected)  && item.getStorage().equals(storageSelected)  && item.getColor().equals(colorSelected) ){
+                cartItem.setProductSKU(item.getSpecs().getSKU());
+                cartItem.setPrice(item.getSpecs().getPrice());
+            }
 
+        }
+        cartItem.setQuantity(Integer.parseInt(Quality.getText()));
+        cartItem.setDescription("Ram:"+ramSelected+"\n" +
+                "Storage:"+storageSelected+"\n" +
+                "Color:"+colorSelected+"\n");
+        cartItem.setTotal(cartItem.getPrice()* cartItem.getQuantity());
+
+        return cartItem;
+    }
 
 }

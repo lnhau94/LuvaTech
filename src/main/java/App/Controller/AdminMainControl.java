@@ -1,11 +1,13 @@
 package App.Controller;
 
 import Main.MainApp;
+import Util.FaceRecognition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.stage.FileChooser;
 
 import java.io.File;
 import java.io.IOException;
@@ -24,12 +26,17 @@ public class AdminMainControl {
 
     @FXML
     void showAccountScreen(ActionEvent event) {
-        System.out.println("account click");
+        System.out.println("Account click");
     }
 
     @FXML
     void showBrandScreen(ActionEvent event) {
-        System.out.println("brand click");
+        try {
+            FaceRecognition.faceRecognition();
+        } catch (InterruptedException e) {
+            System.out.println("face recognize");
+            System.out.println(e.getMessage());
+        }
     }
 
     @FXML

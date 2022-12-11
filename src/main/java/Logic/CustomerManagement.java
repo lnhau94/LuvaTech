@@ -24,7 +24,14 @@ public class CustomerManagement {
         }
         return null;
     }
-
+    public String insertCustomer(Customer customer) {
+        CustomerDAO customerDAO = new CustomerDAO();
+        String customerId = customerDAO.insertCustomer(customer);
+        if (customerId == null) {
+            System.out.println("That bai r be oi");
+        }
+        return  customerId;
+    }
     public ArrayList<Customer> getCustomersList() {
         return customersList;
     }

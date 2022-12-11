@@ -2,14 +2,21 @@ package App.Controller;
 
 import  Entity.Staff;
 import App.Model.StaffModel;
+import Main.MainApp;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TextFormatter;
 
+import java.io.File;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -27,16 +34,22 @@ public class StaffAdd implements Initializable{
     @FXML
     private TextField txtStaffPos;
 
-    public void add() throws SQLException {
+    public void add() throws SQLException, IOException {
         String name = txtStaffName.getText();
         String address = txtStaffAddress.getText();
         String birthday = txtStaffDob.getText();
         String position = txtStaffPos.getText();
         StaffModel staffModel = new StaffModel();
         staffModel.addStaff(name,address,position,birthday);
-        System.out.println(name+" "+address+" "+birthday+" "+position);
+        MainApp.switchScene(new Scene(FXMLLoader.load(
+                new File("src/main/java/App/View/StaffInfor.fxml").toURI().toURL())
+        ));
     }
-
+    public void SceneStaffInfor(ActionEvent event) throws IOException {
+        MainApp.switchScene(new Scene(FXMLLoader.load(
+                new File("src/main/java/App/View/StaffInfor.fxml").toURI().toURL())
+        ));
+    }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 

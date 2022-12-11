@@ -3,6 +3,7 @@ package App.Controller;
 import DAL.DAO;
 import DAL.StaffDAO;
 import Entity.Staff;
+import App.Controller.StaffEdit;
 import App.Controller.StaffDetail;
 
 import java.awt.event.ActionEvent;
@@ -27,6 +28,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.net.URL;
 import java.util.*;
@@ -88,26 +90,21 @@ public class StaffInfor implements Initializable {
 //                stage.show();
 //            }
 //        }
-    public void setNameDetail(MouseEvent event) throws IOException {
-        String name = staffTableView.getSelectionModel().getSelectedItem().getName();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("src/main/java/App/View/StaffDetail.fxml"));
-        Parent parent =  loader.load();
-
-        StaffDetail staffDetail = loader.getController();
-        staffDetail.display(name);
-
-        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        Scene scene = new Scene(parent);
-        stage.setScene(scene);
-        stage.show();
-    }
     public void SceneStaffAdd() throws IOException {
         MainApp.switchScene(new Scene(FXMLLoader.load(
                 new File("src/main/java/App/View/StaffAdd.fxml").toURI().toURL())
         ));
     }
-    public void SceneStaffEdit(){
+    public void SceneStaffEdit() throws IOException {
+        String id = staffTableView.getSelectionModel().getSelectedItem().getStaffId();
+        String name = staffTableView.getSelectionModel().getSelectedItem().getName();
+        String address = staffTableView.getSelectionModel().getSelectedItem().getAddress();
+        String position = staffTableView.getSelectionModel().getSelectedItem().getPosition();
+        Date dob = staffTableView.getSelectionModel().getSelectedItem().getBirthday();
 
+        StaffEdit staffEdit = new StaffEdit();
+        staffEdit.setStaffText(id);
+        staffEdit.showData();
     }
     public void SceneStaffDelete(){
 

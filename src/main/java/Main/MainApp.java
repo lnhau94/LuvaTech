@@ -20,7 +20,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class MainApp extends Application {
-    private static Stage mainStage;
+    public static Stage mainStage;
+
 
     /**
      * Switch to new Scene - Chuyển Scene
@@ -28,6 +29,7 @@ public class MainApp extends Application {
      */
     public static void switchScene(Scene newScene){
         mainStage.setScene(newScene);
+        mainStage.setMaximized(true);
     }
 
     public static void main(String[] args) {
@@ -41,7 +43,7 @@ public class MainApp extends Application {
 
         mainStage = stage;
 
-//        MainModel.start();
+        MainModel.start();
 
 //        stage.setTitle("LuvaTech");
 //        Button btn = new Button();
@@ -70,9 +72,16 @@ public class MainApp extends Application {
 
         stage.setScene(new Scene(
 
+
                 FXMLLoader.load(
                         new File("src/main/java/App/View/StaffMenu.fxml").toURI().toURL()))
         );
+
+
+//      FXMLLoader.load(
+//                        new File("src/main/java/App/View/adminMainView.fxml").toURI().toURL()))
+//        );
+//        stage.setMaximized(true);
 
         stage.show();
 
