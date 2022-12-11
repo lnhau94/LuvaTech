@@ -1,10 +1,7 @@
 package App.Controller;
-
 import App.Model.MainModel;
 import App.Model.cartPage;
 import Entity.Customer;
-import Logic.CustomerManagement;
-import Logic.OrderManagement;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -16,16 +13,19 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.sql.Date;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Locale;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class cartPageController implements Initializable {
@@ -164,47 +164,103 @@ public class cartPageController implements Initializable {
 
     public void setPayment(ArrayList<cartPage> cartPages, Customer customer) {
         MainModel.orderManager.insertOrder(cartPages, customer);
+        cartPages.clear();
+        cartTable.refresh();
+        totalAll.setText(NumberFormat.getCurrencyInstance(new Locale("vi", "VN")).format(sum()));
     }
-
-    public Customer createCustomer() {
+    public Customer createCustomer() throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(new File("src/main/java/App/View/Alert.fxml").toURI().toURL());
+        Pane alert = loader.load();
+        Dialog<ButtonType> dialog = new Dialog<>();
+        AlertController alertController = loader.getController();
+        dialog.setDialogPane((DialogPane) alert);
         Customer customer = new Customer();
-        customer.setName(customerName.getText());
-        customer.setBirthday(Date.valueOf(customerDate.getValue()));
-        customer.setPhone(customerPhone.getText());
-        customer.setAddress(customerAddress.getText());
-        String customerid=MainModel.customerManager.insertCustomer(customer);
-        customer.setCustomerId(customerid);
-        return customer;
+        if(customerName.getText().equals("") || customerAddress.getText().equals("") || customerDate.getValue()==null){
+            alertController.RenderAlert("Warning","Vui lòng nhập đầy đủ các trường!");
+            Optional<ButtonType> clickedButton = dialog.showAndWait();
+            if(clickedButton.get()== ButtonType.OK){
+                dialog.close();
+            }
+        }else {
+            customer.setName(customerName.getText());
+            customer.setBirthday(Date.valueOf(customerDate.getValue()));
+            customer.setPhone(customerPhone.getText());
+            customer.setAddress(customerAddress.getText());
+            String customerid=MainModel.customerManager.insertCustomer(customer);
+            customer.setCustomerId(customerid);
+            return customer;
+        }
+        return null;
     }
 
-    public Customer checkCustomer(String customerPhone) {
+    public Customer checkCustomer(String customerPhones) {
         for (Customer customer : MainModel.customerManager.getCustomersList()) {
-            if (customer.getPhone().equals(customerPhone)) {
-                customerName.setText(customer.getName());
-                customerDate.setValue(customer.getBirthday().toLocalDate());
-                customerAddress.setText(customer.getAddress());
+            if (customer.getPhone().equals(customerPhones)) {
+                    customerName.setText(customer.getName());
+                    customerDate.setValue(customer.getBirthday().toLocalDate());
+                    customerAddress.setText(customer.getAddress());
                 return customer;
             }
         }
         return null;
     }
-    public void payment(){
-        Customer customer;
-        if(!customerPhone.getText().equals("")){
-            customer=checkCustomer(customerPhone.getText());
-            if(customer==null){
-                customer=createCustomer();
+    public void realpayment() throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(new File("src/main/java/App/View/Alert.fxml").toURI().toURL());
+        Pane alert = loader.load();
+        Dialog<ButtonType> dialog = new Dialog<>();
+        dialog.setDialogPane((DialogPane) alert);
+        AlertController alertController = loader.getController();
+        if (cartPages.size() > 0) {
+            Customer customer;
+            if (!customerPhone.getText().equals("")) {
+                customer = checkCustomer(customerPhone.getText());
+                if (customer == null) {
+                        customer = createCustomer();
+                        if(customer!=null) {
+                            alertController.RenderAlert("Success", "Xác nhận thanh toán");
+                            Optional<ButtonType> clickedButton = dialog.showAndWait();
+                            if (clickedButton.get() == ButtonType.OK) {
+                                setPayment(cartPages, customer);
+                                dialog.close();
+                            }
+                        }
+                }else{
+                    alertController.RenderAlert("Success","Xác nhận thanh toán");
+                    Optional<ButtonType> clickedButton = dialog.showAndWait();
+                    if(clickedButton.get()== ButtonType.OK){
+                        setPayment(cartPages, customer);
+                        dialog.close();
+                    }
+
+                }
+            } else {
+                alertController.RenderAlert("Warning","Vui lòng nhập số điện thoại");
+                Optional<ButtonType> clickedButton = dialog.showAndWait();
+                if(clickedButton.get()== ButtonType.OK){
+                    dialog.close();
+                }
+               // System.out.println("Vui long nhap so dien thoai");
             }
-            setPayment(cartPages,customer);
-        }else{
-            System.out.println("Vui long nhap song dien thoai");
+        } else {
+           // System.out.println("Gio hang rong");
+            alertController.RenderAlert("Warning","Giỏ hàng trống");
+            Optional<ButtonType> clickedButton = dialog.showAndWait();
+            if(clickedButton.get()== ButtonType.OK){
+                dialog.close();
+            }
+
         }
     }
+
     public void paymentEvent(){
         payment.setOnAction(e->{
-            payment();
-            cartPages.clear();
-            cartTable.refresh();
+            try {
+                realpayment();
+            }  catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
         });
     }
 }
