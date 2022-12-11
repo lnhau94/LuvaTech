@@ -68,6 +68,7 @@ public class ProductManagement {
     }
 
     public void addLaptop(Laptop laptop) {
+        laptop.setProductId(ProductDAO.addLaptop(laptop));
         laptopList.add(laptop);
     }
 }

@@ -20,6 +20,7 @@ public class BrandManagement {
     }
 
     public void addNewBrand(Brand brand) {
+        brand.setBrandId(ProductDAO.addBrand(brand));
         brandList.add(brand);
     }
 }

@@ -175,3 +175,15 @@
     -fx-background-color: orange;
     -fx-text-fill: white;
 }
+.admin-order-detail-table{
+    -fx-width: 300;
+    -fx-min-width: 300;
+    -fx-pref-width:300;
+    -fx-border-color: black;
+}
+.admin-order-detail-table .table-cell:odd{
+    -fx-background-color: #7f8fa6;
+}
+.admin-order-detail-table .table-cell:even{
+    -fx-background-color: #718093;
+}

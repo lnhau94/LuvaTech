@@ -131,4 +131,15 @@ public class AdminMainControl implements Initializable {
         mainMenu.initOwner(MainApp.mainStage);
         mainMenu.show();
     }
+
+    @FXML
+    private void showOrderScreen(){
+        try {
+            MainApp.switchScene(new Scene(FXMLLoader.load(
+                    new File("src/main/java/App/View/adminOrderView.fxml").toURI().toURL()))
+            );
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

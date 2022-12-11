@@ -58,7 +58,7 @@ public class OrderDAO {
                 "from orders o join orderdetails od on o.orderid = od.orderid " +
                 "where o.orderid = ? ");
         try {
-            preStmt.setString(1,o.getOrderId());
+            preStmt.setInt(1,Integer.parseInt(o.getOrderId()));
             ResultSet rs = preStmt.executeQuery();
             while (rs != null && rs.next()){
                 orderDetails.add(new OrderDetails(rs.getString(1),rs.getInt(2)));
@@ -84,7 +84,7 @@ public class OrderDAO {
                 "from orders o join givebackitems gb on o.orderid = gb.orderid " +
                 "where o.orderid = ? ");
         try {
-            preStmt.setString(1,o.getOrderId());
+            preStmt.setInt(1,Integer.parseInt(o.getOrderId()));
             ResultSet rs = preStmt.executeQuery();
             while (rs != null && rs.next()){
                 giveBackItems.add(new GiveBackItem(rs.getString(1),rs.getInt(2),
