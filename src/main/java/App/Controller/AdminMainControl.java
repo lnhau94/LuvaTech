@@ -35,12 +35,26 @@ public class AdminMainControl implements Initializable {
 
     @FXML
     void showAccountScreen(ActionEvent event) {
-        System.out.println("Account click");
+        try {
+            MainApp.switchScene(new Scene(
+                    FXMLLoader.load(
+                            new File("src/main/java/App/View/adminAccountView.fxml").toURI().toURL()))
+            );
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @FXML
     void showBrandScreen(ActionEvent event) {
-        System.out.println("brand click");
+        try {
+            MainApp.switchScene(new Scene(
+                    FXMLLoader.load(
+                            new File("src/main/java/App/View/adminBrandView.fxml").toURI().toURL()))
+                    );
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @FXML
@@ -79,7 +93,7 @@ public class AdminMainControl implements Initializable {
         showMenu();
     }
     public void showMenu(){
-        Stage mainMenu = new Stage(StageStyle.UNIFIED);
+        Stage mainMenu = new Stage(StageStyle.UNDECORATED);
         Button shopBtn = new Button("Shop");
         Button adminBtn = new Button("Admin");
         VBox v = new VBox(shopBtn,adminBtn,checkinBtn);

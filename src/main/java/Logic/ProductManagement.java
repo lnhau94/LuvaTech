@@ -66,4 +66,8 @@ public class ProductManagement {
     public void setKeyboardList(ArrayList<Keyboard> keyboardList) {
         this.keyboardList = keyboardList;
     }
+
+    public void addLaptop(Laptop laptop) {
+        laptopList.add(laptop);
+    }
 }
