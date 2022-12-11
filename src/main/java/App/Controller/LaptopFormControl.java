@@ -112,8 +112,7 @@ public class LaptopFormControl implements Initializable {
             if (isNew){
                 Laptop laptop = new Laptop();
                 getData(laptop);
-                MainModel.productManager.getLaptopList().add(laptop);
-                System.out.println(laptop.toString());
+                MainModel.productManager.addLaptop(laptop);
             }else{
                 getData(tmpLaptop);
             }

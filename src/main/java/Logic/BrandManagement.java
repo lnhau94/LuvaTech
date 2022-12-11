@@ -18,4 +18,8 @@ public class BrandManagement {
     public void setBrandList(ArrayList<Brand> brandList) {
         this.brandList = brandList;
     }
+
+    public void addNewBrand(Brand brand) {
+        brandList.add(brand);
+    }
 }
