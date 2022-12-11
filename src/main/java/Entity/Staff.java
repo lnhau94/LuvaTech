@@ -10,9 +10,20 @@ public class Staff {
     private Date birthday;
     private Account account;
 
-    public Staff() {
+    public Staff(String id, String name, String address, String position, java.util.Date dob) {
+        this.staffId = staffId;
+        this.name = name;
+        this.address = address;
+        this.position = position;
+        this.birthday = birthday;
     }
-
+    public Staff(String staffId, String name, String address, String position, Date birthday) {
+        this.staffId = staffId;
+        this.name = name;
+        this.address = address;
+        this.position = position;
+        this.birthday = birthday;
+    }
     public Staff(String staffId, String name, String address, String position, Date birthday, Account account) {
         this.staffId = staffId;
         this.name = name;

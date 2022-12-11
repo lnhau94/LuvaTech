@@ -1,0 +1,78 @@
+.background {
+    -fx-background-color: #EAF9F4;
+    -fx-border-color: #59DBF1;
+    -fx-border-width: 5px;
+}
+.btn {
+    -fx-background-color: #59DBF1;
+    -fx-background-radius: 30;
+    -fx-text-fill: #ffff;
+    -fx-font-size: 20;
+    -fx-font-weight: bold;
+
+}
+.btn:hover,.btn-staffinfor:hover, .btn-staffadd:hover {
+    -fx-scale-y: 1.1;
+    -fx-text-fill: #ffff;
+    -fx-border-radius: 20;
+    -fx-border-width: 2;
+    -fx-background-color: #29B6F6;
+}
+.btn:pressed, .btn-staffinfor:pressed {
+    -fx-scale-y: 0.9;
+    -fx-scale-x: 0.9;
+}
+.background-staffinfor{
+    -fx-background-color:  #59DBF1;
+    -fx-alignment: center;
+}
+.background-staffinfor-content, .background-customerinfor-content,.background-order{
+    -fx-border-color: #59DBF1;
+    -fx-border-width: 2px;
+    -fx-border-radius: 20;
+}
+.staff-title {
+    -fx-text-fill: #ffff;
+    -fx-font-weight: bold;
+}
+.btn-staffinfor, .btn-staffadd{
+    -fx-background-color: #59DBF1;
+    -fx-background-radius: 20;
+    -fx-text-fill: #ffff;
+    -fx-font-size: 10;
+    -fx-font-weight: bold;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4),0,0,5,5);
+}
+.background-staffadd, .background-order{
+    -fx-border-color: #59DBF1;
+    -fx-border-width: 2px;
+    -fx-background-radius: 20;
+    -fx-border-radius: 20;
+    -fx-font-weight: bold;
+}
+.background-order{
+    -fx-text-fill: #ffffff;
+    -fx-background-color:  #59DBF1;
+    -fx-alignment: center ;
+}
+.title-staffadd, .title-staffdetail{
+    -fx-background-color: #59DBF1;
+    -fx-background-radius: 15;
+    -fx-text-fill: #ffff;
+    -fx-font-weight: bold;
+    -fx-alignment: center;
+}
+.btn-exit:hover{
+    -fx-background-color: red;
+}
+.label-default{
+    -fx-background-color: #C0C0C0 ;
+    -fx-border-color: #000000;
+}
+.btn-cricle{
+    -fx-border-radius: 50;
+    -fx-background-color: #EAF9F4;
+}
+.btn-cricle:hover{
+    -fx-border-color: red;
+}

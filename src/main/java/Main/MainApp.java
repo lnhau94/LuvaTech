@@ -40,8 +40,11 @@ public class MainApp extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         MainModel.start();
+
         mainStage = stage;
+
         MainModel.start();
+
 //        stage.setTitle("LuvaTech");
 //        Button btn = new Button();
 //        btn.setText("Say 'Hello World'");
@@ -66,12 +69,20 @@ public class MainApp extends Application {
 //                switchScene(new Scene(pane));
 //            }
 //        });
+
         stage.setScene(new Scene(
 
-      FXMLLoader.load(
-                        new File("src/main/java/App/View/adminMainView.fxml").toURI().toURL()))
+
+                FXMLLoader.load(
+                        new File("src/main/java/App/View/StaffMenu.fxml").toURI().toURL()))
         );
-        stage.setMaximized(true);
+
+
+//      FXMLLoader.load(
+//                        new File("src/main/java/App/View/adminMainView.fxml").toURI().toURL()))
+//        );
+//        stage.setMaximized(true);
+
         stage.show();
 
     }
