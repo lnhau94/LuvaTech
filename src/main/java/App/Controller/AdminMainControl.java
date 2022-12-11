@@ -79,7 +79,7 @@ public class AdminMainControl implements Initializable {
         showMenu();
     }
     public void showMenu(){
-        Stage mainMenu = new Stage(StageStyle.UNIFIED);
+        Stage mainMenu = new Stage(StageStyle.UNDECORATED);
         Button shopBtn = new Button("Shop");
         Button adminBtn = new Button("Admin");
         VBox v = new VBox(shopBtn,adminBtn,checkinBtn);

@@ -12,6 +12,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 import java.awt.*;
@@ -32,6 +33,8 @@ public class MainApp extends Application {
     public static void switchScene(Scene newScene){
         mainStage.setScene(newScene);
         mainStage.setMaximized(true);
+        mainStage.setWidth(Screen.getPrimary().getBounds().getWidth());
+        mainStage.setHeight(Screen.getPrimary().getBounds().getHeight());
         mainStage.centerOnScreen();
     }
 
