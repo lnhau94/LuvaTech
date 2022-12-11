@@ -23,7 +23,7 @@
       </Pane>
       <Pane layoutX="14.0" layoutY="105.0" prefHeight="687.0" prefWidth="887.0" styleClass="background-staffinfor-content">
          <children>
-            <TableView fx:id="staffTableView" layoutX="32.0" layoutY="25.0"  prefHeight="562.0" prefWidth="820.0">
+            <TableView fx:id="staffTableView" layoutX="32.0" layoutY="25.0" onMouseClicked="#SceneStaffDetails" prefHeight="562.0" prefWidth="820.0">
               <columns>
                   <TableColumn fx:id="staffID" prefWidth="195" text="ID" />
                   <TableColumn fx:id="staffName" prefWidth="360.66664123535156" text="Name" />
@@ -48,7 +48,7 @@
                </image>
             </ImageView>
          </graphic></Button>
-      <Button onAction="#SceneStaffEdit" layoutX="941.0" layoutY="150.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="128.0" styleClass="btn-staffinfor">
+      <Button layoutX="941.0" layoutY="150.0" mnemonicParsing="false" onAction="#SceneStaffEdit" prefHeight="35.0" prefWidth="128.0" styleClass="btn-staffinfor">
          <graphic>
             <ImageView fitHeight="25.0" fitWidth="25.0">
                <image>
@@ -56,16 +56,20 @@
                </image>
             </ImageView>
          </graphic></Button>
-      <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="1062.0" layoutY="14.0">
-         <image>
-            <Image url="@../../Assets/Image/icon/cross.png" />
-         </image>
-      </ImageView>
-      <Button layoutX="941.0" layoutY="240.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="128.0" styleClass="btn-staffinfor">
+      <Button layoutX="941.0" layoutY="240.0" mnemonicParsing="false" onAction="#SceneStaffDelete" prefHeight="35.0" prefWidth="128.0" styleClass="btn-staffinfor">
          <graphic>
             <ImageView fitHeight="25.0" fitWidth="25.0">
                <image>
                   <Image url="@../../Assets/Image/icon/delete.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button onAction="#SceneStaffMenu" layoutX="1010.0" layoutY="10.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" styleClass="btn-exit">
+         <graphic>
+            <ImageView fitHeight="30.0" fitWidth="30.0">
+               <image>
+                  <Image url="@../../Assets/Image/icon/cross.png" />
                </image>
             </ImageView>
          </graphic>

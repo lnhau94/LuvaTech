@@ -1,17 +1,15 @@
 package App.Controller;
 
+import App.Model.StaffModel;
 import DAL.DAO;
 import DAL.StaffDAO;
-import Entity.Staff;
-import App.Controller.StaffEdit;
-import App.Controller.StaffDetail;
+import Entity.*;
 
-import java.awt.event.ActionEvent;
-import java.sql.Struct;
+import java.awt.event.MouseEvent;
+import java.net.MalformedURLException;
 import java.util.Date;
 import java.io.File;
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.sql.SQLException;
 import  java.util.ResourceBundle;
 
@@ -21,15 +19,9 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.MouseEvent;
-import javafx.stage.Stage;
-import javafx.stage.StageStyle;
-
 import java.net.URL;
 import java.util.*;
 
@@ -49,7 +41,6 @@ public class StaffInfor implements Initializable {
 
     public static ArrayList<Entity.Staff> StaffTableViewList;
     private ObservableList<Entity.Staff> staffTable;
-    Integer index ;
     public void rederStaff() throws SQLException {
         StaffTableViewList = StaffDAO.retrieve();
     }
@@ -69,27 +60,23 @@ public class StaffInfor implements Initializable {
         staffTableView.setItems(staffTable);
     }
 //    @FXML
-//    public void getDetails(MouseEvent event) throws IOException {
-////        index = staffTableView.getSelectionModel().getSelectedIndex();
-//        if (event.getClickCount() == 2){ //double click
-////                String id = staffTableView.getSelectionModel().getSelectedItem().getStaffId();
-////                String name = staffTableView.getSelectionModel().getSelectedItem().getName();
-////                String address = staffTableView.getSelectionModel().getSelectedItem().getAddress();
-////                String position = staffTableView.getSelectionModel().getSelectedItem().getPosition();
-////                Date dob = staffTableView.getSelectionModel().getSelectedItem().getBirthday();
-////                Staff staff1 = new Staff(id,name,address,position, (java.sql.Date) dob);
-//                Date date = new Date();
-//                Staff staff = new Staff("12","DaJid","Paris","Project Manager", (java.sql.Date) date);
-//                FXMLLoader loader = new FXMLLoader(getClass().getResource("src/main/java/App/View/StaffDetail.fxml"));
-//                Parent parent = loader.load();
-//                StaffDetail staff2 = (StaffDetail) loader.getController();
-//                staff2.setDetail(staff);
-//                Stage stage = new Stage();
-//                stage.setScene(new Scene(parent));
-//                stage.setTitle("Second Window");
-//                stage.show();
-//            }
-//        }
+    public void SceneStaffDetails(javafx.scene.input.MouseEvent event) throws IOException {
+        if (event.getClickCount() == 2){ //double click
+                String id = staffTableView.getSelectionModel().getSelectedItem().getStaffId();
+                String name = staffTableView.getSelectionModel().getSelectedItem().getName();
+                String address = staffTableView.getSelectionModel().getSelectedItem().getAddress();
+                String position = staffTableView.getSelectionModel().getSelectedItem().getPosition();
+                Date dob = staffTableView.getSelectionModel().getSelectedItem().getBirthday();
+//                Staff staff1 = new Staff(id,name,address,position, (java.sql.Date) dob);
+                FXMLLoader fxmlLoader = new FXMLLoader(
+                        new File("src/main/java/App/View/StaffDetail.fxml").toURI().toURL()
+                );
+                MainApp.switchScene(new Scene(fxmlLoader.load()));
+                ((StaffDetail)fxmlLoader.getController()).setDetail(
+                        id,name,address,position,dob
+                );
+            }
+        }
     public void SceneStaffAdd() throws IOException {
         MainApp.switchScene(new Scene(FXMLLoader.load(
                 new File("src/main/java/App/View/StaffAdd.fxml").toURI().toURL())
@@ -102,13 +89,27 @@ public class StaffInfor implements Initializable {
         String position = staffTableView.getSelectionModel().getSelectedItem().getPosition();
         Date dob = staffTableView.getSelectionModel().getSelectedItem().getBirthday();
 
-        StaffEdit staffEdit = new StaffEdit();
-        staffEdit.setStaffText(id);
-        staffEdit.showData();
-    }
-    public void SceneStaffDelete(){
+//        Staff staff = new Staff(id,name,address,position,dob);
+        FXMLLoader fxmlLoader = new FXMLLoader(
+                new File("src/main/java/App/View/StaffEdit.fxml").toURI().toURL()
+        );
+        MainApp.switchScene(new Scene(fxmlLoader.load()));
+        ((StaffEdit)fxmlLoader.getController()).setStaffText(
+                id,name,address,position,dob
+        );
 
     }
-
-
+    public void SceneStaffDelete() throws IOException, SQLException {
+        String id = staffTableView.getSelectionModel().getSelectedItem().getStaffId();
+        StaffModel staffModel = new StaffModel();
+        staffModel.deleteStaff(staffTableView.getSelectionModel().getSelectedItem().getStaffId());
+        MainApp.switchScene(new Scene(FXMLLoader.load(
+                new File("src/main/java/App/View/StaffMenu.fxml").toURI().toURL())
+        ));
+    }
+    public void SceneStaffMenu() throws IOException {
+        MainApp.switchScene(new Scene(FXMLLoader.load(
+                new File("src/main/java/App/View/StaffInfor.fxml").toURI().toURL())
+        ));
+    }
 }

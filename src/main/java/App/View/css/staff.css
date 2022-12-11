@@ -65,6 +65,9 @@
 .btn-exit:hover{
     -fx-background-color: red;
 }
+.btn-exit{
+    -fx-background-color: #EAF9F4;
+}
 .label-default{
     -fx-background-color: #C0C0C0 ;
     -fx-border-color: #000000;
