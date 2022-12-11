@@ -29,7 +29,8 @@ public class MainApp extends Application {
      */
     public static void switchScene(Scene newScene){
         mainStage.setScene(newScene);
-//        mainStage.setMaximized(true);
+        mainStage.setMaximized(true);
+        mainStage.centerOnScreen();
     }
 
     public static void main(String[] args) {
