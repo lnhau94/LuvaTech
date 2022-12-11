@@ -538,4 +538,64 @@ public class ProductDAO {
     public static void setBrands(ArrayList<Brand> brands) {
         ProductDAO.brands = brands;
     }
+
+    public static String addLaptop(Laptop laptop) {
+        DAO dao = new DAO();
+        String id = null;
+        PreparedStatement pst = dao.getPreStmt(
+                "insert into product(productname, brandid, pathimage) values(?,?,?) returning productid"
+        );
+        try {
+            pst.setString(1,laptop.getProductName());
+            pst.setInt(2,Integer.parseInt(laptop.getBrand().getBrandId()));
+            pst.setString(3,laptop.getImgPath());
+            ResultSet rs = pst.executeQuery();
+
+            while (rs.next()){
+                id = rs.getString(1);
+                break;
+            }
+            laptop.setProductId(id);
+            PreparedStatement pst2 = dao.getPreStmt(
+                    "insert into laptopinfo(productid, weight, screen, os, material, laptopsize, cpu, connected, camera) " +
+                            "values(?,?,?,?,?,?,?,?,?)"
+            );
+            pst2.setString(1,laptop.getProductId());
+            pst2.setString(2,laptop.getWeight());
+            pst2.setString(3,laptop.getScreen());
+            pst2.setString(4,laptop.getOs());
+            pst2.setString(5,laptop.getMaterial());
+            pst2.setString(6,laptop.getSize());
+            pst2.setString(7,laptop.getCpu());
+            pst2.setString(8,laptop.getConnect());
+            pst2.setString(9,laptop.getCamera());
+            pst2.execute();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return id;
+    }
+
+    public static String addBrand(Brand brand) {
+        String id = null;
+        DAO dao = new DAO();
+        PreparedStatement pst = dao.getPreStmt(
+                "insert into brand(brandname, brandcountry) values(?,?) returning brandid"
+        );
+        try {
+            pst.setString(1,brand.getBrandName());
+            pst.setString(2,brand.getBrandCountry());
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()){
+                id = rs.getString(1);
+                break;
+            }
+            brand.setBrandId(id);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+
+        return id;
+    }
 }

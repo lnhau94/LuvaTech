@@ -2,13 +2,17 @@ package DAL;
 
 import Entity.Staff;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 
 public class StaffDAO {
+    private Connection conn;
+    private Statement stmt;
+    private PreparedStatement preStmt;
+    private final String connectString = "jdbc:postgresql://localhost:5432/postgres?currentSchema=luvashop";
+    private final String dbuser = "postgres";
 
+    private final String dbpass = "Huy150902";
     public StaffDAO() {
     }
 
@@ -18,8 +22,8 @@ public class StaffDAO {
         DAO dao = new DAO();
         Statement stmt = dao.getStmt();
         try {
-            ResultSet rs = stmt.executeQuery("select staffid, staffname, staffaddress, " +
-                    " staffposition, staffbirthday from staff");
+            ResultSet rs = stmt.executeQuery("select staffid, staffname, staffbirthday, staffaddress, " +
+                    " staffposition from staff");
             while (rs != null && rs.next()){
                 System.out.print(rs.getString(1));
                 System.out.print(rs.getString(2));
@@ -29,9 +33,9 @@ public class StaffDAO {
                 staffs.add(new Staff(
                         rs.getString(1),
                         rs.getString(2),
-                        rs.getString(3),
+                        rs.getString(5),
                         rs.getString(4),
-                        rs.getDate(5),
+                        rs.getDate(3),
                         null
 
                 ));
@@ -42,4 +46,11 @@ public class StaffDAO {
 
         return staffs;
     }
+//    public static void execute(String sqlQuery) throws SQLException {
+//        DAO dao = new DAO();
+//        Statement stmt = dao.getStmt();
+//
+//        stmt= connect.createStatement();
+//        stmt.execute(sqlQuery);
+//    }
 }

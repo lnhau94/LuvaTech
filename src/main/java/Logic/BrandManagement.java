@@ -18,4 +18,9 @@ public class BrandManagement {
     public void setBrandList(ArrayList<Brand> brandList) {
         this.brandList = brandList;
     }
+
+    public void addNewBrand(Brand brand) {
+        brand.setBrandId(ProductDAO.addBrand(brand));
+        brandList.add(brand);
+    }
 }

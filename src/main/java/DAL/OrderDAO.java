@@ -1,5 +1,6 @@
 package DAL;
 
+import Entity.Customer;
 import Entity.GiveBackItem;
 import Entity.Order;
 import Entity.OrderDetails;
@@ -57,7 +58,7 @@ public class OrderDAO {
                 "from orders o join orderdetails od on o.orderid = od.orderid " +
                 "where o.orderid = ? ");
         try {
-            preStmt.setString(1,o.getOrderId());
+            preStmt.setInt(1,Integer.parseInt(o.getOrderId()));
             ResultSet rs = preStmt.executeQuery();
             while (rs != null && rs.next()){
                 orderDetails.add(new OrderDetails(rs.getString(1),rs.getInt(2)));
@@ -83,7 +84,7 @@ public class OrderDAO {
                 "from orders o join givebackitems gb on o.orderid = gb.orderid " +
                 "where o.orderid = ? ");
         try {
-            preStmt.setString(1,o.getOrderId());
+            preStmt.setInt(1,Integer.parseInt(o.getOrderId()));
             ResultSet rs = preStmt.executeQuery();
             while (rs != null && rs.next()){
                 giveBackItems.add(new GiveBackItem(rs.getString(1),rs.getInt(2),
@@ -95,4 +96,41 @@ public class OrderDAO {
 
         return giveBackItems;
     }
+    public boolean insertOrderDetails(OrderDetails orderDetails, Order  order){
+        DAO dao = new DAO();
+        Statement stmt = dao.getStmt();
+        PreparedStatement preparedStatement= dao.getPreStmt("insert into orderdetails (orderid,sku,quantity) " +
+                "values(?,?,?)");
+        try {
+            preparedStatement.setInt(1, Integer.parseInt(order.getOrderId()));
+            preparedStatement.setString(2, orderDetails.getSKU());
+            preparedStatement.setInt(3, orderDetails.getQty());
+            preparedStatement.execute();
+            return true;
+        } catch (SQLException e) {
+            System.out.println("OrderDAO");
+            System.out.println(e.getMessage());
+        }
+        return false;
+    }
+    public String insertOrder(Order order){
+        DAO dao = new DAO();
+        Statement stmt = dao.getStmt();
+        PreparedStatement preparedStatement= dao.getPreStmt("insert into orders (customerid,totalprice) " +
+                "values(?,?) returning orderid");
+        try {
+            preparedStatement.setInt(1, Integer.parseInt(order.getCustomer().getCustomerId()));
+            preparedStatement.setInt(2, order.getTotalPrice());
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+               return  rs.getString(1);
+            }
+
+        } catch (SQLException e) {
+            System.out.println("OrderDAO");
+            System.out.println(e.getMessage());
+        }
+        return null;
+    }
+
 }

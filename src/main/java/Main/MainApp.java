@@ -12,6 +12,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 import java.awt.*;
@@ -20,7 +21,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class MainApp extends Application {
-    private static Stage mainStage;
+    public static Stage mainStage;
+    public static Scene AdminScene;
+    public static Scene ShopScene;
+
 
     /**
      * Switch to new Scene - Chuyển Scene
@@ -28,6 +32,10 @@ public class MainApp extends Application {
      */
     public static void switchScene(Scene newScene){
         mainStage.setScene(newScene);
+        mainStage.setMaximized(true);
+        mainStage.setWidth(Screen.getPrimary().getBounds().getWidth());
+        mainStage.setHeight(Screen.getPrimary().getBounds().getHeight());
+        mainStage.centerOnScreen();
     }
 
     public static void main(String[] args) {
@@ -38,8 +46,15 @@ public class MainApp extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         MainModel.start();
+
         mainStage = stage;
-//        MainModel.start();
+
+        MainModel.start();
+        ShopScene = new Scene(FXMLLoader.load(
+                new File("src/main/java/App/View/view-product.fxml").toURI().toURL()));
+        AdminScene = new Scene(FXMLLoader.load(
+                new File("src/main/java/App/View/adminMainView.fxml").toURI().toURL()));
+
 //        stage.setTitle("LuvaTech");
 //        Button btn = new Button();
 //        btn.setText("Say 'Hello World'");
@@ -69,11 +84,22 @@ public class MainApp extends Application {
 //                FXMLLoader.load(
 //                        new File("src/main/java/App/View/adminMainView.fxml").toURI().toURL()))
 //        );
+//        stage.setScene(
+//                new Scene( FXMLLoader.load(new File
+//                        ("src/main/java/App/View/AdminImportViews/layouts/DefaultLayout.fxml")
+//                        .toURI().toURL())));
+
+//        stage.setScene(new Scene(
+//                FXMLLoader.load(
+//                        new File("src/main/java/App/View/StaffMenu.fxml").toURI().toURL()))
+//        );
+
+
         stage.setScene(
-                new Scene( FXMLLoader.load(new File
-                        ("src/main/java/App/View/AdminImportViews/layouts/DefaultLayout.fxml")
-                        .toURI().toURL()))
+                AdminScene
         );
+        stage.setMaximized(true);
+
         stage.show();
 
     }

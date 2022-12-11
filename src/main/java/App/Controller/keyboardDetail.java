@@ -18,7 +18,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class keyboardDetail {
+public class  keyboardDetail {
     @FXML
     private TextField Quality;
     @FXML
@@ -64,32 +64,32 @@ public class keyboardDetail {
         }
     }
 
-    public void setData(Keyboard product) {
-        {
-            productTilte.setText(product.getProductName());
-            ObservableList<String> switchListRender;
-            List<String> switchList = new ArrayList<String>();
-            switchList.add("Red Switch");
-            switchList.add("Blue Switch");
-            switchList.add("Black Switch");
-            switchListRender = FXCollections.observableList(switchList);
-            List<String> colorList = new ArrayList<String>();
-            colorList.add("#2f3640");
-            colorList.add("#fbc531");
-            colorList.add("#dcdde1");
-            colorList.add("#f5f6fa");
-            Map<String, String> colors = new HashMap<String, String>();
-            colors.put("den", "#2f3640");
-            colors.put("vang", "#fbc531");
-            colors.put("xam", "#dcdde1");
-            colors.put("bac", "#f5f6fa");
-            renderSwitch.setItems(switchListRender);
-            for (int i = 0; i < colorList.size(); i++) {
-                renderColor.getChildren().add(component.ColorRB(colorList.get(i), colorTG));
-            }
-            renderSwitch.setOnMouseClicked(e->{
-                System.out.printf("Switch color:"+renderSwitch.getValue());
-            });
-        }
-    }
+//    public void setData(Keyboard product) {
+//        {
+//            productTilte.setText(product.getProductName());
+//            ObservableList<String> switchListRender;
+//            List<String> switchList = new ArrayList<String>();
+//            switchList.add("Red Switch");
+//            switchList.add("Blue Switch");
+//            switchList.add("Black Switch");
+//            switchListRender = FXCollections.observableList(switchList);
+//            List<String> colorList = new ArrayList<String>();
+//            colorList.add("#2f3640");
+//            colorList.add("#fbc531");
+//            colorList.add("#dcdde1");
+//            colorList.add("#f5f6fa");
+//            Map<String, String> colors = new HashMap<String, String>();
+//            colors.put("den", "#2f3640");
+//            colors.put("vang", "#fbc531");
+//            colors.put("xam", "#dcdde1");
+//            colors.put("bac", "#f5f6fa");
+//            renderSwitch.setItems(switchListRender);
+//            for (int i = 0; i < colorList.size(); i++) {
+//                renderColor.getChildren().add(component.ColorRB(colorList.get(i), colorTG));
+//            }
+//            renderSwitch.setOnMouseClicked(e->{
+//                System.out.printf("Switch color:"+renderSwitch.getValue());
+//            });
+//        }
+//    }
 }
