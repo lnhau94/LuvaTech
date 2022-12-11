@@ -31,12 +31,7 @@ public class AdminMainControl {
 
     @FXML
     void showBrandScreen(ActionEvent event) {
-        try {
-            FaceRecognition.faceRecognition();
-        } catch (InterruptedException e) {
-            System.out.println("face recognize");
-            System.out.println(e.getMessage());
-        }
+        System.out.println("brand click");
     }
 
     @FXML
@@ -49,6 +44,25 @@ public class AdminMainControl {
             throw new RuntimeException(e);
         }
 
+    }
+
+    public void showStaffScreen(){
+        try {
+            MainApp.switchScene(new Scene(FXMLLoader.load(
+                    new File("src/main/java/App/View/StaffMenu.fxml").toURI().toURL()))
+            );
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void checkIn(){
+        try {
+            FaceRecognition.faceRecognition();
+        } catch (InterruptedException e) {
+            System.out.println("face recognize");
+            System.out.println(e.getMessage());
+        }
     }
 
 }
