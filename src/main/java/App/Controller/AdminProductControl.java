@@ -284,16 +284,7 @@ public class AdminProductControl implements Initializable {
         productScreen.setBottom(flowPane);
 
         backBtn.setOnAction(e-> {
-                    try {
-                        MainApp.switchScene(
-                                new Scene(FXMLLoader.load(
-                                        new File("src/main/java/App/View/adminMainView.fxml").toURI().toURL()
-                                )
-                        ));
-                    } catch (IOException ex) {
-                        throw new RuntimeException(ex);
-                    }
-                }
-            );
+                    MainApp.switchScene(MainApp.AdminScene);
+        });
     }
 }
