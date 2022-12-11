@@ -52,6 +52,7 @@ public class MainModel {
         HashMap<String,String> orderStaff = MappingDAO.mapOrderStaff();
         for(Order o : orderManager.getOrderList()){
             o.setCashier(staffManager.findById(orderStaff.get(o.getOrderId())));
+
         }
     }
 

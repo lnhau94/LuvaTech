@@ -58,5 +58,14 @@
                </image>
             </ImageView>
          </graphic></Button>
+      <Button fx:id="adminOrderBtn" alignment="CENTER" contentDisplay="TOP" layoutX="85.0" layoutY="27.0" mnemonicParsing="false" onAction="#showOrderScreen" prefHeight="75.0" prefWidth="180.0" styleClass="admin-main-button" stylesheets="@css/adminComponent.css" text="Order" GridPane.columnIndex="1" GridPane.rowIndex="2">
+         <graphic>
+            <ImageView fitHeight="61.0" fitWidth="101.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../Assets/Image/icon/clipboard.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
    </children>
 </GridPane>

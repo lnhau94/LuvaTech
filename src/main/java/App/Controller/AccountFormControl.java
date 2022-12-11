@@ -84,6 +84,7 @@ public class AccountFormControl implements Initializable {
                 getData(tmpAccount);
             }
             parent.updateAccountList();
+            ((Stage)okbtn.getScene().getWindow()).close();
         });
     }
 

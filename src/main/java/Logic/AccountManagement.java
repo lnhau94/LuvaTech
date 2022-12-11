@@ -43,5 +43,6 @@ public class AccountManagement {
                 break;
             }
         }
+        AccountDAO.addAccount(staff.getStaffId(),acc);
     }
 }
