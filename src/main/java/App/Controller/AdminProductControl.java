@@ -202,6 +202,32 @@ public class AdminProductControl implements Initializable {
             }
 
         });
+
+        removeBtn.setOnAction(e->{
+            if(adminProductTable.getSelectionModel().getSelectedIndex()>=0){
+                if (adminProductTable.getSelectionModel().getSelectedItem() instanceof Laptop){
+                    MainModel.productManager.getLaptopList().remove(adminProductTable.getSelectionModel().getSelectedItem());
+
+                }
+                if (adminProductTable.getSelectionModel().getSelectedItem() instanceof Phone){
+                    MainModel.productManager.getPhoneList().remove(adminProductTable.getSelectionModel().getSelectedItem());
+
+                }
+                if (adminProductTable.getSelectionModel().getSelectedItem() instanceof Headphone){
+                    MainModel.productManager.getHeadphoneList().remove(adminProductTable.getSelectionModel().getSelectedItem());
+
+                }
+                if (adminProductTable.getSelectionModel().getSelectedItem() instanceof Keyboard){
+                    MainModel.productManager.getKeyboardList().remove(adminProductTable.getSelectionModel().getSelectedItem());
+
+                }
+                if (adminProductTable.getSelectionModel().getSelectedItem() instanceof SmartWatch){
+                    MainModel.productManager.getSmartWatchList().remove(adminProductTable.getSelectionModel().getSelectedItem());
+
+                }
+                updateProductList();
+            }
+        });
     }
 
     public void showEditLaptopForm(Laptop laptop) {
