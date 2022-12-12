@@ -1,8 +1,10 @@
 package App.Controller;
 import Entity.*;
+import Main.MainApp;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -15,12 +17,10 @@ import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.net.URL;
+import java.util.*;
 
-public class ProductDetailsController {
+public class ProductDetailsController implements Initializable {
 
     @FXML
     private AnchorPane RenderDetail;
@@ -52,6 +52,8 @@ public class ProductDetailsController {
     private AnchorPane laptop;
     @FXML
     private HBox ramHbox;
+    @FXML
+    private Button backBtn;
 
     @FXML
     private HBox storageHBox;
@@ -136,16 +138,30 @@ public class ProductDetailsController {
         productTitle.setText(newProduct.getBrand().getBrandName());
         SwitchScreenDetails(newProduct);
     }
-    //back to Shop
-    public void backToShop(ActionEvent e)throws IOException{
-        Stage stage = (Stage) ((Node)e.getSource()).getScene().getWindow();
-        stage.centerOnScreen();
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(new File("src/main/java/App/View/view-product.fxml").toURI().toURL());
-        Parent AccountViewParent = loader.load();
-        Scene scene = new Scene(AccountViewParent);
-        stage.setScene(scene);
+    public void backToShop(){
+        backBtn.setOnAction(e->{
+            try {
+                MainApp.switchScene(new Scene(FXMLLoader.load(new File("src/main/java/App/View/view-product.fxml").toURI().toURL())));
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
     }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        backToShop();
+    }
+    //back to Shop
+//    public void backToShop(ActionEvent e)throws IOException{
+//        Stage stage = (Stage) ((Node)e.getSource()).getScene().getWindow();
+//        stage.centerOnScreen();
+//        FXMLLoader loader = new FXMLLoader();
+//        loader.setLocation(new File("src/main/java/App/View/view-product.fxml").toURI().toURL());
+//        Parent AccountViewParent = loader.load();
+//        Scene scene = new Scene(AccountViewParent);
+//        stage.setScene(scene);
+ //   }
 
 
 

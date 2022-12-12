@@ -9,17 +9,18 @@ import Entity.Laptop;
 import Entity.LaptopVariant;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 
+import java.io.File;
+import java.io.IOException;
+import java.net.MalformedURLException;
 import java.text.NumberFormat;
-import java.util.ArrayList;
-
-import java.util.HashSet;
-import java.util.List;
-import java.util.Locale;
+import java.util.*;
 
 
 public class laptopDetails {
@@ -66,7 +67,13 @@ public class laptopDetails {
     Component component = new Component();
     cartPageController cartPageController= new cartPageController();
     public ArrayList<Color> colorsList = ColorDAO.retrieve();
-    public void setData(Laptop product) {
+    public void setData(Laptop product) throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(new File("src/main/java/App/View/Alert2.fxml").toURI().toURL());
+        Pane alert = loader.load();
+        Dialog<ButtonType> dialog = new Dialog<>();
+        Alert2Controller alert2Controller = loader.getController();
+        dialog.setDialogPane((DialogPane) alert);
         productTilte.setText(product.getProductName());
         rams=new HashSet<>();
         storages= new HashSet<>();
@@ -83,7 +90,19 @@ public class laptopDetails {
         renderSpecs();
         Description(product);
         addtoCart.setOnAction(e->{
-            cartPageController.addToCart(cart(product));
+            try {
+                alert2Controller.RenderAlert("Success","Bạn chắc muốn thêm vào giỏ hàng!");
+            } catch (MalformedURLException ex) {
+                throw new RuntimeException(ex);
+            }
+            Optional<ButtonType> clickedButton = dialog.showAndWait();
+            if(clickedButton.get()== ButtonType.OK){
+                cartPageController.addToCart(cart(product));
+                dialog.close();
+            }else if(clickedButton.get()== ButtonType.CANCEL){
+                dialog.close();
+            }
+
         });
         }
 

@@ -19,7 +19,7 @@
             <VBox alignment="CENTER" prefHeight="810.0" prefWidth="367.0">
                <children>
                   <Pane prefHeight="39.0" prefWidth="367.0" />
-                  <Button fx:id="backicon" mnemonicParsing="false" onAction="#backToShop" prefHeight="38.0" prefWidth="49.0" styleClass="transparent">
+                  <Button fx:id="backBtn" mnemonicParsing="false" prefHeight="38.0" prefWidth="49.0" styleClass="transparent">
                      <VBox.margin>
                         <Insets left="-280.0" />
                      </VBox.margin>

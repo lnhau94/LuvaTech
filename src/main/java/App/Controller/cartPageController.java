@@ -2,6 +2,8 @@ package App.Controller;
 import App.Model.MainModel;
 import App.Model.cartPage;
 import Entity.Customer;
+import Main.MainApp;
+import com.sun.tools.javac.Main;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -59,11 +61,15 @@ public class cartPageController implements Initializable {
 
     @FXML
     private TextField customerPhone;
+    @FXML
+    private Button backBtn;
 
     @FXML
     private Label totalAll;
     @FXML
     private Button payment;
+    @FXML
+    private Label totailAfter;
 
     public static ArrayList<cartPage> cartPages = new ArrayList<cartPage>();
     ObservableList<cartPage> cartPagesList = FXCollections.observableArrayList();
@@ -92,21 +98,32 @@ public class cartPageController implements Initializable {
 
     }
 
-    public void backToShop(ActionEvent e) throws IOException {
-        Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
-        stage.centerOnScreen();
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(new File("src/main/java/App/View/view-product.fxml").toURI().toURL());
-        Parent AccountViewParent = loader.load();
-        Scene scene = new Scene(AccountViewParent);
-        stage.setScene(scene);
+//    public void backToShop(ActionEvent e) throws IOException {
+//        Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
+//        stage.centerOnScreen();
+//        FXMLLoader loader = new FXMLLoader();
+//        loader.setLocation(new File("src/main/java/App/View/view-product.fxml").toURI().toURL());
+//        Parent AccountViewParent = loader.load();
+//        Scene scene = new Scene(AccountViewParent);
+//        stage.setScene(scene);
+//    }
+    public void backToShop(){
+        backBtn.setOnAction(e->{
+            try {
+                MainApp.switchScene(new Scene(FXMLLoader.load(new File("src/main/java/App/View/view-product.fxml").toURI().toURL())));
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        backToShop();
         loadData();
         paymentEvent();
         totalAll.setText(NumberFormat.getCurrencyInstance(new Locale("vi", "VN")).format(sum()));
+        totailAfter.setText(NumberFormat.getCurrencyInstance(new Locale("vi", "VN")).format(sum()));
     }
 
     private Integer sum() {
@@ -167,6 +184,7 @@ public class cartPageController implements Initializable {
         cartPages.clear();
         cartTable.refresh();
         totalAll.setText(NumberFormat.getCurrencyInstance(new Locale("vi", "VN")).format(sum()));
+        totailAfter.setText(NumberFormat.getCurrencyInstance(new Locale("vi", "VN")).format(sum()));
     }
     public Customer createCustomer() throws IOException {
         FXMLLoader loader = new FXMLLoader();
