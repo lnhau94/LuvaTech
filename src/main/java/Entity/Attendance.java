@@ -4,8 +4,19 @@ import java.sql.*;
 
 public class Attendance {
     private Staff staff;
+    private String staffId;
+    private String staffName;
     private Date workday;
     private Time checkin;
+
+    public Attendance(String staffId, String staffName, Date workday, Time checkin, Time checkout) {
+        this.staffId = staffId;
+        this.staffName = staffName;
+        this.workday = workday;
+        this.checkin = checkin;
+        this.checkout = checkout;
+    }
+
     private Time checkout;
 
     public Attendance() {
@@ -54,5 +65,21 @@ public class Attendance {
 
     public void setCheckout(Time checkout) {
         this.checkout = checkout;
+    }
+
+    public String getStaffId() {
+        return staffId;
+    }
+
+    public void setStaffId(String staffId) {
+        this.staffId = staffId;
+    }
+
+    public String getStaffName() {
+        return staffName;
+    }
+
+    public void setStaffName(String staffName) {
+        this.staffName = staffName;
     }
 }

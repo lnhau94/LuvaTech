@@ -33,8 +33,8 @@ public class StaffDAO {
                 staffs.add(new Staff(
                         rs.getString(1),
                         rs.getString(2),
-                        rs.getString(5),
                         rs.getString(4),
+                        rs.getString(5),
                         rs.getDate(3),
                         null
 
@@ -46,11 +46,5 @@ public class StaffDAO {
 
         return staffs;
     }
-//    public static void execute(String sqlQuery) throws SQLException {
-//        DAO dao = new DAO();
-//        Statement stmt = dao.getStmt();
-//
-//        stmt= connect.createStatement();
-//        stmt.execute(sqlQuery);
-//    }
+
 }

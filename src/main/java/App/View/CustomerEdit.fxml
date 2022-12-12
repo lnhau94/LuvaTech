@@ -7,12 +7,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="App.Controller.CustomerEdit"
-            prefHeight="400.0" prefWidth="600.0">
+<AnchorPane prefHeight="400.0" prefWidth="412.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="App.Controller.CustomerEdit">
     <children>
-        <AnchorPane layoutX="94.0" layoutY="3.0" minHeight="0.0" minWidth="0.0" prefHeight="394.0" prefWidth="412.0" styleClass="background-staffadd" stylesheets="@css/staff.css">
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="400.0" prefWidth="412.0" styleClass="background-staffadd" stylesheets="@css/staff.css">
             <opaqueInsets>
                 <Insets />
             </opaqueInsets>
@@ -32,22 +29,22 @@
                         <Font size="14.0" />
                     </font>
                 </Label>
-                <TextField layoutX="149.0" layoutY="163.0" prefHeight="27.0" prefWidth="243.0" />
+                <TextField fx:id="customerPhone" layoutX="149.0" layoutY="163.0" prefHeight="27.0" prefWidth="243.0" />
                 <Label layoutX="16.0" layoutY="163.0" prefHeight="27.0" prefWidth="121.0" styleClass="title-staffadd" text="Phone" textAlignment="CENTER" wrapText="true">
                     <font>
                         <Font size="14.0" />
                     </font>
                 </Label>
-                <TextField layoutX="149.0" layoutY="208.0" prefHeight="27.0" prefWidth="243.0" />
-                <Button layoutX="48.0" layoutY="303.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="149.0" styleClass="btn-staffadd" text="Cancel" />
-                <Button layoutX="210.0" layoutY="303.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="149.0" styleClass="btn-staffadd" text="Accept" />
-                <TextField layoutX="149.0" layoutY="119.0" prefHeight="27.0" prefWidth="243.0" />
+                <TextField fx:id="customerAddress" layoutX="149.0" layoutY="208.0" prefHeight="27.0" prefWidth="243.0" />
+                <Button layoutX="48.0" layoutY="303.0" mnemonicParsing="false" onAction="#SceneCustomerInfor" prefHeight="39.0" prefWidth="149.0" styleClass="btn-staffadd" text="Cancel" />
+                <Button layoutX="210.0" layoutY="303.0" mnemonicParsing="false" onAction="#updateCustomer" prefHeight="39.0" prefWidth="149.0" styleClass="btn-staffadd" text="Accept" />
+                <TextField fx:id="customerDob" layoutX="149.0" layoutY="119.0" prefHeight="27.0" prefWidth="243.0" />
                 <Label layoutX="16.0" layoutY="208.0" prefHeight="27.0" prefWidth="121.0" styleClass="title-staffadd" text="Address" textAlignment="CENTER" wrapText="true">
                     <font>
                         <Font size="14.0" />
                     </font>
                 </Label>
-                <Label layoutX="149.0" layoutY="75.0" prefHeight="27.0" prefWidth="243.0" styleClass="label-default" />
+            <TextField fx:id="customerName" layoutX="149.0" layoutY="75.0" prefHeight="27.0" prefWidth="243.0" />
             </children>
         </AnchorPane>
     </children>
