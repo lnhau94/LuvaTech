@@ -241,6 +241,10 @@ public class cartPageController implements Initializable {
                             Optional<ButtonType> clickedButton = dialog.showAndWait();
                             if (clickedButton.get() == ButtonType.OK) {
                                 setPayment(cartPages, customer);
+                                customerName.setText("");
+                                customerAddress.setText("");
+                                customerPhone.setText("");
+                                customerDate.setValue(null);
                                 dialog.close();
                             }
                         }
@@ -249,6 +253,10 @@ public class cartPageController implements Initializable {
                     Optional<ButtonType> clickedButton = dialog.showAndWait();
                     if(clickedButton.get()== ButtonType.OK){
                         setPayment(cartPages, customer);
+                        customerName.setText("");
+                        customerAddress.setText("");
+                        customerPhone.setText("");
+                        customerDate.setValue(null);
                         dialog.close();
                     }
 
