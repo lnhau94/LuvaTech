@@ -12,8 +12,7 @@ import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -24,10 +23,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class viemProductController implements Initializable {
 
@@ -41,6 +37,11 @@ public class viemProductController implements Initializable {
     private Label quality;
     @FXML
     private ScrollPane scroll;
+    @FXML
+    private TextField textSearch;
+    @FXML
+    private Button BtnSearch;
+    @FXML
     //private List<ProductModel> products = new ArrayList<>();
     private List<CategoryModel> categories = new ArrayList<>();
     private HashMap<String, ArrayList<? extends Product>> productList = ProductDAO.retrieve();
@@ -172,7 +173,6 @@ public class viemProductController implements Initializable {
         anchorPane.setOnMouseClicked(e->{
             grid.getChildren().clear();
             render(products);
-            System.out.println("hello");
         });
         return anchorPane;
     }
@@ -187,6 +187,64 @@ public class viemProductController implements Initializable {
         hboxCartegory.getChildren().add(renderCategory(categories.get(1), (ArrayList<Product>) laptops));
         hboxCartegory.getChildren().add(renderCategory(categories.get(2), (ArrayList<Product>) phones));
         hboxCartegory.getChildren().add(renderCategory(categories.get(5), (ArrayList<Product>) smartWatchs));
+    }
+    public void searchProduct(){
+        FXMLLoader loader = new FXMLLoader();
+        try {
+            loader.setLocation(new File("src/main/java/App/View/Alert.fxml").toURI().toURL());
+        } catch (MalformedURLException ex) {
+            throw new RuntimeException(ex);
+        }
+        Pane alert = null;
+        try {
+            alert = loader.load();
+        } catch (IOException ex) {
+            throw new RuntimeException(ex);
+        }
+        Dialog<ButtonType> dialog = new Dialog<>();
+        AlertController alertController = loader.getController();
+        dialog.setDialogPane((DialogPane) alert);
+        ArrayList<Product> products = products ();
+        ArrayList<Product> ProductsForSearch = new ArrayList<> ();
+        BtnSearch.setOnAction(e->{
+            ProductsForSearch.clear();
+            if(!textSearch.getText().equals("")){
+                String pattern = ".*" + textSearch.getText() + ".*";
+                for(Product product:products) {
+                    if (product.getProductName().toLowerCase().matches(pattern.toLowerCase())) {
+                        ProductsForSearch.add(product);
+                    }
+                }
+                grid.getChildren().clear();
+                if (ProductsForSearch.size() > 0){
+                    render(ProductsForSearch);
+                }else {
+                    try {
+                        alertController.RenderAlert("Warning", "Không tìm thấy sản phẩm!");
+                    } catch (MalformedURLException ex) {
+                        throw new RuntimeException(ex);
+                    }
+                    Optional<ButtonType> clickedButton = dialog.showAndWait();
+                    if (clickedButton.get() == ButtonType.OK) {
+                        dialog.close();
+                        textSearch.setText("");
+                        grid.getChildren().clear();
+                        render(products);
+                    }
+                }
+            }else{
+                try {
+                    alertController.RenderAlert("Warning","Vui lòng nhập nội dung cần tìm kiếm!");
+                } catch (MalformedURLException ex) {
+                    throw new RuntimeException(ex);
+                }
+                Optional<ButtonType> clickedButton = dialog.showAndWait();
+                if(clickedButton.get()== ButtonType.OK){
+                    dialog.close();
+                }
+            }
+
+        });
     }
 
     /**
@@ -208,6 +266,7 @@ public class viemProductController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
             renderCategories();
+            searchProduct();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

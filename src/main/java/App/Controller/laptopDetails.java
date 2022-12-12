@@ -105,7 +105,6 @@ public class laptopDetails {
 
         });
         }
-
     public void renderRam(HashSet<String> list) {
         ToggleGroup ramTG = new ToggleGroup();
         list.forEach((item)->{
@@ -118,13 +117,13 @@ public class laptopDetails {
         });
         List<Node> ramRB = renderHB.getChildren().stream().toList();
         ramRB.forEach(n->{
-                n.setOnMouseClicked(e->{
-                    ramSelected=((RadioButton) n).getText();
-                    System.out.println(ramSelected);
-                    renderStorage(filterStorage());
-                    renderColor(filterColor());
-                    renderSpecs();
-                });
+            n.setOnMouseClicked(e->{
+                ramSelected=((RadioButton) n).getText();
+                System.out.println(ramSelected);
+                renderStorage(filterStorage());
+                renderColor(filterColor());
+                renderSpecs();
+            });
         });
     }
     public void renderStorage(HashSet<String> list){

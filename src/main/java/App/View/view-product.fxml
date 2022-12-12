@@ -63,7 +63,7 @@
                         <Pane prefHeight="62.0" prefWidth="363.0" HBox.hgrow="ALWAYS" />
                         <HBox alignment="CENTER" prefHeight="47.0" prefWidth="312.0">
                            <children>
-                              <TextField alignment="TOP_LEFT" prefHeight="28.0" prefWidth="184.0" promptText="Type here to  Search" styleClass="transparent">
+                              <TextField fx:id="textSearch" alignment="TOP_LEFT" prefHeight="28.0" prefWidth="184.0" promptText="Type here to  Search" styleClass="transparent">
                                  <HBox.margin>
                                     <Insets left="20.0" />
                                  </HBox.margin>
@@ -71,7 +71,7 @@
                                     <Font size="13.0" />
                                  </font>
                               </TextField>
-                              <Button alignment="CENTER" mnemonicParsing="false" prefHeight="30.0" prefWidth="84.0" styleClass="search-button" text="Search" textFill="#f8f1f1">
+                              <Button fx:id="BtnSearch" alignment="CENTER" mnemonicParsing="false" prefHeight="30.0" prefWidth="84.0" styleClass="search-button" text="Search" textFill="#f8f1f1">
                                  <HBox.margin>
                                     <Insets bottom="2.0" left="10.0" />
                                  </HBox.margin>
