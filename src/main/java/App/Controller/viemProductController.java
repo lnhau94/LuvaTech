@@ -55,7 +55,6 @@ public class viemProductController implements Initializable {
         for (Product phone : phones) {
             products.add(phone);
         }
-        System.out.println("Samrt");
         for (Product smartWatch : smartWatchs) {
             products.add(smartWatch);
         }
@@ -117,19 +116,19 @@ public class viemProductController implements Initializable {
         categories.add(category);
         category = new CategoryModel();
         category.setName("Smart Phone");
-        category.setImageCategory("src/main/java/Assets/Image/icon/laptop.png");
+        category.setImageCategory("src/main/java/Assets/Image/icon/smartphone.png");
         categories.add(category);
         category = new CategoryModel();
         category.setName("HeadPhone");
-        category.setImageCategory("src/main/java/Assets/Image/icon/laptop.png");
+        category.setImageCategory("src/main/java/Assets/Image/icon/headphones.png");
         categories.add(category);
         category = new CategoryModel();
         category.setName("Keyboard");
-        category.setImageCategory("src/main/java/Assets/Image/icon/laptop.png");
+        category.setImageCategory("src/main/java/Assets/Image/icon/keyboard.png");
         categories.add(category);
         category = new CategoryModel();
         category.setName("Smart Watch");
-        category.setImageCategory("src/main/java/Assets/Image/icon/laptop.png");
+        category.setImageCategory("src/main/java/Assets/Image/icon/smart-watch.png");
         categories.add(category);
         return categories;
     }
@@ -187,6 +186,7 @@ public class viemProductController implements Initializable {
         hboxCartegory.getChildren().add(renderCategory(categories.get(0),AllproductsList));
         hboxCartegory.getChildren().add(renderCategory(categories.get(1), (ArrayList<Product>) laptops));
         hboxCartegory.getChildren().add(renderCategory(categories.get(2), (ArrayList<Product>) phones));
+        hboxCartegory.getChildren().add(renderCategory(categories.get(5), (ArrayList<Product>) smartWatchs));
     }
 
     /**

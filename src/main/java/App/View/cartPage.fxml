@@ -24,7 +24,7 @@
             <VBox prefHeight="810.0" prefWidth="42.0" styleClass="Orderpage_header">
                <children>
                   <Pane prefHeight="34.0" prefWidth="45.0" />
-                  <Button mnemonicParsing="false" onAction="#backToShop" styleClass="transparent" stylesheets="@css/style.css">
+                  <Button fx:id="backBtn" mnemonicParsing="false" styleClass="transparent" stylesheets="@css/style.css">
                      <graphic>
                         <ImageView fitHeight="38.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -202,7 +202,7 @@
                                                    </font>
                                                 </Label>
                                                 <Pane prefHeight="66.0" prefWidth="56.0" />
-                                                <Label prefHeight="66.0" prefWidth="188.0" text="40.000.000VND" textFill="#f80808">
+                                                <Label fx:id="totailAfter" prefHeight="66.0" prefWidth="188.0" text="40.000.000VND" textFill="#f80808">
                                                    <font>
                                                       <Font name="Segoe UI Semibold" size="20.0" />
                                                    </font>
