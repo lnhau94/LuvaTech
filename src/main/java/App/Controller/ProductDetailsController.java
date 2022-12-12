@@ -82,7 +82,7 @@ public class ProductDetailsController implements Initializable {
         fxmlLoader.setLocation(new File(pathScreen.get("SmartWatch")).toURI().toURL());
         AnchorPane anchorPane = fxmlLoader.load();
         smartDetails smartDetails = fxmlLoader.getController();
-        // smartDetails.setData(smartWatch);
+        smartDetails.setData(smartWatch);
         return  anchorPane;
     }
     public AnchorPane setRenderDetail(Headphone headphone,Map<String, String> pathScreen ) throws IOException {

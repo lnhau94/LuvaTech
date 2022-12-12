@@ -109,7 +109,7 @@ public class viemProductController implements Initializable {
         CategoryModel category;
         category = new CategoryModel();
         category.setName("All");
-        category.setImageCategory("src/main/java/Assets/Image/icon/laptop.png");
+        category.setImageCategory("src/main/java/Assets/Image/icon/select.png");
         categories.add(category);
         category = new CategoryModel();
         category.setName("Laptop");

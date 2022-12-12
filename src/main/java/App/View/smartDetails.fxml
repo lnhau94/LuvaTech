@@ -117,13 +117,13 @@
                 </VBox>
                 <Line endX="126.32269287109375" endY="0.7928932309150696" startX="-702.1773071289062" startY="0.7928932309150696" />
                 <Pane prefHeight="35.0" prefWidth="948.0" />
-                <Label prefHeight="285.0" prefWidth="792.0" text="THÔNG SỐ BÀN PHÍM✍️ Mô hình: RK G68✍️ Keycap: doubleshot được đúc từ 2 lớp nhựa riêng biệt, một cho keycap và còn lại cho phần kí tự✍️ Switch Hotswap: - RK Blue / RK Brown / RK Red- Gateron Blue / Gateron Brown / Gateron Red / Gateron Yellow / Gateron Milky Yellow Pro /  Gateron Milky Red Pro- Cherry Blue / Cherry Brown / Cherry Red✍️ Chế Độ kết nối: Bluetooth 5.0/ 2.4G/ USB - Type-C có dây✍️ Số khóa: 68 phím✍️ Dung Lượng pin: 3150mAh✍️ Đèn nền: Led RGB 16.8 triệu màu, có phần mềm điều chỉnh✍️ Phím Chức Năng: Có Dây , bluetooth 5.0 và wireless 2.4G hỗ trợ không xung đột phím✍️ Bàn phím tương thích: Windows / MacOS / Linux✍️ HDSD : https://bit.ly/3CBHckG✍️ Phần mềm custom phím (Driver) : https://bit.ly/3pSYoKH" wrapText="true">
+                <Label fx:id="desrcText" prefHeight="285.0" prefWidth="792.0" text="THÔNG SỐ BÀN PHÍM✍️ Mô hình: RK G68✍️ Keycap: doubleshot được đúc từ 2 lớp nhựa riêng biệt, một cho keycap và còn lại cho phần kí tự✍️ Switch Hotswap: - RK Blue / RK Brown / RK Red- Gateron Blue / Gateron Brown / Gateron Red / Gateron Yellow / Gateron Milky Yellow Pro /  Gateron Milky Red Pro- Cherry Blue / Cherry Brown / Cherry Red✍️ Chế Độ kết nối: Bluetooth 5.0/ 2.4G/ USB - Type-C có dây✍️ Số khóa: 68 phím✍️ Dung Lượng pin: 3150mAh✍️ Đèn nền: Led RGB 16.8 triệu màu, có phần mềm điều chỉnh✍️ Phím Chức Năng: Có Dây , bluetooth 5.0 và wireless 2.4G hỗ trợ không xung đột phím✍️ Bàn phím tương thích: Windows / MacOS / Linux✍️ HDSD : https://bit.ly/3CBHckG✍️ Phần mềm custom phím (Driver) : https://bit.ly/3pSYoKH" wrapText="true">
                     <font>
                         <Font size="15.0" />
                     </font>
                 </Label>
                 <Pane prefHeight="35.0" prefWidth="948.0" />
-                <Button mnemonicParsing="false" prefHeight="66.0" prefWidth="357.0" text="Thêm vào giỏ hàng">
+                <Button fx:id="addtoCart" mnemonicParsing="false" prefHeight="66.0" prefWidth="357.0" text="Thêm vào giỏ hàng">
                     <font>
                         <Font name="System Bold" size="31.0" />
                     </font>
