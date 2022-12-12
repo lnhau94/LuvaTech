@@ -32,6 +32,10 @@ public class MainApp extends Application {
      */
     public static void switchScene(Scene newScene){
         mainStage.setScene(newScene);
+        mainStage.setMaximized(true);
+//        mainStage.setWidth(Screen.getPrimary().getBounds().getWidth());
+//        mainStage.setHeight(Screen.getPrimary().getBounds().getHeight());
+        mainStage.centerOnScreen();
     }
 
     public static void main(String[] args) {
@@ -45,13 +49,13 @@ public class MainApp extends Application {
 
         mainStage = stage;
 //
-//        MainModel.start();
-//        ShopScene = new Scene(FXMLLoader.load(
-//                new File("src/main/java/App/View/view-product.fxml").toURI().toURL()));
-//        AdminScene = new Scene(FXMLLoader.load(
-//                new File("src/main/java/App/View/adminMainView.fxml").toURI().toURL()));
+        MainModel.start();
+        ShopScene = new Scene(FXMLLoader.load(
+                new File("src/main/java/App/View/view-product.fxml").toURI().toURL()));
+        AdminScene = new Scene(FXMLLoader.load(
+                new File("src/main/java/App/View/adminMainView.fxml").toURI().toURL()));
 
-//        stage.setTitle("LuvaTech");
+        stage.setTitle("LuvaTech");
 //        Button btn = new Button();
 //        btn.setText("Say 'Hello World'");
 //        StackPane root = new StackPane();
@@ -80,21 +84,21 @@ public class MainApp extends Application {
 //                FXMLLoader.load(
 //                        new File("src/main/java/App/View/adminMainView.fxml").toURI().toURL()))
 //        );
-//        stage.setScene(
-//                new Scene( FXMLLoader.load(new File
-//                        ("src/main/java/App/View/AdminImportViews/layouts/DefaultLayout.fxml")
-//                        .toURI().toURL())));
+        stage.setScene(
+                new Scene( FXMLLoader.load(new File
+                        ("src/main/java/App/View/AdminImportViews/layouts/DefaultLayout.fxml")
+                        .toURI().toURL())));
 
-        stage.setScene(new Scene(
-                FXMLLoader.load(
-                        new File("src/main/java/App/View/CustomerMenu.fxml").toURI().toURL()))
-        );
-
-
-//        stage.setScene(
-//                AdminScene
+//        stage.setScene(new Scene(
+//                FXMLLoader.load(
+//                        new File("src/main/java/App/View/CustomerMenu.fxml").toURI().toURL()))
 //        );
-//        stage.setMaximized(true);
+
+
+        stage.setScene(
+                AdminScene
+        );
+        stage.setMaximized(true);
 
         stage.show();
 

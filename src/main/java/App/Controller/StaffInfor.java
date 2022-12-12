@@ -109,7 +109,9 @@ public class StaffInfor implements Initializable {
     }
     public void SceneStaffMenu() throws IOException {
         MainApp.switchScene(new Scene(FXMLLoader.load(
-                new File("src/main/java/App/View/StaffInfor.fxml").toURI().toURL())
+                new File("src/main/java/App/View/StaffMenu.fxml").toURI().toURL())
         ));
     }
+
+
 }
