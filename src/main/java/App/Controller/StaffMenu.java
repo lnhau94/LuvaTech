@@ -36,9 +36,9 @@ public class StaffMenu implements Initializable{
                 new File("src/main/java/App/View/Salary.fxml").toURI().toURL())
         ));
     }
-    public void Exit(ActionEvent event) throws IOException {
+    public void exit(ActionEvent event) throws IOException {
         MainApp.switchScene(new Scene(FXMLLoader.load(
-                new File("src/main/java/App/View/Salary.fxml").toURI().toURL())
+                new File("src/main/java/App/View/adminMainView.fxml").toURI().toURL())
         ));
     }
     @Override
