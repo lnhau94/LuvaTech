@@ -149,14 +149,13 @@ public class cartPageController implements Initializable {
                 final TableCell<cartPage, Void> cell = new TableCell<cartPage, Void>() {
 
                     private final Button btn = new Button("Delete");
-
-
                     {
                         btn.setOnAction((ActionEvent event) -> {
                             cartPage data = getTableView().getItems().get(getIndex());
                             cartPages.remove(data);
                             cartTable.refresh();
                             totalAll.setText(NumberFormat.getCurrencyInstance(new Locale("vi", "VN")).format(sum()));
+                            totailAfter.setText(NumberFormat.getCurrencyInstance(new Locale("vi", "VN")).format(sum()));
                         });
                     }
 
